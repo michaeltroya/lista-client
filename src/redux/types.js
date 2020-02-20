@@ -1,0 +1,19 @@
+//USER TYPES
+export const SET_AUTHENTICATED = 'SET_AUTHENTICATED';
+export const SET_UNAUTHENTICATED = 'SET_UNAUTHENTICATED';
+export const SET_USER = 'SET_USER';
+export const LOADING_USER = 'LOADING_USER';
+//UI TYPES
+export const SET_ERRORS = 'SET_ERRORS';
+export const LOADING_UI = 'LOADING_UI';
+export const STOP_LOADING_UI = 'STOP_LOADING_UI';
+export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+//LIST TYPES
+export const SET_LIST = 'SET_LIST';
+export const SET_LISTS = 'SET_LISTS';
+export const LOADING_DATA = 'LOADING_DATA';
+export const LIKE_LIST = 'LIKE_LIST';
+export const UNLIKE_LIST = 'UNLIKE_LIST';
+export const DELETE_LIST = 'DELETE_LIST';
+export const CREATE_LIST = 'CREATE_LIST';
+export const SUBMIT_COMMENT = 'SUBMIT_COMMENT';
