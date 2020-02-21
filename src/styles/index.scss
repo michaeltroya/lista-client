@@ -1,0 +1,23 @@
+//COLORS
+$main-color: #008cff;
+$accent-color: #00ecbc;
+$gradient-color: linear-gradient(-221deg, #008cff 0%, #00ecbc 100%);
+$white-color: #fff;
+$dark-color: #00192f;
+
+//FONTS
+@import url('https://fonts.googleapis.com/css?family=Alatsi&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,700&display=swap');
+
+//MIXINS
+@import '../../node_modules/bootstrap/scss/bootstrap-reboot.scss';
+@import '../../node_modules/bootstrap/scss/bootstrap-grid';
+@import '../../node_modules/bootstrap/scss/mixins/breakpoints';
+
+//COMPONENTS
+@import '../components/Nav/nav';
+
+//PAGES
+
+//MEDIA QUERIES
+@import './responsive';
