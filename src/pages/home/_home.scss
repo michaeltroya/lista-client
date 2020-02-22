@@ -1,0 +1,55 @@
+.home-background {
+  background-color: $main-color;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAIElEQVQoU2P8//9/AyMjYwMDAcBISAFMflQh3pAiOngAZrcEC1VwK08AAAAASUVORK5CYII=');
+  height: 100%;
+}
+
+.home-overlay {
+  background-color: $white-color;
+  height: 80%;
+  position: relative;
+  .container {
+    height: 100%;
+  }
+}
+
+//LOGO
+.home-logo-container {
+  justify-self: flex-start;
+  width: 100%;
+  padding: 2rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+}
+
+.home-logo {
+  width: 120px;
+}
+
+//TEXT
+
+.home-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.home-hero-container {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: normal;
+  }
+}
+
+.home-buttons {
+  :first-child {
+    margin-left: 0;
+  }
+}

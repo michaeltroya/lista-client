@@ -1,13 +1,21 @@
-//COLORS
-$main-color: #008cff;
-$accent-color: #00ecbc;
-$gradient-color: linear-gradient(-221deg, #008cff 0%, #00ecbc 100%);
-$white-color: #fff;
-$dark-color: #00192f;
+#root,
+body,
+html {
+  height: 100%;
+  position: relative;
+  padding: 0;
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+}
 
-//FONTS
-@import url('https://fonts.googleapis.com/css?family=Alatsi&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Red+Hat+Display:400,700&display=swap');
+//COLORS
+$main-color: #f91c1c;
+$white-color: #fff;
+$dark-color: #252525;
+
+//FILES
+@import './elements';
+@import './typography';
 
 //MIXINS
 @import '../../node_modules/bootstrap/scss/bootstrap-reboot.scss';
@@ -18,6 +26,7 @@ $dark-color: #00192f;
 @import '../components/Nav/nav';
 
 //PAGES
+@import '../pages/home/home';
 
 //MEDIA QUERIES
 @import './responsive';
