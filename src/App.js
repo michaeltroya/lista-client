@@ -6,9 +6,14 @@ import home from './pages/home/home';
 import login from './pages/login';
 import signup from './pages/signup';
 
+//comps
+
+import Nav from './components/Nav/Nav';
+
 const App = () => {
   return (
     <Router>
+      <Nav />
       <Switch>
         <Route exact path="/" component={home} />
         <Route exact path="/login" component={login} />

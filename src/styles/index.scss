@@ -5,13 +5,23 @@ html {
   position: relative;
   padding: 0;
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
+}
+
+button {
+  &:focus {
+    outline: none;
+  }
+}
+
+section {
+  padding: 2rem 0;
 }
 
 //COLORS
 $main-color: #f91c1c;
 $white-color: #fff;
 $dark-color: #252525;
+$grey-color: #a7a7a7;
 
 //FILES
 @import './elements';
@@ -24,6 +34,7 @@ $dark-color: #252525;
 
 //COMPONENTS
 @import '../components/Nav/nav';
+@import '../components/List/list';
 
 //PAGES
 @import '../pages/home/home';

@@ -1,29 +1,46 @@
 import React from 'react';
-//img imports
-import Logo from '../../images/logo.png';
+import { Link } from 'react-router-dom';
 //bs imports
-import { Container } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
+
+//component imports
+import List from '../../components/List/List';
 
 const home = () => {
   return (
-    <div className="home-background">
-      <div className="home-overlay">
-        <div className="home-logo-container">
-          <img src={Logo} alt="logo" className="home-logo" />
-        </div>
+    <div className="home">
+      <section className="home-hero">
         <Container>
-          <div className="home-content">
-            <div className="home-hero-container">
-              <h1 className="r-text">Welcome to Lista.</h1>
-              <h3>The best platform to share all of your all-time lists</h3>
-              <div className="home-buttons">
-                <button className="btn">Login</button>
-                <button className="btn">Signup</button>
+          <Row>
+            <Col xs={12}>
+              <div className="home-hero-container">
+                <h1 className="r-text">Welcome to Lista.</h1>
+                <h3>The best platform to share your all-time lists</h3>
+                <h4>
+                  From your favourite movies to your favourite NBA players, Lista allows you to create
+                  lists...
+                </h4>
+                <div className="home-buttons">
+                  <button className="btn">
+                    <Link to="/signup">Sign up</Link>
+                  </button>
+                  <button className="btn">
+                    <Link to="/login">Log in</Link>
+                  </button>
+                </div>
               </div>
-            </div>
+            </Col>
+          </Row>
+        </Container>
+      </section>
+      <section className="home-lists">
+        <Container>
+          <div className="home-lists-container">
+            <h2>Check out some lists</h2>
+            <List />
           </div>
         </Container>
-      </div>
+      </section>
     </div>
   );
 };

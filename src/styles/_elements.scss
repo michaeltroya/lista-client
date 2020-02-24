@@ -1,7 +1,7 @@
 .btn {
   background-color: $main-color;
   color: white;
-  padding: 0.2rem 0.9rem;
+  padding: 0.2rem 1.5rem;
   font-size: 1rem;
   border-radius: 5px;
   margin: 0.2rem 0.4rem;
@@ -15,8 +15,24 @@
   &:hover {
     background-color: #cf0000;
   }
+  a {
+    color: white;
+    &:hover {
+      color: white;
+    }
+  }
+}
 
-  &:focus {
-    outline: none;
+.btn-clear {
+  padding: 0;
+  background-color: transparent;
+  &:hover {
+    background-color: transparent;
+  }
+  a {
+    color: $main-color;
+    &:hover {
+      color: $main-color;
+    }
   }
 }

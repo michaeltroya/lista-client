@@ -12,3 +12,14 @@ h6 {
 .r-text {
   color: $main-color !important;
 }
+
+.w-text {
+  color: $white-color !important;
+}
+
+a {
+  font-family: 'Nunito';
+  &:hover {
+    text-decoration: none !important;
+  }
+}
