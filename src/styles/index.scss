@@ -18,9 +18,9 @@ section {
 }
 
 //COLORS
-$main-color: #f91c1c;
+$main-color: #ea660c;
 $white-color: #fff;
-$dark-color: #252525;
+$dark-color: #191919;
 $grey-color: #a7a7a7;
 
 //FILES
@@ -37,7 +37,7 @@ $grey-color: #a7a7a7;
 @import '../components/List/list';
 
 //PAGES
-@import '../pages/home/home';
+@import '../pages/Home/home';
 
 //MEDIA QUERIES
 @import './responsive';

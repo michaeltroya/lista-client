@@ -18,7 +18,7 @@ const Home = () => {
           <Row>
             <Col xs={12}>
               <div className="home-hero-container">
-                <h1 className="r-text">Welcome to Lista.</h1>
+                <h1 className="o-text">Welcome to Lista</h1>
                 <h3>The best platform to share your all-time lists</h3>
                 <h4>
                   From your favourite movies to your favourite NBA players, Lista allows you to create
@@ -39,8 +39,8 @@ const Home = () => {
       </section>
       <section className="home-lists">
         <Container>
+          <h2>Explore lists</h2>
           <div className="home-lists-container">
-            <h2>Check out some lists</h2>
             {loading ? <h1>Loading...</h1> : data.getLists.map(list => <List list={list} key={list.id} />)}
           </div>
         </Container>

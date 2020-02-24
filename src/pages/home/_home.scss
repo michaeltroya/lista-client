@@ -7,7 +7,7 @@
 //HERO
 
 .home-hero {
-  background-color: red;
+  background-color: #fff;
 }
 
 .home-hero-container {
@@ -16,6 +16,7 @@
   justify-content: space-evenly;
   h1 {
     font-size: 2.5rem;
+    font-weight: 900;
   }
   h3 {
     font-size: 1.6rem;
@@ -26,7 +27,7 @@
     font-size: 1rem;
     font-weight: normal;
     line-height: normal;
-    color: #666666;
+    color: #696969;
   }
 }
 
@@ -38,6 +39,13 @@
 }
 
 .home-lists {
-  background-color: #eaeaea;
+  background-color: #f3f3f3;
   height: 100%;
+}
+
+.home-lists-container {
+  padding: 2rem 0.8rem;
+  display: flex;
+  align-items: flex-start;
+  overflow-x: auto;
 }

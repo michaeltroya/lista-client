@@ -1,9 +1,8 @@
 .btn {
   background-color: $main-color;
-  color: white;
-  padding: 0.2rem 1.5rem;
+  padding: 0.3rem 1.8rem;
   font-size: 1rem;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 0.2rem 0.4rem;
   display: inline-block;
   font-weight: 500;
@@ -13,12 +12,17 @@
   position: relative;
 
   &:hover {
-    background-color: #cf0000;
+    background-color: #ff8938;
   }
+
+  &:focus {
+    outline: none;
+  }
+
   a {
-    color: white;
+    color: #fff;
     &:hover {
-      color: white;
+      color: #fff;
     }
   }
 }
@@ -30,9 +34,9 @@
     background-color: transparent;
   }
   a {
-    color: $main-color;
+    color: $dark-color;
     &:hover {
-      color: $main-color;
+      color: $dark-color;
     }
   }
 }
