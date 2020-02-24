@@ -1,0 +1,19 @@
+.list-card {
+  background-color: red;
+}
+
+.list-card-header {
+  background-color: yellow;
+  padding: 2rem;
+}
+
+.list-card-tags {
+  display: flex;
+  align-items: center;
+
+  .tag {
+    padding: 0.5rem;
+    background-color: $main-color;
+    margin-right: 0.5rem;
+  }
+}

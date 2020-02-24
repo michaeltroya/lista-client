@@ -1,12 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+//gql
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 //bs imports
 import { Container, Row, Col } from 'react-bootstrap';
-
 //component imports
 import List from '../../components/List/List';
 
-const home = () => {
+const Home = () => {
+  const { loading, data } = useQuery(FETCH_LISTS_QUERY);
+  console.log(data);
   return (
     <div className="home">
       <section className="home-hero">
@@ -37,11 +41,35 @@ const home = () => {
         <Container>
           <div className="home-lists-container">
             <h2>Check out some lists</h2>
-            <List />
+            {loading ? <h1>Loading...</h1> : data.getLists.map(list => <List list={list} key={list.id} />)}
           </div>
         </Container>
       </section>
     </div>
   );
 };
-export default home;
+
+const FETCH_LISTS_QUERY = gql`
+  {
+    getLists {
+      id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
+      commentCount
+
+      likeCount
+    }
+  }
+`;
+
+export default Home;
