@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 //bs imports
 import { Container } from 'react-bootstrap';
-const Signup = () => {
+const Signup = props => {
   const [errors, setErrors] = useState({});
   const [signupData, setSignupData] = useState({
     username: '',
@@ -19,10 +19,12 @@ const Signup = () => {
   };
 
   const [signupUser, { loading }] = useMutation(SIGNUP_USER, {
-    update(proxy, result) {
+    update(_, result) {
       console.log(result);
+      props.history.push('/');
     },
     onError(err) {
+      console.log(err.graphQLErrors[0].extensions.exception.errors);
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: {
@@ -38,9 +40,17 @@ const Signup = () => {
     signupUser();
   };
 
-  //TODO : SHOW ERRORS ON FRONTEND
   return (
     <section className="signup">
+      {Object.keys(errors).length > 0 ? (
+        <div className="form-errors">
+          <Container>
+            {Object.values(errors).map(err => (
+              <h4>{err}</h4>
+            ))}
+          </Container>
+        </div>
+      ) : null}
       <Container className="form-container">
         <form className="form" onSubmit={handleSubmit} noValidate>
           <input

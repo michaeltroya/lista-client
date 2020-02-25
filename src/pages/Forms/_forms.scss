@@ -25,3 +25,15 @@
     color: white;
   }
 }
+
+.form-errors {
+  width: 100%;
+  text-align: center;
+  background-color: #f55;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+  h4 {
+    margin-bottom: 0.1rem;
+    color: #fff;
+  }
+}
