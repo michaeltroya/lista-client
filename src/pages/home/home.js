@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
@@ -10,9 +10,8 @@ import List from '../../components/List/List';
 
 const Home = () => {
   const { loading, data } = useQuery(FETCH_LISTS_QUERY);
-  console.log(data);
   return (
-    <div className="home">
+    <Fragment>
       <section className="home-hero">
         <Container>
           <Row>
@@ -45,7 +44,7 @@ const Home = () => {
           </div>
         </Container>
       </section>
-    </div>
+    </Fragment>
   );
 };
 

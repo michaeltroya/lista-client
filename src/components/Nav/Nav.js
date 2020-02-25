@@ -14,9 +14,6 @@ const Nav = () => {
         </div>
         <div className="nav-links">
           <button className="btn btn-clear">
-            <Link to="/signup">Sign up</Link>
-          </button>
-          <button className="btn btn-clear">
             <Link to="/login">Log in</Link>
           </button>
         </div>
