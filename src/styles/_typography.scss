@@ -1,5 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito:400,700,900i&display=swap');
 
+p {
+  font-family: 'Nunito';
+  font-weight: normal;
+}
+
+a {
+  font-family: 'Nunito';
+  font-weight: normal;
+  &:hover {
+    text-decoration: none !important;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -11,17 +24,17 @@ h6 {
   color: $dark-color;
 }
 
+input[type='text'],
+input[type='password'],
+input[type='submit'] {
+  font-family: 'Nunito';
+  font-weight: normal;
+}
+
 .o-text {
   color: $main-color !important;
 }
 
 .w-text {
   color: $white-color !important;
-}
-
-a {
-  font-family: 'Nunito';
-  &:hover {
-    text-decoration: none !important;
-  }
 }

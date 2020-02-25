@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -20,11 +19,9 @@ const Signup = props => {
 
   const [signupUser, { loading }] = useMutation(SIGNUP_USER, {
     update(_, result) {
-      console.log(result);
       props.history.push('/');
     },
     onError(err) {
-      console.log(err.graphQLErrors[0].extensions.exception.errors);
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: {
@@ -70,7 +67,7 @@ const Signup = props => {
             autoComplete="off"
           />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             name="password"
             value={signupData.password}
@@ -78,14 +75,14 @@ const Signup = props => {
             autoComplete="off"
           />
           <input
-            type="text"
+            type="password"
             placeholder="Confirm Password"
             name="confirmPassword"
             value={signupData.confirmPassword}
             onChange={handleChange}
             autoComplete="off"
           />
-          <input type="submit" className="btn" />
+          <input type="submit" className="btn btn-full-width" />
         </form>
       </Container>
     </section>
@@ -93,9 +90,9 @@ const Signup = props => {
 };
 
 const SIGNUP_USER = gql`
-  mutation register($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
-    register(
-      registerInput: {
+  mutation signup($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
+    signup(
+      signupInput: {
         username: $username
         email: $email
         password: $password
