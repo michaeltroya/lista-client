@@ -21,17 +21,17 @@ const HomeStatic = () => {
               <div className="home-hero-container">
                 <h1 className="o-text">Welcome to Lista</h1>
                 <h3>The best platform to share your all-time lists</h3>
-                <h4>
+                <h4 className="g-text">
                   From your favourite movies to your favourite NBA players, Lista allows you to create
                   lists...
                 </h4>
                 <div className="home-buttons">
-                  <button className="btn">
-                    <Link to="/signup">Sign up</Link>
-                  </button>
-                  <button className="btn">
-                    <Link to="/login">Log in</Link>
-                  </button>
+                  <Link to="/signup" className="btn">
+                    Sign up
+                  </Link>
+                  <Link to="/login" className="btn">
+                    Log in
+                  </Link>
                 </div>
               </div>
             </Col>

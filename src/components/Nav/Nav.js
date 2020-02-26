@@ -14,9 +14,9 @@ const Nav = ({ type }) => {
             </Link>
           </div>
           <div className="nav-links">
-            <button className="btn btn-clear">
-              <Link to="/login">Log in</Link>
-            </button>
+            <Link to="/login" className="btn btn-clear">
+              Log in
+            </Link>
           </div>
         </Container>
       </nav>

@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import { Link } from 'react-router-dom';
 //gql
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -87,6 +88,12 @@ const Login = props => {
               <input type="submit" className="btn btn-full-width" />
             )}
           </form>
+          <h4 className="g-text">
+            Don't have an account?{' '}
+            <Link to="/signup" className="o-text">
+              Signup
+            </Link>
+          </h4>
         </Container>
       </section>
     </Fragment>

@@ -8,6 +8,7 @@ p {
 a {
   font-family: 'Nunito';
   font-weight: normal;
+
   &:hover {
     text-decoration: none !important;
   }
@@ -37,4 +38,8 @@ input[type='submit'] {
 
 .w-text {
   color: $white-color !important;
+}
+
+.g-text {
+  color: #696969;
 }

@@ -3,6 +3,7 @@
 }
 
 .btn {
+  color: #fff;
   background-color: $main-color;
   padding: 0.3rem 1.8rem;
   font-size: 1rem;
@@ -16,32 +17,22 @@
   position: relative;
 
   &:hover {
+    color: white;
     background-color: #ff8938;
   }
 
   &:focus {
     outline: none;
   }
-
-  a {
-    color: #fff;
-    &:hover {
-      color: #fff;
-    }
-  }
 }
 
 .btn-clear {
+  color: $dark-color;
   padding: 0;
   background-color: transparent;
   &:hover {
     background-color: transparent;
-  }
-  a {
     color: $dark-color;
-    &:hover {
-      color: $dark-color;
-    }
   }
 }
 
