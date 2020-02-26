@@ -5,6 +5,7 @@ export const getUserFromToken = token => {
     const { id, email, username } = jwtDecode(token);
     return {
       __typename: 'UserData',
+      authenticated: true,
       id,
       email,
       username

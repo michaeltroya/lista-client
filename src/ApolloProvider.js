@@ -21,7 +21,10 @@ const token = localStorage.getItem('token');
 
 cache.writeData({
   data: {
-    userData: ''
+    userData: {
+      __typename: 'UserData',
+      authenticated: false
+    }
   }
 });
 
@@ -49,7 +52,8 @@ const authLink = setContext((_, { headers }) => {
 
 const client = new ApolloClient({
   cache,
-  link: ApolloLink.from([authLink, httpLink])
+  link: ApolloLink.from([authLink, httpLink]),
+  resolvers: {}
 });
 
 export default (
