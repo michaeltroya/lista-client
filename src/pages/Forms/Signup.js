@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 //bs imports
-import { Container } from 'react-bootstrap';
+import { Container, Spinner } from 'react-bootstrap';
 //util
 import { getUserFromToken } from '../../util/decode';
 
@@ -95,7 +95,12 @@ const Signup = props => {
             onChange={handleChange}
             autoComplete="off"
           />
-          <input type="submit" className="btn btn-full-width" />
+
+          {loading ? (
+            <Spinner animation="border" className="orange-spinner" />
+          ) : (
+            <input type="submit" className="btn btn-full-width" />
+          )}
         </form>
       </Container>
     </section>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 //bs imports
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //component imports
 import List from '../../components/List/List';
 
@@ -40,7 +40,11 @@ const Home = () => {
         <Container>
           <h2>Explore lists</h2>
           <div className="home-lists-container">
-            {loading ? <h1>Loading...</h1> : data.getLists.map(list => <List list={list} key={list.id} />)}
+            {loading ? (
+              <Spinner animation="border" className="orange-spinner" />
+            ) : (
+              data.getLists.map(list => <List list={list} key={list.id} />)
+            )}
           </div>
         </Container>
       </section>
