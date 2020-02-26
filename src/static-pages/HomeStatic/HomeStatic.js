@@ -5,13 +5,15 @@ import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
-//component imports
+//comps
 import List from '../../components/List/List';
+import Nav from '../../components/Nav/Nav';
 
 const HomeStatic = () => {
   const { loading, data } = useQuery(FETCH_LISTS_QUERY);
   return (
     <Fragment>
+      <Nav type="home" />
       <section className="home-hero">
         <Container>
           <Row>

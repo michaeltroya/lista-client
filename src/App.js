@@ -6,14 +6,13 @@ import Login from './static-pages/Forms/Login';
 import Signup from './static-pages/Forms/Signup';
 import FourOhFour from './static-pages/FourOhFour/FourOhFour';
 //comps
-import Nav from './components/Nav/Nav';
+
 import Home from './app-pages/Home/Home';
 import AuthRoute from './util/AuthRoute';
 
 const App = () => {
   return (
     <Router>
-      <Nav />
       <Switch>
         <AuthRoute exact path="/" component={HomeStatic} />
         <AuthRoute exact path="/login" component={Login} />
