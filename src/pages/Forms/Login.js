@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 //gql
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 //bs imports
 import { Container } from 'react-bootstrap';
+//util
+import { getUserFromToken } from '../../util/decode';
+
 const Login = props => {
+  const client = useApolloClient();
   const [errors, setErrors] = useState({});
   const [loginData, setLoginData] = useState({
     username: '',
@@ -24,8 +28,9 @@ const Login = props => {
         }
       }
     ) {
+      client.writeData({ data: { userData: getUserFromToken(token) } });
       localStorage.setItem('token', token);
-      // props.history.push('/');
+      props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
@@ -47,7 +52,7 @@ const Login = props => {
         <div className="form-errors">
           <Container>
             {Object.values(errors).map(err => (
-              <h4>{err}</h4>
+              <h4 key={err}>{err}</h4>
             ))}
           </Container>
         </div>

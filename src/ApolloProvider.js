@@ -7,7 +7,8 @@ import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 //jwt
 import jwtDecode from 'jwt-decode';
-
+//util
+import { getUserFromToken } from './util/decode';
 import App from './App';
 
 const cache = new InMemoryCache();
@@ -16,32 +17,25 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:5000/'
 });
 
-let user = { __typename: 'User', id: '', email: '', username: '' };
 const token = localStorage.getItem('token');
+
+cache.writeData({
+  data: {
+    userData: ''
+  }
+});
 
 if (token) {
   const decodedToken = jwtDecode(token);
   if (decodedToken.exp * 1000 < Date.now()) {
     localStorage.removeItem('token');
   } else {
-    const { id, email, username } = decodedToken;
-    user = {
-      id,
-      email,
-      username
-    };
     cache.writeData({
       data: {
-        user
+        userData: getUserFromToken(token)
       }
     });
   }
-} else {
-  cache.writeData({
-    data: {
-      user
-    }
-  });
 }
 
 const authLink = setContext((_, { headers }) => {
