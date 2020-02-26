@@ -38,8 +38,8 @@ $grey-color: #a7a7a7;
 @import '../components/List/list';
 
 //PAGES
-@import '../pages/HomeStatic/homeStatic';
-@import '../pages/Forms/forms';
+@import '../static-pages/HomeStatic/homeStatic';
+@import '../static-pages/Forms/forms';
 
 //MEDIA QUERIES
 @import './responsive';

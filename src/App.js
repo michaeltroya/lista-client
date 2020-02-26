@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 //pages
-import HomeStatic from './pages/HomeStatic/HomeStatic';
-import Login from './pages/Forms/Login';
-import Signup from './pages/Forms/Signup';
+import HomeStatic from './static-pages/HomeStatic/HomeStatic';
+import Login from './static-pages/Forms/Login';
+import Signup from './static-pages/Forms/Signup';
+import FourOhFour from './static-pages/FourOhFour/FourOhFour';
 //comps
 import Nav from './components/Nav/Nav';
-import Home from './pages/Home/Home';
+import Home from './app-pages/Home/Home';
 import AuthRoute from './util/AuthRoute';
-import FourOhFour from './pages/FourOhFour';
 
 const App = () => {
   return (
