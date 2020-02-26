@@ -16,8 +16,16 @@ const Login = props => {
   };
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(_, result) {
-      props.history.push('/');
+    update(
+      _,
+      {
+        data: {
+          login: { token }
+        }
+      }
+    ) {
+      localStorage.setItem('token', token);
+      // props.history.push('/');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
