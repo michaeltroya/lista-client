@@ -110,7 +110,7 @@ const Signup = props => {
           <h4 className="g-text">
             Already have an account?{' '}
             <Link to="/login" className="o-text">
-              Login
+              Log in
             </Link>
           </h4>
         </Container>

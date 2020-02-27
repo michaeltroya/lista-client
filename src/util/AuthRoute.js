@@ -15,7 +15,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        authenticated === false && rest.path === '/home' ? (
+        (authenticated === false || authenticated === undefined) && rest.path === '/home' ? (
           <Redirect to="/login" />
         ) : authenticated === true && rest.path === '/' ? (
           <Redirect to="/home" />
