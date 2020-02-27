@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //bs imports

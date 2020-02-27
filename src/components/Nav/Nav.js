@@ -5,7 +5,7 @@ import { useApolloClient, useQuery } from '@apollo/react-hooks';
 import { GET_AUTHENTICATED } from '../../graphql/clientQueries';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faUser, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 //img imports
 import Logo from '../../images/main-logo.png';
 //bs import
@@ -78,7 +78,7 @@ const Nav = ({ type }) => {
             </div>
             <div className="nav-links">
               <button className="btn btn-clear" onClick={handleLogut}>
-                Log out
+                <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
               </button>
             </div>
           </Container>

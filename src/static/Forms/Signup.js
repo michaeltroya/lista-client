@@ -2,7 +2,6 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //util

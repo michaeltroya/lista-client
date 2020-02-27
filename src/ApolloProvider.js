@@ -23,6 +23,7 @@ cache.writeData({
   data: {
     userData: {
       __typename: 'UserData',
+      username: '',
       authenticated: false
     }
   }
