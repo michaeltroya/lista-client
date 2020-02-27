@@ -11,11 +11,18 @@
     margin-bottom: 0;
   }
   h4 {
+    margin: 0;
+    font-size: 1.1rem;
     cursor: pointer;
     color: $main-color;
     a {
       color: $main-color;
     }
+  }
+  p {
+    color: #989898;
+    font-size: 0.9rem;
+    margin: 0;
   }
 }
 
@@ -23,6 +30,7 @@
   display: flex;
   align-items: center;
   .tag {
+    margin-top: 0.5rem;
     cursor: pointer;
     padding: 0.2rem 0.5rem;
     border-radius: 3px;

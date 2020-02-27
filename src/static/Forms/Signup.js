@@ -9,6 +9,8 @@ import { Container, Spinner } from 'react-bootstrap';
 import { getUserFromToken } from '../../util/decode';
 //comps
 import Nav from '../../components/Nav/Nav';
+//queries
+import { SIGNUP_USER } from '../../graphql/serverQueries';
 
 const Signup = props => {
   const client = useApolloClient();
@@ -118,24 +120,5 @@ const Signup = props => {
     </Fragment>
   );
 };
-
-const SIGNUP_USER = gql`
-  mutation signup($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
-    signup(
-      signupInput: {
-        username: $username
-        email: $email
-        password: $password
-        confirmPassword: $confirmPassword
-      }
-    ) {
-      id
-      email
-      username
-      token
-      createdAt
-    }
-  }
-`;
 
 export default Signup;

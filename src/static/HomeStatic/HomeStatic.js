@@ -2,12 +2,14 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
+//queries
+import { FETCH_LISTS_QUERY } from '../../graphql/serverQueries';
 
 const HomeStatic = () => {
   const { loading, data } = useQuery(FETCH_LISTS_QUERY);
@@ -53,28 +55,5 @@ const HomeStatic = () => {
     </Fragment>
   );
 };
-
-const FETCH_LISTS_QUERY = gql`
-  {
-    getLists {
-      id
-      username
-      title {
-        phrase
-        count
-        description
-      }
-      tags
-      items {
-        name
-        description
-        order
-      }
-      commentCount
-
-      likeCount
-    }
-  }
-`;
 
 export default HomeStatic;

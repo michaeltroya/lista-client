@@ -1,12 +1,13 @@
 import React, { Fragment, useState } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
+//queries
+import { FETCH_LIST_QUERY } from '../../graphql/serverQueries';
 
 const ListPage = props => {
   const listIdPath = props.location.pathname.split('/')[3];
@@ -36,27 +37,5 @@ const ListPage = props => {
     </Fragment>
   );
 };
-
-const FETCH_LIST_QUERY = gql`
-  query List($listId: ID!) {
-    getList(listId: $listId) {
-      id
-      username
-      title {
-        phrase
-        count
-        description
-      }
-      tags
-      items {
-        name
-        description
-        order
-      }
-      commentCount
-      likeCount
-    }
-  }
-`;
 
 export default ListPage;

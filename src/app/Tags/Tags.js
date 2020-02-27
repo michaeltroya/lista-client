@@ -1,12 +1,13 @@
 import React, { Fragment } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
+//queries
+import { FETCH_TAG_LISTS_QUERY } from '../../graphql/serverQueries';
 
 const Tags = props => {
   const tagPath = props.location.pathname.split('/')[2];
@@ -33,27 +34,5 @@ const Tags = props => {
     </Fragment>
   );
 };
-
-const FETCH_TAG_LISTS_QUERY = gql`
-  query TagLists($tag: String!) {
-    getTagLists(tag: $tag) {
-      id
-      username
-      title {
-        phrase
-        count
-        description
-      }
-      tags
-      items {
-        name
-        description
-        order
-      }
-      commentCount
-      likeCount
-    }
-  }
-`;
 
 export default Tags;

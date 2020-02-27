@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import moment from 'moment';
 
 const List = ({
   list: {
@@ -13,7 +14,8 @@ const List = ({
     tags,
     items,
     commentCount,
-    likeCount
+    likeCount,
+    createdAt
   }
 }) => {
   return (
@@ -23,6 +25,7 @@ const List = ({
         <h4>
           <Link to={`/${username}`}>{`@${username}`}</Link>
         </h4>
+        <p>{moment(createdAt).fromNow()}</p>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
             <Link to={`/tag/${tag}`} key={index} className="tag">

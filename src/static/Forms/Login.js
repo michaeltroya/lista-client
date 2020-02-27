@@ -2,13 +2,14 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //util
 import { getUserFromToken } from '../../util/decode';
 //comps
 import Nav from '../../components/Nav/Nav';
+//queries
+import { LOGIN_USER } from '../../graphql/serverQueries';
 
 const Login = props => {
   const client = useApolloClient();
@@ -99,17 +100,5 @@ const Login = props => {
     </Fragment>
   );
 };
-
-const LOGIN_USER = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      id
-      email
-      username
-      createdAt
-      token
-    }
-  }
-`;
 
 export default Login;
