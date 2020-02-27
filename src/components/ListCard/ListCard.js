@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +7,7 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 const List = ({
   list: {
+    id,
     username,
     title: { phrase, count, description },
     tags,
@@ -18,7 +20,9 @@ const List = ({
     <div className="list-card">
       <header className="list-card-header">
         <h3>{`${phrase} ${count} ${description}`}</h3>
-        <h4>@{username}</h4>
+        <h4>
+          <Link to={`/${username}`}>{`@${username}`}</Link>
+        </h4>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
             <p className="tag" key={index}>
@@ -47,7 +51,7 @@ const List = ({
         </div>
       </footer>
       <div className="list-card-expand">
-        <p>Expand List</p>
+        <Link to={`${username}/list/${id}`}>Expand List</Link>
       </div>
     </div>
   );

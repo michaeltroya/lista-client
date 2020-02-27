@@ -15,6 +15,9 @@
   h4 {
     cursor: pointer;
     color: $main-color;
+    a {
+      color: $main-color;
+    }
   }
 }
 
@@ -93,7 +96,9 @@
   display: flex;
   justify-content: center;
   transition: all 0.3s ease-in-out;
-  p {
+
+  p,
+  a {
     color: #fff;
     margin: 0;
   }

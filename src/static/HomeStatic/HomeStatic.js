@@ -6,7 +6,7 @@ import gql from 'graphql-tag';
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
-import List from '../../components/List/List';
+import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
 
 const HomeStatic = () => {
