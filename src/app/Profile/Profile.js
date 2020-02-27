@@ -8,6 +8,9 @@ import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
 //queries
 import { FETCH_USER_LISTS_QUERY } from '../../graphql/serverQueries';
+//queries
+import { GET_AUTHENTICATED } from '../../graphql/clientQueries';
+import { Link } from 'react-router-dom';
 
 const Profile = props => {
   const usernamePath = props.location.pathname.split('/')[1];
@@ -16,6 +19,12 @@ const Profile = props => {
       username: usernamePath
     }
   });
+
+  const {
+    data: {
+      userData: { authenticated, username }
+    }
+  } = useQuery(GET_AUTHENTICATED);
 
   if (error) {
     console.log(error);
@@ -46,6 +55,16 @@ const Profile = props => {
                 <h4>
                   {data.getUserLists.length} {data.getUserLists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
+
+                {authenticated ? (
+                  username === data.getUserLists[0].username ? null : (
+                    <button className="btn">Follow</button>
+                  )
+                ) : (
+                  <Link to="/login" className="btn">
+                    Follow
+                  </Link>
+                )}
               </Fragment>
             )}
           </Container>
@@ -58,7 +77,7 @@ const Profile = props => {
               ) : (
                 data.getUserLists.map(list => (
                   <Col xs={12} md={3} key={list.id}>
-                    <List list={list} />
+                    <List list={list} authenticated={authenticated} />
                   </Col>
                 ))
               )}

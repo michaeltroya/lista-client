@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,7 +16,8 @@ const List = ({
     commentCount,
     likeCount,
     createdAt
-  }
+  },
+  authenticated
 }) => {
   return (
     <div className="list-card">
@@ -44,12 +45,34 @@ const List = ({
       <footer className="list-card-footer">
         <div className="list-card-actions">
           <div className="list-card-comments">
-            <p>{commentCount}</p>
-            <FontAwesomeIcon icon={faComments} />
+            {authenticated ? (
+              <Fragment>
+                <p>{likeCount}</p>
+                <FontAwesomeIcon icon={faComments} />
+              </Fragment>
+            ) : (
+              <Fragment>
+                <p>{likeCount}</p>
+                <Link to="/login">
+                  <FontAwesomeIcon icon={faComments} />
+                </Link>
+              </Fragment>
+            )}
           </div>
           <div className="list-card-likes">
-            <p>{likeCount}</p>
-            <FontAwesomeIcon icon={faHeart} />
+            {authenticated ? (
+              <Fragment>
+                <p>{likeCount}</p>
+                <FontAwesomeIcon icon={faHeart} />
+              </Fragment>
+            ) : (
+              <Fragment>
+                <p>{likeCount}</p>
+                <Link to="/login">
+                  <FontAwesomeIcon icon={faHeart} />
+                </Link>
+              </Fragment>
+            )}
           </div>
         </div>
       </footer>
