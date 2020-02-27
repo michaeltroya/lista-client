@@ -47,7 +47,7 @@ const List = ({
           <div className="list-card-comments">
             {authenticated ? (
               <Fragment>
-                <p>{likeCount}</p>
+                <p>{commentCount}</p>
                 <FontAwesomeIcon icon={faComments} />
               </Fragment>
             ) : (

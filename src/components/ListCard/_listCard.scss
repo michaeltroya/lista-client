@@ -29,6 +29,7 @@
 .list-card-tags {
   display: flex;
   align-items: center;
+  margin-bottom: 0.8rem;
   .tag {
     margin-top: 0.5rem;
     cursor: pointer;
@@ -47,7 +48,7 @@
 }
 
 .list-card-body {
-  padding: 1rem;
+  padding: 0 1rem 1rem;
   display: flex;
   flex-direction: column;
   max-height: 250px;
