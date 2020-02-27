@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,9 +25,9 @@ const List = ({
         </h4>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
-            <p className="tag" key={index}>
+            <Link to={`/tag/${tag}`} key={index} className="tag">
               {tag}
-            </p>
+            </Link>
           ))}
         </div>
       </header>

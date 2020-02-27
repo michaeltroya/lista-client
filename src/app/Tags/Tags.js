@@ -8,12 +8,12 @@ import { Container, Spinner } from 'react-bootstrap';
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
 
-const Profile = props => {
-  const usernamePath = props.location.pathname.split('/')[1];
+const Tags = props => {
+  const tagPath = props.location.pathname.split('/')[2];
 
-  const { loading, data } = useQuery(FETCH_USER_LISTS_QUERY, {
+  const { loading, data } = useQuery(FETCH_TAG_LISTS_QUERY, {
     variables: {
-      username: usernamePath
+      tag: tagPath
     }
   });
 
@@ -22,15 +22,11 @@ const Profile = props => {
       <Nav />
       <div className="profile">
         <Container>
+          {loading ? <Spinner animation="border" className="orange-spinner" /> : <h1>{tagPath}</h1>}
           {loading ? (
             <Spinner animation="border" className="orange-spinner" />
           ) : (
-            <h1>{data.getUserLists[0].username}</h1>
-          )}
-          {loading ? (
-            <Spinner animation="border" className="orange-spinner" />
-          ) : (
-            data.getUserLists.map(list => <List list={list} key={list.id} />)
+            data.getTagLists.map(list => <List list={list} key={list.id} />)
           )}
         </Container>
       </div>
@@ -38,9 +34,9 @@ const Profile = props => {
   );
 };
 
-const FETCH_USER_LISTS_QUERY = gql`
-  query UserLists($username: String!) {
-    getUserLists(username: $username) {
+const FETCH_TAG_LISTS_QUERY = gql`
+  query TagLists($tag: String!) {
+    getTagLists(tag: $tag) {
       id
       username
       title {
@@ -60,4 +56,4 @@ const FETCH_USER_LISTS_QUERY = gql`
   }
 `;
 
-export default Profile;
+export default Tags;
