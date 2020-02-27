@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
@@ -11,17 +11,19 @@ import Nav from '../../components/Nav/Nav';
 const ListPage = props => {
   const listIdPath = props.location.pathname.split('/')[3];
 
-  const { loading, data } = useQuery(FETCH_LIST_QUERY, {
+  const { loading, error, data } = useQuery(FETCH_LIST_QUERY, {
     variables: {
       listId: listIdPath
     }
   });
 
-  console.log(data);
+  if (error) {
+    return <h1>{error.graphQLErrors[0].message}</h1>;
+  }
 
   return (
     <Fragment>
-      <Nav />
+      <Nav type="home" />
       <div className="profile">
         <Container>
           {loading ? (

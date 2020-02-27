@@ -21,7 +21,7 @@ section {
 $main-color: #ea660c;
 $white-color: #fff;
 $dark-color: #191919;
-$grey-color: #a7a7a7;
+$grey-color: #f3f3f3;
 
 //FILES
 @import './elements';
@@ -37,9 +37,13 @@ $grey-color: #a7a7a7;
 @import '../components/Nav/nav';
 @import '../components/ListCard/listCard';
 
-//PAGES
+//STATIC PAGES
 @import '../static/HomeStatic/homeStatic';
 @import '../static/Forms/forms';
+@import '../app/Tags/tags';
+
+//APP PAGES
+@import '../app/Profile/profile';
 
 //MEDIA QUERIES
 @import './responsive';

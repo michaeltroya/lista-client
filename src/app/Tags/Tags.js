@@ -19,8 +19,8 @@ const Tags = props => {
 
   return (
     <Fragment>
-      <Nav />
-      <div className="profile">
+      <Nav type="home" />
+      <section className="tags">
         <Container>
           {loading ? <Spinner animation="border" className="orange-spinner" /> : <h1>{tagPath}</h1>}
           {loading ? (
@@ -29,7 +29,7 @@ const Tags = props => {
             data.getTagLists.map(list => <List list={list} key={list.id} />)
           )}
         </Container>
-      </div>
+      </section>
     </Fragment>
   );
 };

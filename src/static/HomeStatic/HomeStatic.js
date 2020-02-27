@@ -41,7 +41,7 @@ const HomeStatic = () => {
       <section className="home-lists">
         <Container>
           <h2>Explore lists</h2>
-          <div className="home-lists-container">
+          <div className="lists-container">
             {loading ? (
               <Spinner animation="border" className="orange-spinner" />
             ) : (

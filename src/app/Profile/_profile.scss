@@ -1,0 +1,22 @@
+.profile-details {
+  background-color: white;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+      font-size: 2rem;
+    }
+    h4 {
+      color: $main-color;
+    }
+  }
+}
+
+.profile-lists {
+  background-color: $grey-color;
+  .list-card {
+    margin-bottom: 2rem;
+  }
+}
