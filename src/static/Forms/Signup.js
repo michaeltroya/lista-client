@@ -57,7 +57,7 @@ const Signup = props => {
 
   return (
     <Fragment>
-      <Nav type="form" />
+      <Nav type="forms" />
       <section className="signup">
         {Object.keys(errors).length > 0 ? (
           <div className="form-errors">

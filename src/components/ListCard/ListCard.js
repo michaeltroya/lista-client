@@ -45,11 +45,11 @@ const List = ({
         <div className="list-card-actions">
           <div className="list-card-comments">
             <p>{commentCount}</p>
-            <FontAwesomeIcon icon={faComments} className="add-icon" />
+            <FontAwesomeIcon icon={faComments} />
           </div>
           <div className="list-card-likes">
             <p>{likeCount}</p>
-            <FontAwesomeIcon icon={faHeart} className="add-icon" />
+            <FontAwesomeIcon icon={faHeart} />
           </div>
         </div>
       </footer>

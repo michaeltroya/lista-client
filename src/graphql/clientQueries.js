@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 export const GET_AUTHENTICATED = gql`
   query {
     userData @client {
+      username
       authenticated
     }
   }

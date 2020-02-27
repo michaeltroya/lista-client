@@ -18,3 +18,24 @@
 .nav-logo {
   width: 100px;
 }
+
+.mobi-nav {
+  z-index: 100;
+  background-color: $main-color;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.mobi-link {
+  padding: 1rem;
+  color: white;
+  &:hover {
+    color: white;
+  }
+}
