@@ -6,9 +6,7 @@ import { GET_AUTHENTICATED } from '../graphql/clientQueries';
 
 const AuthRoute = ({ component: Component, ...rest }) => {
   const {
-    data: {
-      userData: { authenticated }
-    }
+    data: { authenticated }
   } = useQuery(GET_AUTHENTICATED);
 
   return (
@@ -17,7 +15,8 @@ const AuthRoute = ({ component: Component, ...rest }) => {
       render={props =>
         (authenticated === false || authenticated === undefined) && rest.path === '/home' ? (
           <Redirect to="/login" />
-        ) : authenticated === true && rest.path === '/' ? (
+        ) : authenticated === true &&
+          (rest.path === '/' || rest.path === '/login' || rest.path === '/signup') ? (
           <Redirect to="/home" />
         ) : (
           <Component {...props} />

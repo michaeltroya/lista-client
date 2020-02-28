@@ -55,9 +55,11 @@ export const LOGIN_USER = gql`
     login(username: $username, password: $password) {
       id
       email
-      username
-      createdAt
       token
+      username
+      following
+      followers
+      createdAt
     }
   }
 `;
@@ -75,8 +77,10 @@ export const SIGNUP_USER = gql`
     ) {
       id
       email
-      username
       token
+      username
+      following
+      followers
       createdAt
     }
   }
@@ -126,6 +130,19 @@ export const FETCH_TAG_LISTS_QUERY = gql`
       }
       commentCount
       likeCount
+      createdAt
+    }
+  }
+`;
+
+export const FETCH_USER_DETAILS_QUERY = gql`
+  query UserDetails($username: String!) {
+    getUserDetails(username: $username) {
+      id
+      email
+      username
+      followers
+      following
       createdAt
     }
   }

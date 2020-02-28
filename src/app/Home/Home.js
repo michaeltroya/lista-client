@@ -7,7 +7,7 @@ import Nav from '../../components/Nav/Nav';
 const Home = () => {
   const {
     data: {
-      userData: { username }
+      userDetails: { username }
     }
   } = useQuery(GET_USERNAME);
 
@@ -23,7 +23,7 @@ const Home = () => {
 
 const GET_USERNAME = gql`
   query {
-    userData @client {
+    userDetails @client {
       username
     }
   }

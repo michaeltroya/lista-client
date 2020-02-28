@@ -1,18 +1,15 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
-//util
-import { getUserFromToken } from '../../util/decode';
 //comps
 import Nav from '../../components/Nav/Nav';
 //queries
 import { SIGNUP_USER } from '../../graphql/serverQueries';
 
 const Signup = props => {
-  const client = useApolloClient();
   const [errors, setErrors] = useState({});
   const [signupData, setSignupData] = useState({
     username: '',
@@ -27,16 +24,24 @@ const Signup = props => {
 
   const [signupUser, { loading }] = useMutation(SIGNUP_USER, {
     update(
-      _,
+      cache,
       {
         data: {
-          signup: { token }
+          login: { token, __typename, ...userDetails }
         }
       }
     ) {
-      client.writeData({ data: { userData: getUserFromToken(token) } });
+      cache.writeData({
+        data: {
+          userDetails: {
+            __typename: 'UserDetails',
+            ...userDetails
+          },
+          authenticated: true
+        }
+      });
       localStorage.setItem('token', token);
-      props.history.push('/');
+      props.history.push('/home');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);

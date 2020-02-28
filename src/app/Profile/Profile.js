@@ -9,7 +9,7 @@ import Nav from '../../components/Nav/Nav';
 //queries
 import { FETCH_USER_LISTS_QUERY } from '../../graphql/serverQueries';
 //queries
-import { GET_AUTHENTICATED } from '../../graphql/clientQueries';
+import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/clientQueries';
 import { Link } from 'react-router-dom';
 
 const Profile = props => {
@@ -22,8 +22,12 @@ const Profile = props => {
 
   const {
     data: {
-      userData: { authenticated, username }
+      userDetails: { username }
     }
+  } = useQuery(GET_USER_DATA);
+
+  const {
+    data: { authenticated }
   } = useQuery(GET_AUTHENTICATED);
 
   if (error) {

@@ -4,15 +4,12 @@ import { Link } from 'react-router-dom';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
-//util
-import { getUserFromToken } from '../../util/decode';
 //comps
 import Nav from '../../components/Nav/Nav';
 //queries
 import { LOGIN_USER } from '../../graphql/serverQueries';
 
 const Login = props => {
-  const client = useApolloClient();
   const [errors, setErrors] = useState({});
   const [loginData, setLoginData] = useState({
     username: '',
@@ -22,19 +19,27 @@ const Login = props => {
   const handleChange = e => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
-
+  //GET BACK USER DATA INSTEAD OF ONLY TOKEN!!!!!
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(
-      _,
+      cache,
       {
         data: {
-          login: { token }
+          login: { token, __typename, ...userDetails }
         }
       }
     ) {
-      client.writeData({ data: { userData: getUserFromToken(token) } });
+      cache.writeData({
+        data: {
+          userDetails: {
+            __typename: 'UserDetails',
+            ...userDetails
+          },
+          authenticated: true
+        }
+      });
       localStorage.setItem('token', token);
-      props.history.push('/');
+      props.history.push('/home');
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);

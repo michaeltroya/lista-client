@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //gql
 import { useApolloClient, useQuery } from '@apollo/react-hooks';
-import { GET_AUTHENTICATED } from '../../graphql/clientQueries';
+import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/clientQueries';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -14,8 +14,12 @@ import { Container } from 'react-bootstrap';
 const Nav = ({ type }) => {
   const {
     data: {
-      userData: { authenticated, username }
+      userDetails: { username }
     }
+  } = useQuery(GET_USER_DATA);
+
+  const {
+    data: { authenticated }
   } = useQuery(GET_AUTHENTICATED);
 
   const client = useApolloClient();
@@ -24,13 +28,15 @@ const Nav = ({ type }) => {
   const handleLogut = () => {
     client.writeData({
       data: {
-        userData: {
+        userDetails: {
           __typename: 'UserData',
           username: '',
           email: '',
           id: '',
-          authenticated: false
-        }
+          followers: [],
+          following: []
+        },
+        authenticated: false
       }
     });
     localStorage.removeItem('token');
