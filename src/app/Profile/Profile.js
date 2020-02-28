@@ -52,7 +52,7 @@ const Profile = props => {
                   {data.getUserLists.length} {data.getUserLists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
 
-                <FollowButton usernamePath={usernamePath} user={data.getUserLists[0].username} />
+                <FollowButton currentProfile={usernamePath} />
               </Fragment>
             )}
           </Container>

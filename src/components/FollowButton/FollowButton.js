@@ -1,12 +1,15 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useQuery, useMutation } from '@apollo/react-hooks';
 //queries
 import { FOLLOW_USER } from '../../graphql/server';
-import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/client';
+import { GET_AUTHENTICATED, GET_USER_DATA } from '../../graphql/client';
+import { FETCH_USER_DETAILS_QUERY } from '../../graphql/server';
 
-const FollowButton = ({ usernamePath, user }) => {
+const FollowButton = ({ currentProfile }) => {
+  const [isFollowed, setFollowed] = useState(false);
+
   const {
     data: {
       userDetails: { username, following }
@@ -18,16 +21,31 @@ const FollowButton = ({ usernamePath, user }) => {
   } = useQuery(GET_AUTHENTICATED);
 
   const [follow] = useMutation(FOLLOW_USER, {
-    update(cache, { data }) {
-      console.log(data);
-    },
-    onError(err) {
-      console.log(err);
+    update(cache, result) {
+      const data = cache.readQuery({ query: FETCH_USER_DETAILS_QUERY, variables: { username } });
+      if (data.getUserDetails.following.find(users => users === currentProfile)) {
+        data.getUserDetails.following = data.getUserDetails.following.filter(
+          users => users !== currentProfile
+        );
+        setFollowed(false);
+      } else {
+        data.getUserDetails.following.push(currentProfile);
+        setFollowed(true);
+      }
+      cache.writeQuery({ query: FETCH_USER_DETAILS_QUERY, data });
     },
     variables: {
-      username: usernamePath
+      username: currentProfile
     }
   });
+
+  useEffect(() => {
+    if (authenticated && following.find(users => users === currentProfile)) {
+      setFollowed(true);
+    } else {
+      setFollowed(false);
+    }
+  }, [authenticated, following, currentProfile]);
 
   const handleFollow = () => {
     follow();
@@ -36,8 +54,8 @@ const FollowButton = ({ usernamePath, user }) => {
   return (
     <Fragment>
       {authenticated ? (
-        username === user ? null : following.find(users => users === usernamePath) ? (
-          <button className="btn" onClick={handleFollow}>
+        username === currentProfile ? null : isFollowed ? (
+          <button className="btn btn-dimmed" onClick={handleFollow}>
             Unfollow
           </button>
         ) : (

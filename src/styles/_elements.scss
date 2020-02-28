@@ -37,6 +37,13 @@
   }
 }
 
+.btn-dimmed {
+  background-color: #737373;
+  &:hover {
+    background-color: #9c9c9c;
+  }
+}
+
 .orange-spinner {
   border-color: $main-color !important;
   border-right-color: transparent !important;
