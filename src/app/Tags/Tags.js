@@ -7,7 +7,7 @@ import { Container, Spinner } from 'react-bootstrap';
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
 //queries
-import { FETCH_TAG_LISTS_QUERY } from '../../graphql/serverQueries';
+import { FETCH_TAG_LISTS_QUERY } from '../../graphql/server';
 
 const Tags = props => {
   const tagPath = props.location.pathname.split('/')[2];

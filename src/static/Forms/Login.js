@@ -1,13 +1,13 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
-import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
 import Nav from '../../components/Nav/Nav';
 //queries
-import { LOGIN_USER } from '../../graphql/serverQueries';
+import { LOGIN_USER } from '../../graphql/server';
 
 const Login = props => {
   const [errors, setErrors] = useState({});
@@ -19,7 +19,7 @@ const Login = props => {
   const handleChange = e => {
     setLoginData({ ...loginData, [e.target.name]: e.target.value });
   };
-  //GET BACK USER DATA INSTEAD OF ONLY TOKEN!!!!!
+
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
     update(
       cache,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useApolloClient, useQuery } from '@apollo/react-hooks';
 //pages
@@ -12,12 +12,10 @@ import AuthRoute from './util/AuthRoute';
 import ListPage from './app/ListPage/ListPage';
 import Profile from './app/Profile/Profile';
 import Tags from './app/Tags/Tags';
-//jwt
-import jwtDecode from 'jwt-decode';
 //util
 import { getUserFromToken } from './util/decode';
 //query
-import { FETCH_USER_DETAILS_QUERY } from './graphql/serverQueries';
+import { FETCH_USER_DETAILS_QUERY } from './graphql/server';
 
 const App = () => {
   const client = useApolloClient();
@@ -28,8 +26,6 @@ const App = () => {
       username: token ? getUserFromToken(token) : ''
     }
   });
-
-  if (loading) console.log(loading);
 
   if (!loading) {
     if (token) {
@@ -42,8 +38,6 @@ const App = () => {
       });
     }
   }
-
-  console.log(data);
 
   return (
     <Router>

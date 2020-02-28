@@ -147,3 +147,14 @@ export const FETCH_USER_DETAILS_QUERY = gql`
     }
   }
 `;
+
+//FOLLOW USER
+
+export const FOLLOW_USER = gql`
+  mutation Follow($username: String!) {
+    followUser(userToFollow: $username) {
+      following
+      followers
+    }
+  }
+`;

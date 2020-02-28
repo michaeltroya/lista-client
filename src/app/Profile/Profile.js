@@ -1,16 +1,15 @@
 import React, { Fragment } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
+//queries
+import { FETCH_USER_LISTS_QUERY } from '../../graphql/server';
+import { GET_AUTHENTICATED } from '../../graphql/client';
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
-//queries
-import { FETCH_USER_LISTS_QUERY } from '../../graphql/serverQueries';
-//queries
-import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/clientQueries';
-import { Link } from 'react-router-dom';
+import FollowButton from '../../components/FollowButton/FollowButton';
 
 const Profile = props => {
   const usernamePath = props.location.pathname.split('/')[1];
@@ -21,17 +20,10 @@ const Profile = props => {
   });
 
   const {
-    data: {
-      userDetails: { username }
-    }
-  } = useQuery(GET_USER_DATA);
-
-  const {
     data: { authenticated }
   } = useQuery(GET_AUTHENTICATED);
 
   if (error) {
-    console.log(error);
     return (
       <Fragment>
         <Nav type="home" />
@@ -60,15 +52,7 @@ const Profile = props => {
                   {data.getUserLists.length} {data.getUserLists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
 
-                {authenticated ? (
-                  username === data.getUserLists[0].username ? null : (
-                    <button className="btn">Follow</button>
-                  )
-                ) : (
-                  <Link to="/login" className="btn">
-                    Follow
-                  </Link>
-                )}
+                <FollowButton usernamePath={usernamePath} user={data.getUserLists[0].username} />
               </Fragment>
             )}
           </Container>

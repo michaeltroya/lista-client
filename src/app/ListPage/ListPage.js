@@ -7,7 +7,7 @@ import { Container, Spinner } from 'react-bootstrap';
 import List from '../../components/ListCard/ListCard';
 import Nav from '../../components/Nav/Nav';
 //queries
-import { FETCH_LIST_QUERY } from '../../graphql/serverQueries';
+import { FETCH_LIST_QUERY } from '../../graphql/server';
 
 const ListPage = props => {
   const listIdPath = props.location.pathname.split('/')[3];

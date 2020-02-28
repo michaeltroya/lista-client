@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 //gql
 import { useApolloClient, useQuery } from '@apollo/react-hooks';
-import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/clientQueries';
+import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/client';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';

@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
-import { GET_AUTHENTICATED } from '../graphql/clientQueries';
+import { GET_AUTHENTICATED } from '../graphql/client';
 
 const AuthRoute = ({ component: Component, ...rest }) => {
   const {
