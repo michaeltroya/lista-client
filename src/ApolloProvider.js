@@ -6,6 +6,14 @@ import { ApolloProvider } from '@apollo/react-hooks';
 import { setContext } from 'apollo-link-context';
 import { ApolloLink } from 'apollo-link';
 import jwtDecode from 'jwt-decode';
+//Redux imports
+import { Provider } from 'react-redux';
+import store from './redux/store';
+import { logout } from './redux/userActions';
+import { SET_AUTHENTICATED, SET_USER_DETAILS } from './redux/types';
+//query
+import { FETCH_USER_QUERY } from './graphql/server';
+
 import App from './App';
 
 const cache = new InMemoryCache();
@@ -30,37 +38,28 @@ const client = new ApolloClient({
   resolvers: {}
 });
 
-cache.writeData({
-  data: {
-    userDetails: {
-      __typename: 'UserDetails',
-      id: '',
-      username: '',
-      email: '',
-      followers: [],
-      following: []
-    },
-    authenticated: false
-  }
-});
-
 const token = localStorage.getItem('token');
 
 if (token) {
-  const decodedToken = jwtDecode(token);
-  if (decodedToken.exp * 1000 < Date.now()) {
-    localStorage.removeItem('token');
+  const decodeToken = jwtDecode(token);
+  if (decodeToken.exp * 1000 < Date.now()) {
+    store.dispatch(logout());
+    window.location.href = '/login';
   } else {
-    cache.writeData({
-      data: {
-        authenticated: true
-      }
-    });
+    store.dispatch({ type: SET_AUTHENTICATED });
+    client
+      .query({ query: FETCH_USER_QUERY })
+      .then(res => {
+        store.dispatch({ type: SET_USER_DETAILS, payload: res.data.getUserDetails });
+      })
+      .catch(err => console.log(err));
   }
 }
 
 export default (
   <ApolloProvider client={client}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </ApolloProvider>
 );

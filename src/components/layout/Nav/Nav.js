@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
@@ -8,19 +8,17 @@ import Logo from '../../../images/main-logo.png';
 //bs import
 import { Container } from 'react-bootstrap';
 //Redux Imports
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../../redux/userActions';
 const Nav = ({ type }) => {
-  const username = '';
+  const dispatch = useDispatch();
+
+  const username = useSelector(state => state.user.userData.username);
 
   const authenticated = useSelector(state => state.user.authenticated);
 
-  const history = useHistory();
-
-  const handleLogut = () => {
-    console.log('logout');
-    localStorage.removeItem('token');
-    history.push('/');
+  const handleLogout = () => {
+    dispatch(logout());
   };
 
   if (type === 'home' && authenticated === false) {
@@ -63,7 +61,7 @@ const Nav = ({ type }) => {
               </Link>
             </div>
             <div className="nav-links">
-              <button className="btn btn-clear" onClick={handleLogut}>
+              <button className="btn btn-clear" onClick={handleLogout}>
                 <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
               </button>
             </div>

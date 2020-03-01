@@ -1,7 +1,7 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 //gql
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 //queries
 import { FOLLOW_USER } from '../../../graphql/server';
 import { FETCH_USER_DETAILS_QUERY } from '../../../graphql/server';
@@ -10,27 +10,16 @@ import { useSelector } from 'react-redux';
 
 const FollowButton = ({ currentProfile }) => {
   const [isFollowed, setFollowed] = useState(false);
-  const username = useSelector(state => state.user.userDetails.username);
-  const following = useSelector(state => state.user.userDetails.following);
+  const username = useSelector(state => state.user.userData.username);
+  const following = useSelector(state => state.user.userData.following);
   const authenticated = useSelector(state => state.user.authenticated);
 
   const [follow] = useMutation(FOLLOW_USER, {
-    update(cache, _) {
-      const data = cache.readQuery({ query: FETCH_USER_DETAILS_QUERY, variables: { username } });
-      console.log(data);
-    },
+    update(cache, _) {},
     variables: {
       username: currentProfile
     }
   });
-
-  useEffect(() => {
-    if (authenticated && following.find(users => users === currentProfile)) {
-      setFollowed(true);
-    } else {
-      setFollowed(false);
-    }
-  }, [authenticated, following, currentProfile]);
 
   const handleFollow = () => {
     follow();
