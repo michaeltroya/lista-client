@@ -44,5 +44,7 @@ $grey-color: #f3f3f3;
 //APP PAGES
 @import '../components/main/Profile/profile';
 @import '../components/main/Tags/tags';
+@import '../components/main/ListPage/listpage';
+
 //MEDIA QUERIES
 @import './responsive';

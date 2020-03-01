@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //bs imports
-import { Container, Spinner } from 'react-bootstrap';
-//comps
-import ListCard from '../../secondary/ListCard/ListCard';
+import { Container, Spinner, Col, Row } from 'react-bootstrap';
 import Nav from '../../layout/Nav/Nav';
 //queries
 import { FETCH_LIST_QUERY } from '../../../graphql/server';
@@ -18,6 +17,8 @@ const ListPage = props => {
     }
   });
 
+  console.log(data);
+
   if (error) {
     return <h1>{error.graphQLErrors[0].message}</h1>;
   }
@@ -25,15 +26,32 @@ const ListPage = props => {
   return (
     <Fragment>
       <Nav type="home" />
-      <div className="profile">
-        <Container>
-          {loading ? (
-            <Spinner animation="border" className="orange-spinner" />
-          ) : (
-            <ListCard list={data.getList} key={data.getList.id} />
-          )}
-        </Container>
-      </div>
+      {loading ? (
+        <Spinner animation="border" className="orange-spinner" />
+      ) : (
+        <section className="list">
+          <Container>
+            <Row>
+              <Col xs={12} md={7}>
+                <div className="list-details">
+                  <h2>{`${data.getList.title.phrase} ${data.getList.title.count} ${data.getList.title.description}`}</h2>
+                  <h3>
+                    <Link to={`/${data.getList.username}`}>{`@${data.getList.username}`}</Link>
+                  </h3>
+                </div>
+              </Col>
+              <Col xs={12} md={5}>
+                <div className="list-details">
+                  <h2>{`${data.getList.title.phrase} ${data.getList.title.count} ${data.getList.title.description}`}</h2>
+                  <h3>
+                    <Link to={`/${data.getList.username}`}>{`@${data.getList.username}`}</Link>
+                  </h3>
+                </div>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+      )}
     </Fragment>
   );
 };
