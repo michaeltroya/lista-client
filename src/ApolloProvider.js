@@ -12,7 +12,7 @@ import store from './redux/store';
 import { logout } from './redux/userActions';
 import { SET_AUTHENTICATED, SET_USER_DETAILS } from './redux/types';
 //query
-import { FETCH_USER_QUERY } from './graphql/server';
+import { FETCH_USER_DETAILS_QUERY } from './graphql/server';
 
 import App from './App';
 
@@ -48,7 +48,7 @@ if (token) {
   } else {
     store.dispatch({ type: SET_AUTHENTICATED });
     client
-      .query({ query: FETCH_USER_QUERY })
+      .query({ query: FETCH_USER_DETAILS_QUERY })
       .then(res => {
         store.dispatch({ type: SET_USER_DETAILS, payload: res.data.getUserDetails });
       })

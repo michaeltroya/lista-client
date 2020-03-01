@@ -13,7 +13,7 @@ import { logout } from '../../../redux/userActions';
 const Nav = ({ type }) => {
   const dispatch = useDispatch();
 
-  const username = useSelector(state => state.user.userData.username);
+  const username = useSelector(state => state.user.credentials.username);
 
   const authenticated = useSelector(state => state.user.authenticated);
 

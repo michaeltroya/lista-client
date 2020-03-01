@@ -135,31 +135,17 @@ export const FETCH_TAG_LISTS_QUERY = gql`
   }
 `;
 
-export const FETCH_USER_DETAILS_QUERY = gql`
-  query UserDetails($username: String!) {
-    getUserDetails(username: $username) {
-      id
-      email
-      username
-      followers
-      following
-      createdAt
-    }
-  }
-`;
-
 //FOLLOW USER
 
 export const FOLLOW_USER = gql`
   mutation Follow($username: String!) {
     followUser(userToFollow: $username) {
       following
-      followers
     }
   }
 `;
 
-export const FETCH_USER_QUERY = gql`
+export const FETCH_USER_DETAILS_QUERY = gql`
   {
     getUserDetails {
       id

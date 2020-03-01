@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 //comps
 import Nav from '../../layout/Nav/Nav';
 const Home = () => {
-  const username = useSelector(state => state.user.userData.username);
+  const username = useSelector(state => state.user.credentials.username);
 
   return (
     <Fragment>
