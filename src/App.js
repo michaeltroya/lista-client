@@ -1,57 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { useApolloClient, useQuery } from '@apollo/react-hooks';
 //pages
-import HomeStatic from './static/HomeStatic/HomeStatic';
-import Login from './static/Forms/Login';
-import Signup from './static/Forms/Signup';
-import FourOhFour from './static/FourOhFour/FourOhFour';
+import HomeStatic from './pages/HomeStatic/HomeStatic';
+import Login from './pages/Forms/Login';
+import Signup from './pages/Forms/Signup';
+import FourOhFour from './pages/FourOhFour/FourOhFour';
 //comps
-import Home from './app/Home/Home';
+import Home from './components/main/Home/Home';
+import ListPage from './components/main/ListPage/ListPage';
+import Profile from './components/main/Profile/Profile';
+import Tags from './components/main/Tags/Tags';
 import AuthRoute from './util/AuthRoute';
-import ListPage from './app/ListPage/ListPage';
-import Profile from './app/Profile/Profile';
-import Tags from './app/Tags/Tags';
-//util
-import { getUserFromToken } from './util/decode';
-//query
-import { FETCH_USER_DETAILS_QUERY } from './graphql/server';
+//Redux imports
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 const App = () => {
-  const client = useApolloClient();
-  const token = localStorage.getItem('token');
-
-  const { loading, data } = useQuery(FETCH_USER_DETAILS_QUERY, {
-    variables: {
-      username: token ? getUserFromToken(token) : ''
-    }
-  });
-
-  if (!loading) {
-    if (token) {
-      client.writeData({
-        data: {
-          userDetails: {
-            ...data.getUserDetails
-          }
-        }
-      });
-    }
-  }
-
   return (
-    <Router>
-      <Switch>
-        <AuthRoute exact path="/" component={HomeStatic} />
-        <AuthRoute exact path="/login" component={Login} />
-        <AuthRoute exact path="/signup" component={Signup} />
-        <AuthRoute exact path="/home" component={Home} />
-        <Route exact path="/:userId/list/:listId" component={ListPage} />
-        <Route exact path="/:userId" component={Profile} />
-        <Route exact path="/tag/:tag" component={Tags} />
-        <Route component={FourOhFour} />
-      </Switch>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <Switch>
+          <AuthRoute exact path="/" component={HomeStatic} />
+          <AuthRoute exact path="/login" component={Login} />
+          <AuthRoute exact path="/signup" component={Signup} />
+          <AuthRoute exact path="/home" component={Home} />
+          <Route exact path="/:userId/list/:listId" component={ListPage} />
+          <Route exact path="/:userId" component={Profile} />
+          <Route exact path="/tag/:tag" component={Tags} />
+          <Route component={FourOhFour} />
+        </Switch>
+      </Router>
+    </Provider>
   );
 };
 

@@ -6,8 +6,8 @@ import { useQuery } from '@apollo/react-hooks';
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
-import List from '../../components/ListCard/ListCard';
-import Nav from '../../components/Nav/Nav';
+import List from '../../components/secondary/ListCard/ListCard';
+import Nav from '../../components/layout/Nav/Nav';
 //queries
 import { FETCH_LISTS_QUERY } from '../../graphql/server';
 

@@ -14,9 +14,8 @@ const httpLink = createHttpLink({
   uri: 'http://localhost:5000/'
 });
 
-const token = localStorage.getItem('token');
-
 const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('token');
   return {
     headers: {
       ...headers,
@@ -44,6 +43,8 @@ cache.writeData({
     authenticated: false
   }
 });
+
+const token = localStorage.getItem('token');
 
 if (token) {
   const decodedToken = jwtDecode(token);

@@ -4,10 +4,10 @@ import { useQuery } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
-import List from '../../components/ListCard/ListCard';
-import Nav from '../../components/Nav/Nav';
+import ListCard from '../../secondary/ListCard/ListCard';
+import Nav from '../../layout/Nav/Nav';
 //queries
-import { FETCH_LIST_QUERY } from '../../graphql/server';
+import { FETCH_LIST_QUERY } from '../../../graphql/server';
 
 const ListPage = props => {
   const listIdPath = props.location.pathname.split('/')[3];
@@ -30,7 +30,7 @@ const ListPage = props => {
           {loading ? (
             <Spinner animation="border" className="orange-spinner" />
           ) : (
-            <List list={data.getList} key={data.getList.id} />
+            <ListCard list={data.getList} key={data.getList.id} />
           )}
         </Container>
       </div>

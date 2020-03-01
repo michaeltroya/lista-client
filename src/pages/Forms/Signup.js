@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
-import Nav from '../../components/Nav/Nav';
+import Nav from '../../components/layout/Nav/Nav';
 //queries
 import { SIGNUP_USER } from '../../graphql/server';
 

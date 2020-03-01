@@ -2,14 +2,15 @@ import React, { Fragment } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //queries
-import { FETCH_USER_LISTS_QUERY } from '../../graphql/server';
-import { GET_AUTHENTICATED } from '../../graphql/client';
+import { FETCH_USER_LISTS_QUERY } from '../../../graphql/server';
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
-import List from '../../components/ListCard/ListCard';
-import Nav from '../../components/Nav/Nav';
-import FollowButton from '../../components/FollowButton/FollowButton';
+import ListCard from '../../secondary/ListCard/ListCard';
+import Nav from '../../layout/Nav/Nav';
+import FollowButton from '../../secondary/FollowButton/FollowButton';
+//Redux Imports
+import { useSelector } from 'react-redux';
 
 const Profile = props => {
   const usernamePath = props.location.pathname.split('/')[1];
@@ -19,9 +20,7 @@ const Profile = props => {
     }
   });
 
-  const {
-    data: { authenticated }
-  } = useQuery(GET_AUTHENTICATED);
+  const authenticated = useSelector(state => state.user.authenticated);
 
   if (error) {
     return (
@@ -65,7 +64,7 @@ const Profile = props => {
               ) : (
                 data.getUserLists.map(list => (
                   <Col xs={12} md={3} key={list.id}>
-                    <List list={list} authenticated={authenticated} />
+                    <ListCard list={list} authenticated={authenticated} />
                   </Col>
                 ))
               )}

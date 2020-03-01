@@ -158,3 +158,16 @@ export const FOLLOW_USER = gql`
     }
   }
 `;
+
+export const FETCH_USER_QUERY = gql`
+  {
+    getUserDetails {
+      id
+      email
+      username
+      followers
+      following
+      createdAt
+    }
+  }
+`;

@@ -1,44 +1,24 @@
 import React, { Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-//gql
-import { useApolloClient, useQuery } from '@apollo/react-hooks';
-import { GET_USER_DATA, GET_AUTHENTICATED } from '../../graphql/client';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 //img imports
-import Logo from '../../images/main-logo.png';
+import Logo from '../../../images/main-logo.png';
 //bs import
 import { Container } from 'react-bootstrap';
+//Redux Imports
+import { useSelector } from 'react-redux';
 
 const Nav = ({ type }) => {
-  const {
-    data: {
-      userDetails: { username }
-    }
-  } = useQuery(GET_USER_DATA);
+  const username = '';
 
-  const {
-    data: { authenticated }
-  } = useQuery(GET_AUTHENTICATED);
+  const authenticated = useSelector(state => state.user.authenticated);
 
-  const client = useApolloClient();
   const history = useHistory();
 
   const handleLogut = () => {
-    client.writeData({
-      data: {
-        userDetails: {
-          __typename: 'UserData',
-          username: '',
-          email: '',
-          id: '',
-          followers: [],
-          following: []
-        },
-        authenticated: false
-      }
-    });
+    console.log('logout');
     localStorage.removeItem('token');
     history.push('/');
   };

@@ -34,16 +34,15 @@ $grey-color: #f3f3f3;
 @import '../../node_modules/bootstrap/scss/spinners';
 
 //COMPONENTS
-@import '../components/Nav/nav';
-@import '../components/ListCard/listCard';
+@import '../components/layout/Nav/nav';
+@import '../components/secondary/ListCard/listCard';
 
 //STATIC PAGES
-@import '../static/HomeStatic/homeStatic';
-@import '../static/Forms/forms';
-@import '../app/Tags/tags';
+@import '../pages/HomeStatic/homeStatic';
+@import '../pages/Forms/forms';
 
 //APP PAGES
-@import '../app/Profile/profile';
-
+@import '../components/main/Profile/profile';
+@import '../components/main/Tags/tags';
 //MEDIA QUERIES
 @import './responsive';

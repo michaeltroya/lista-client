@@ -1,14 +1,10 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-//gql
-import { useQuery } from '@apollo/react-hooks';
-import { GET_AUTHENTICATED } from '../graphql/client';
+//Redux Imports
+import { useSelector } from 'react-redux';
 
 const AuthRoute = ({ component: Component, ...rest }) => {
-  const {
-    data: { authenticated }
-  } = useQuery(GET_AUTHENTICATED);
-
+  const authenticated = useSelector(state => state.user.authenticated);
   return (
     <Route
       {...rest}

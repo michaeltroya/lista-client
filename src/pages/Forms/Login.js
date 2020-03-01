@@ -5,11 +5,15 @@ import { useMutation } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
-import Nav from '../../components/Nav/Nav';
+import Nav from '../../components/layout/Nav/Nav';
 //queries
 import { LOGIN_USER } from '../../graphql/server';
+//Redux Imports
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/userActions';
 
 const Login = props => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [loginData, setLoginData] = useState({
     username: '',
@@ -21,25 +25,8 @@ const Login = props => {
   };
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(
-      cache,
-      {
-        data: {
-          login: { token, __typename, ...userDetails }
-        }
-      }
-    ) {
-      cache.writeData({
-        data: {
-          userDetails: {
-            __typename: 'UserDetails',
-            ...userDetails
-          },
-          authenticated: true
-        }
-      });
-      localStorage.setItem('token', token);
-      props.history.push('/home');
+    update(cache, { data }) {
+      dispatch(login(data.login, props.history));
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
