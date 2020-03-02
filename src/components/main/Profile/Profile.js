@@ -64,7 +64,7 @@ const Profile = props => {
               ) : (
                 data.getUserLists.map(list => (
                   <Col xs={12} md={3} key={list.id}>
-                    <ListCard list={list} authenticated={authenticated} />
+                    <ListCard list={list} />
                   </Col>
                 ))
               )}

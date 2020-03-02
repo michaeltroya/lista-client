@@ -2,9 +2,11 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments } from '@fortawesome/free-solid-svg-icons';
+import { faComments, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
 import dayjs from 'dayjs';
+//Redux Imports
+import { useSelector, useDispatch } from 'react-redux';
 
 const List = ({
   list: {
@@ -16,17 +18,24 @@ const List = ({
     commentCount,
     likeCount,
     createdAt
-  },
-  authenticated
+  }
 }) => {
+  const currentUsername = useSelector(state => state.user.credentials.username);
+  const authenticated = useSelector(state => state.user.authenticated);
+
+  const handleDelete = () => {
+    console.log('delete');
+  };
+
   return (
     <div className="list-card">
       <header className="list-card-header">
         <h3>{`${phrase} ${count} ${description}`}</h3>
-        <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
+
         <h4>
           <Link to={`/${username}`}>{`@${username}`}</Link>
         </h4>
+        <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
             <Link to={`/tag/${tag}`} key={index} className="card-tag">
@@ -79,6 +88,9 @@ const List = ({
               </Fragment>
             )}
           </div>
+          {authenticated && currentUsername === username ? (
+            <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
+          ) : null}
         </div>
       </footer>
       <div className="list-card-expand">

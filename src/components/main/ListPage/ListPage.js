@@ -55,7 +55,9 @@ const ListPage = props => {
                 ))}
               </div>
             </Col>
-            <Col xs={12} md={5}></Col>
+            <Col xs={12} md={5}>
+              <div className="list-comments"></div>
+            </Col>
           </Row>
         </Container>
       )}

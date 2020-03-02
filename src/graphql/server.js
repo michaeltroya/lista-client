@@ -17,6 +17,12 @@ export const FETCH_LIST_QUERY = gql`
         description
         order
       }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
       commentCount
       likeCount
       createdAt
