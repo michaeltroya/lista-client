@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { faHeart } from '@fortawesome/free-regular-svg-icons';
-import moment from 'moment';
+import dayjs from 'dayjs';
 
 const List = ({
   list: {
@@ -23,13 +23,13 @@ const List = ({
     <div className="list-card">
       <header className="list-card-header">
         <h3>{`${phrase} ${count} ${description}`}</h3>
+        <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
         <h4>
           <Link to={`/${username}`}>{`@${username}`}</Link>
         </h4>
-        <p>{moment(createdAt).fromNow()}</p>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
-            <Link to={`/tag/${tag}`} key={index} className="tag">
+            <Link to={`/tag/${tag}`} key={index} className="card-tag">
               {tag}
             </Link>
           ))}
@@ -38,7 +38,12 @@ const List = ({
       <main className="list-card-body">
         {items.map(item => (
           <div className="list-card-item" key={item.order}>
-            <h4>{item.name}</h4>
+            <div className="item-order">
+              <h3>{item.order}</h3>
+            </div>
+            <div className="item-name">
+              <h4>{item.name}</h4>
+            </div>
           </div>
         ))}
       </main>
@@ -77,7 +82,7 @@ const List = ({
         </div>
       </footer>
       <div className="list-card-expand">
-        <Link to={`${username}/list/${id}`}>Expand List</Link>
+        <Link to={`/${username}/list/${id}`}>Expand List</Link>
       </div>
     </div>
   );
