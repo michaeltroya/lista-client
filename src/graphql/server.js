@@ -24,6 +24,9 @@ export const FETCH_LIST_QUERY = gql`
         createdAt
       }
       commentCount
+      likes {
+        username
+      }
       likeCount
       createdAt
     }
@@ -47,7 +50,16 @@ export const FETCH_LISTS_QUERY = gql`
         description
         order
       }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
       commentCount
+      likes {
+        username
+      }
       likeCount
       createdAt
     }
@@ -110,7 +122,16 @@ export const FETCH_USER_LISTS_QUERY = gql`
         description
         order
       }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
       commentCount
+      likes {
+        username
+      }
       likeCount
       createdAt
     }
@@ -134,7 +155,16 @@ export const FETCH_TAG_LISTS_QUERY = gql`
         description
         order
       }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
       commentCount
+      likes {
+        username
+      }
       likeCount
       createdAt
     }
@@ -151,6 +181,7 @@ export const FOLLOW_USER = gql`
   }
 `;
 
+//GET USER DETAILS FOR REDUX
 export const FETCH_USER_DETAILS_QUERY = gql`
   {
     getUserDetails {
@@ -160,6 +191,21 @@ export const FETCH_USER_DETAILS_QUERY = gql`
       followers
       following
       createdAt
+    }
+  }
+`;
+
+// LIKE AND UNLIKE MUTATION
+
+export const LIKE_UNLIKE = gql`
+  mutation like($listId: ID!) {
+    likeList(listId: $listId) {
+      id
+      likes {
+        id
+        username
+      }
+      likeCount
     }
   }
 `;

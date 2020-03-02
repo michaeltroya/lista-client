@@ -2,7 +2,6 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
-//queries
 import { FOLLOW_USER } from '../../../graphql/server';
 //Redux Imports
 import { useSelector, useDispatch } from 'react-redux';

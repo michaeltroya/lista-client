@@ -1,12 +1,13 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComments, faTrash } from '@fortawesome/free-solid-svg-icons';
-import { faHeart } from '@fortawesome/free-regular-svg-icons';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faComments } from '@fortawesome/free-regular-svg-icons';
 import dayjs from 'dayjs';
 //Redux Imports
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import LikeButton from '../LikeButton/LikeButton';
 
 const List = ({
   list: {
@@ -15,6 +16,7 @@ const List = ({
     title: { phrase, count, description },
     tags,
     items,
+    likes,
     commentCount,
     likeCount,
     createdAt
@@ -59,34 +61,17 @@ const List = ({
       <footer className="list-card-footer">
         <div className="list-card-actions">
           <div className="list-card-comments">
+            <p>{commentCount}</p>
             {authenticated ? (
-              <Fragment>
-                <p>{commentCount}</p>
-                <FontAwesomeIcon icon={faComments} />
-              </Fragment>
+              <FontAwesomeIcon icon={faComments} />
             ) : (
-              <Fragment>
-                <p>{likeCount}</p>
-                <Link to="/login">
-                  <FontAwesomeIcon icon={faComments} />
-                </Link>
-              </Fragment>
+              <Link to="/login">
+                <FontAwesomeIcon icon={faComments} />
+              </Link>
             )}
           </div>
           <div className="list-card-likes">
-            {authenticated ? (
-              <Fragment>
-                <p>{likeCount}</p>
-                <FontAwesomeIcon icon={faHeart} />
-              </Fragment>
-            ) : (
-              <Fragment>
-                <p>{likeCount}</p>
-                <Link to="/login">
-                  <FontAwesomeIcon icon={faHeart} />
-                </Link>
-              </Fragment>
-            )}
+            <LikeButton likeCount={likeCount} likes={likes} listId={id} />
           </div>
           {authenticated && currentUsername === username ? (
             <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
