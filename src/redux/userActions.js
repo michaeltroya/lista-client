@@ -7,7 +7,7 @@ export const login = ({ token, __typename, ...userData }, history) => dispatch =
   dispatch({ type: SET_USER_DETAILS, payload: userData });
 };
 
-export const logout = history => dispatch => {
+export const logout = () => dispatch => {
   localStorage.removeItem('token');
   dispatch({ type: SET_UNAUTHENTICATED });
   window.location.href = '/';

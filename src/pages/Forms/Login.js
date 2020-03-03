@@ -25,7 +25,8 @@ const Login = props => {
   };
 
   const [loginUser, { loading }] = useMutation(LOGIN_USER, {
-    update(cache, { data }) {
+    update(_, { data }) {
+      console.log(data.login);
       dispatch(login(data.login, props.history));
     },
     onError(err) {

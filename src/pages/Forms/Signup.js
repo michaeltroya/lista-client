@@ -8,8 +8,12 @@ import { Container, Spinner } from 'react-bootstrap';
 import Nav from '../../components/layout/Nav/Nav';
 //queries
 import { SIGNUP_USER } from '../../graphql/mutations';
+//Redux Imports
+import { useDispatch } from 'react-redux';
+import { login } from '../../redux/userActions';
 
 const Signup = props => {
+  const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
   const [signupData, setSignupData] = useState({
     username: '',
@@ -23,25 +27,8 @@ const Signup = props => {
   };
 
   const [signupUser, { loading }] = useMutation(SIGNUP_USER, {
-    update(
-      cache,
-      {
-        data: {
-          login: { token, __typename, ...userDetails }
-        }
-      }
-    ) {
-      cache.writeData({
-        data: {
-          userDetails: {
-            __typename: 'UserDetails',
-            ...userDetails
-          },
-          authenticated: true
-        }
-      });
-      localStorage.setItem('token', token);
-      props.history.push('/home');
+    update(_, { data }) {
+      dispatch(login(data.signup, props.history));
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);

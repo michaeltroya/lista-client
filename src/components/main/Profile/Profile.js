@@ -9,8 +9,6 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
 import FollowButton from '../../secondary/FollowButton/FollowButton';
-//Redux Imports
-import { useSelector } from 'react-redux';
 
 const Profile = props => {
   const usernamePath = props.location.pathname.split('/')[1];
@@ -19,8 +17,6 @@ const Profile = props => {
       username: usernamePath
     }
   });
-
-  const authenticated = useSelector(state => state.user.authenticated);
 
   if (error) {
     return (
