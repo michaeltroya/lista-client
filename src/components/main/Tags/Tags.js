@@ -20,7 +20,7 @@ const Tags = props => {
 
   return (
     <Fragment>
-      <Nav type="home" />
+      <Nav type="tags" history={props.history} />
       <section className="tag-name">
         <Container>
           <h1>#{tagPath}</h1>

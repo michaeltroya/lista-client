@@ -15,6 +15,16 @@
   }
 }
 
+.nav-left {
+  .container {
+    justify-content: flex-start;
+  }
+  h2 {
+    margin: 0;
+    margin-left: 2rem;
+  }
+}
+
 .nav-logo {
   width: 95px;
 }

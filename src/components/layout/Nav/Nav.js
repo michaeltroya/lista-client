@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHome, faUser, faPlus, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 //img imports
 import Logo from '../../../images/main-logo.png';
 //bs import
@@ -10,10 +10,8 @@ import { Container } from 'react-bootstrap';
 //Redux Imports
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../../redux/userActions';
-const Nav = ({ type }) => {
+const Nav = ({ type, history }) => {
   const dispatch = useDispatch();
-
-  const username = useSelector(state => state.user.credentials.username);
 
   const authenticated = useSelector(state => state.user.authenticated);
 
@@ -50,6 +48,33 @@ const Nav = ({ type }) => {
         </Container>
       </nav>
     );
+  } else if (type === 'tags' && authenticated === true) {
+    return (
+      <nav className="nav nav-left">
+        <Container>
+          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
+          <h2>Tags</h2>
+        </Container>
+      </nav>
+    );
+  } else if (type === 'profile' && authenticated === true) {
+    return (
+      <nav className="nav nav-left">
+        <Container>
+          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
+          <h2>Profile</h2>
+        </Container>
+      </nav>
+    );
+  } else if (type === 'list' && authenticated === true) {
+    return (
+      <nav className="nav nav-left">
+        <Container>
+          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
+          <h2>List</h2>
+        </Container>
+      </nav>
+    );
   } else {
     return (
       <Fragment>
@@ -67,19 +92,6 @@ const Nav = ({ type }) => {
             </div>
           </Container>
         </nav>
-        <div className="mobi-nav">
-          <Container>
-            <Link className="mobi-link" to="/home">
-              <FontAwesomeIcon icon={faHome} size="lg" />
-            </Link>
-            <Link className="mobi-link" to="/">
-              <FontAwesomeIcon icon={faPlus} size="lg" />
-            </Link>
-            <Link className="mobi-link" to={`/${username}`}>
-              <FontAwesomeIcon icon={faUser} size="lg" />
-            </Link>
-          </Container>
-        </div>
       </Fragment>
     );
   }

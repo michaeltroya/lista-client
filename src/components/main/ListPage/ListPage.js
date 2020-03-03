@@ -26,7 +26,7 @@ const ListPage = props => {
 
   return (
     <Fragment>
-      <Nav type="home" />
+      <Nav type="list" history={props.history} />
       {loading ? (
         <Spinner animation="border" className="orange-spinner" />
       ) : (

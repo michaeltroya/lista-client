@@ -11,6 +11,7 @@ import ListPage from './components/main/ListPage/ListPage';
 import Profile from './components/main/Profile/Profile';
 import Tags from './components/main/Tags/Tags';
 import AuthRoute from './util/AuthRoute';
+import MobiNav from './components/layout/Nav/MobiNav';
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route exact path="/tag/:tag" component={Tags} />
         <Route component={FourOhFour} />
       </Switch>
+      <MobiNav />
     </Router>
   );
 };

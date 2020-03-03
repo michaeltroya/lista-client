@@ -24,7 +24,7 @@ const Profile = props => {
   if (error) {
     return (
       <Fragment>
-        <Nav type="home" />
+        <Nav type="profile" history={props.history} />
         <section className="profile-details">
           <Container>
             <h4>Opps!</h4>
@@ -37,7 +37,7 @@ const Profile = props => {
 
   return (
     <Fragment>
-      <Nav type="home" />
+      <Nav type="profile" history={props.history} />
       <div className="profile">
         <section className="profile-details">
           <Container>
