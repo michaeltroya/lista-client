@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { Container, Spinner, Col, Row } from 'react-bootstrap';
 import Nav from '../../layout/Nav/Nav';
 //queries
-import { FETCH_LIST_QUERY } from '../../../graphql/server';
+import { FETCH_LIST_QUERY } from '../../../graphql/query';
 import dayjs from 'dayjs';
 
 const ListPage = props => {

@@ -9,7 +9,7 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import List from '../../components/secondary/ListCard/ListCard';
 import Nav from '../../components/layout/Nav/Nav';
 //queries
-import { FETCH_LISTS_QUERY } from '../../graphql/server';
+import { FETCH_LISTS_QUERY } from '../../graphql/query';
 
 const HomeStatic = () => {
   const { loading, data } = useQuery(FETCH_LISTS_QUERY);

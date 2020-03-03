@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
-import { FOLLOW_USER } from '../../../graphql/server';
+import { FOLLOW_USER } from '../../../graphql/mutations';
 //Redux Imports
 import { useSelector, useDispatch } from 'react-redux';
 import { SET_FOLLOWERS } from '../../../redux/types';
@@ -30,10 +30,6 @@ const FollowButton = ({ currentProfile }) => {
     }
   });
 
-  const handleFollow = () => {
-    follow();
-  };
-
   useEffect(() => {
     if (authenticated && following.find(users => users === currentProfile)) {
       setFollowed(true);
@@ -46,11 +42,11 @@ const FollowButton = ({ currentProfile }) => {
     <Fragment>
       {authenticated ? (
         username === currentProfile ? null : isFollowed ? (
-          <button className="btn btn-dimmed" onClick={handleFollow}>
+          <button className="btn btn-dimmed" onClick={() => follow()}>
             Unfollow
           </button>
         ) : (
-          <button className="btn" onClick={handleFollow}>
+          <button className="btn" onClick={() => follow()}>
             Follow
           </button>
         )

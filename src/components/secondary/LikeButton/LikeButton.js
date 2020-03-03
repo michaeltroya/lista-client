@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
-import { LIKE_UNLIKE } from '../../../graphql/server';
+import { LIKE_UNLIKE } from '../../../graphql/mutations';
 //Redux Imports
 import { useSelector } from 'react-redux';
 //FA imports
@@ -27,18 +27,14 @@ const LikeButton = ({ listId, likeCount, likes }) => {
     }
   });
 
-  const handleLike = () => {
-    likeList();
-  };
-
   return (
     <Fragment>
       <p>{likeCount}</p>
       {authenticated ? (
         liked ? (
-          <FontAwesomeIcon icon={SolidHeart} onClick={handleLike} />
+          <FontAwesomeIcon icon={SolidHeart} onClick={() => likeList()} />
         ) : (
-          <FontAwesomeIcon icon={faHeart} onClick={handleLike} />
+          <FontAwesomeIcon icon={faHeart} onClick={() => likeList()} />
         )
       ) : (
         <Link to="/login">

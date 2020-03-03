@@ -7,7 +7,7 @@ import { Container, Spinner } from 'react-bootstrap';
 //comps
 import Nav from '../../components/layout/Nav/Nav';
 //queries
-import { LOGIN_USER } from '../../graphql/server';
+import { LOGIN_USER } from '../../graphql/mutations';
 //Redux Imports
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/userActions';

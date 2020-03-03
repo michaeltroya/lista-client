@@ -12,7 +12,7 @@ import store from './redux/store';
 import { logout } from './redux/userActions';
 import { SET_AUTHENTICATED, SET_USER_DETAILS } from './redux/types';
 //query
-import { FETCH_USER_DETAILS_QUERY } from './graphql/server';
+import { FETCH_USER_DETAILS_QUERY } from './graphql/query';
 
 import App from './App';
 

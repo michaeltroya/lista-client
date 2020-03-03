@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //queries
-import { FETCH_USER_LISTS_QUERY } from '../../../graphql/server';
+import { FETCH_USER_LISTS_QUERY } from '../../../graphql/query';
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps

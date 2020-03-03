@@ -66,44 +66,6 @@ export const FETCH_LISTS_QUERY = gql`
   }
 `;
 
-//LOGIN USER
-
-export const LOGIN_USER = gql`
-  mutation login($username: String!, $password: String!) {
-    login(username: $username, password: $password) {
-      id
-      email
-      token
-      username
-      following
-      followers
-      createdAt
-    }
-  }
-`;
-
-//SIGNUP USER
-export const SIGNUP_USER = gql`
-  mutation signup($username: String!, $email: String!, $password: String!, $confirmPassword: String!) {
-    signup(
-      signupInput: {
-        username: $username
-        email: $email
-        password: $password
-        confirmPassword: $confirmPassword
-      }
-    ) {
-      id
-      email
-      token
-      username
-      following
-      followers
-      createdAt
-    }
-  }
-`;
-
 //GET LISTS BY USERNAME
 
 export const FETCH_USER_LISTS_QUERY = gql`
@@ -171,16 +133,6 @@ export const FETCH_TAG_LISTS_QUERY = gql`
   }
 `;
 
-//FOLLOW USER
-
-export const FOLLOW_USER = gql`
-  mutation Follow($username: String!) {
-    followUser(userToFollow: $username) {
-      following
-    }
-  }
-`;
-
 //GET USER DETAILS FOR REDUX
 export const FETCH_USER_DETAILS_QUERY = gql`
   {
@@ -191,21 +143,6 @@ export const FETCH_USER_DETAILS_QUERY = gql`
       followers
       following
       createdAt
-    }
-  }
-`;
-
-// LIKE AND UNLIKE MUTATION
-
-export const LIKE_UNLIKE = gql`
-  mutation like($listId: ID!) {
-    likeList(listId: $listId) {
-      id
-      likes {
-        id
-        username
-      }
-      likeCount
     }
   }
 `;

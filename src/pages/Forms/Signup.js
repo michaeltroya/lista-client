@@ -7,7 +7,7 @@ import { Container, Spinner } from 'react-bootstrap';
 //comps
 import Nav from '../../components/layout/Nav/Nav';
 //queries
-import { SIGNUP_USER } from '../../graphql/server';
+import { SIGNUP_USER } from '../../graphql/mutations';
 
 const Signup = props => {
   const [errors, setErrors] = useState({});
