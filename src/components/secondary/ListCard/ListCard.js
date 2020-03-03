@@ -30,21 +30,19 @@ const List = ({
 
   return (
     <div className="list-card">
-      <header className="list-card-header">
+      <div className="list-card-header">
         <h3>{`${phrase} ${count} ${description}`}</h3>
-        <h4 as={Link} to={`/${username}`}>
-          {`@${username}`}
-        </h4>
+        <Link to={`/${username}`} className="o-text">{`@${username}`}</Link>
         <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
             <Link to={`/tag/${tag}`} key={index} className="card-tag">
-              {tag}
+              #{tag}
             </Link>
           ))}
         </div>
-      </header>
-      <footer className="list-card-footer">
+      </div>
+      <div className="list-card-footer">
         <div className="list-card-actions">
           <div className="list-card-comments">
             <p>{commentCount}</p>
@@ -63,9 +61,9 @@ const List = ({
             <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
           ) : null}
         </div>
-      </footer>
+      </div>
       <Link to={`/${username}/list/${id}`}>
-        <div className="list-card-expand">Expand List</div>
+        <div className="list-card-expand">View</div>
       </Link>
     </div>
   );

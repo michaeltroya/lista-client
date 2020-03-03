@@ -21,9 +21,13 @@ const Tags = props => {
   return (
     <Fragment>
       <Nav type="home" />
-      <section className="tags">
+      <section className="tag-name">
         <Container>
-          {loading ? <Spinner animation="border" className="orange-spinner" /> : <h1>{tagPath}</h1>}
+          <h1>#{tagPath}</h1>
+        </Container>
+      </section>
+      <section className="tag-results">
+        <Container>
           {loading ? (
             <Spinner animation="border" className="orange-spinner" />
           ) : (
