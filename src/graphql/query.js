@@ -34,7 +34,7 @@ export const FETCH_LIST_QUERY = gql`
 `;
 
 //GET ALL LISTS
-export const FETCH_LISTS_QUERY = gql`
+export const FETCH_ALL_LISTS_QUERY = gql`
   {
     getLists {
       id
@@ -142,6 +142,39 @@ export const FETCH_USER_DETAILS_QUERY = gql`
       username
       followers
       following
+      createdAt
+    }
+  }
+`;
+
+//GET LISTS BY TAG
+export const FETCH_TIMELINE_QUERY = gql`
+  query Timeline($following: [String]!) {
+    getTimeline(following: $following) {
+      id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
+      commentCount
+      likes {
+        username
+      }
+      likeCount
       createdAt
     }
   }

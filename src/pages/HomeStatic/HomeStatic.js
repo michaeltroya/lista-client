@@ -2,17 +2,16 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
-
 //bs imports
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
-import List from '../../components/secondary/ListCard/ListCard';
+import ListCard from '../../components/secondary/ListCard/ListCard';
 import Nav from '../../components/layout/Nav/Nav';
 //queries
-import { FETCH_LISTS_QUERY } from '../../graphql/query';
+import { FETCH_ALL_LISTS_QUERY } from '../../graphql/query';
 
 const HomeStatic = () => {
-  const { loading, data } = useQuery(FETCH_LISTS_QUERY);
+  const { loading, data } = useQuery(FETCH_ALL_LISTS_QUERY);
   return (
     <Fragment>
       <Nav type="home" />
@@ -47,7 +46,7 @@ const HomeStatic = () => {
             {loading ? (
               <Spinner animation="border" className="orange-spinner" />
             ) : (
-              data.getLists.map(list => <List list={list} key={list.id} />)
+              data.getLists.map(list => <ListCard list={list} key={list.id} />)
             )}
           </div>
         </Container>
