@@ -9,6 +9,7 @@ import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
 import FollowButton from '../../secondary/FollowButton/FollowButton';
+import dayjs from 'dayjs';
 
 const Profile = props => {
   const usernamePath = props.location.pathname.split('/')[1];
@@ -17,6 +18,8 @@ const Profile = props => {
       username: usernamePath
     }
   });
+
+  console.log(data);
 
   if (error) {
     return (
@@ -43,10 +46,10 @@ const Profile = props => {
             ) : (
               <Fragment>
                 <h1>@{data.getUserLists[0].username}</h1>
+                <p className="g-text">Joined{dayjs(data.getUserLists.createdAt).format(' MMM YYYY')}</p>
                 <h4>
                   {data.getUserLists.length} {data.getUserLists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
-
                 <FollowButton currentProfile={usernamePath} />
               </Fragment>
             )}

@@ -6,7 +6,7 @@ import Login from './pages/Forms/Login';
 import Signup from './pages/Forms/Signup';
 import FourOhFour from './pages/FourOhFour/FourOhFour';
 //comps
-import Home from './components/main/Home/Home';
+import Timeline from './components/main/Timeline/Timeline';
 import ListPage from './components/main/ListPage/ListPage';
 import Profile from './components/main/Profile/Profile';
 import Tags from './components/main/Tags/Tags';
@@ -19,7 +19,7 @@ const App = () => {
         <AuthRoute exact path="/" component={HomeStatic} />
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/signup" component={Signup} />
-        <AuthRoute exact path="/home" component={Home} />
+        <AuthRoute exact path="/home" component={Timeline} />
         <Route exact path="/:userId/list/:listId" component={ListPage} />
         <Route exact path="/:userId" component={Profile} />
         <Route exact path="/tag/:tag" component={Tags} />

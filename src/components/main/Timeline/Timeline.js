@@ -19,15 +19,13 @@ const Home = () => {
   return (
     <Fragment>
       <Nav />
-      <section className="home-lists">
+      <section className="home-timeline">
         <Container>
-          <div className="lists-container">
-            {loading ? (
-              <Spinner animation="border" className="orange-spinner" />
-            ) : (
-              data.getTimeline.map(list => <ListCard list={list} key={list.id} />)
-            )}
-          </div>
+          {loading ? (
+            <Spinner animation="border" className="orange-spinner" />
+          ) : (
+            data.getTimeline.map(list => <ListCard list={list} key={list.id} />)
+          )}
         </Container>
       </section>
     </Fragment>

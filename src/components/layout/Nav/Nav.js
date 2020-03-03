@@ -69,14 +69,14 @@ const Nav = ({ type }) => {
         </nav>
         <div className="mobi-nav">
           <Container>
-            <Link className="mobi-link" to={`/${username}`}>
-              <FontAwesomeIcon icon={faUser} size="lg" />
-            </Link>
             <Link className="mobi-link" to="/home">
               <FontAwesomeIcon icon={faHome} size="lg" />
             </Link>
             <Link className="mobi-link" to="/">
               <FontAwesomeIcon icon={faPlus} size="lg" />
+            </Link>
+            <Link className="mobi-link" to={`/${username}`}>
+              <FontAwesomeIcon icon={faUser} size="lg" />
             </Link>
           </Container>
         </div>

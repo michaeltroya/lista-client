@@ -20,7 +20,7 @@ section {
 //COLORS
 $main-color: #ea660c;
 $white-color: #fff;
-$dark-color: #191919;
+$dark-color: #0e0e0e;
 $grey-color: #f3f3f3;
 
 //FILES
@@ -45,6 +45,7 @@ $grey-color: #f3f3f3;
 @import '../components/main/Profile/profile';
 @import '../components/main/Tags/tags';
 @import '../components/main/ListPage/listpage';
+@import '../components/main/Timeline/timeline';
 
 //MEDIA QUERIES
 @import './responsive';
