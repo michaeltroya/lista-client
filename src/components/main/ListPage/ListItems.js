@@ -1,16 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 //bs imports
 import { Accordion } from 'react-bootstrap';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 const ListItems = ({ items }) => {
-  const [arrowIsDown, setArrowIsDown] = useState(true);
-
   return (
     <div className="list-content">
       {items.map(item => (
-        <Accordion className="list-item">
+        <Accordion className="list-item" key={item.order}>
           <div className="list-item-header">
             <div className="list-item-info">
               <div className="item-order">
@@ -25,7 +23,7 @@ const ListItems = ({ items }) => {
             </Accordion.Toggle>
           </div>
           <Accordion.Collapse eventKey="0">
-            <p>{item.description}</p>
+            <p className="item-description">{item.description}</p>
           </Accordion.Collapse>
         </Accordion>
       ))}

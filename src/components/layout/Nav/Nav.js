@@ -48,7 +48,7 @@ const Nav = ({ type, history }) => {
         </Container>
       </nav>
     );
-  } else if (type === 'tags' && authenticated === true) {
+  } else if (type === 'tags') {
     return (
       <nav className="nav nav-left">
         <Container>
@@ -57,7 +57,7 @@ const Nav = ({ type, history }) => {
         </Container>
       </nav>
     );
-  } else if (type === 'profile' && authenticated === true) {
+  } else if (type === 'profile') {
     return (
       <nav className="nav nav-left">
         <Container>
@@ -66,7 +66,7 @@ const Nav = ({ type, history }) => {
         </Container>
       </nav>
     );
-  } else if (type === 'list' && authenticated === true) {
+  } else if (type === 'list') {
     return (
       <nav className="nav nav-left">
         <Container>

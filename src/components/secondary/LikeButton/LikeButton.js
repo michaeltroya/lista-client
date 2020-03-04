@@ -38,7 +38,7 @@ const LikeButton = ({ listId, likeCount, likes }) => {
         )
       ) : (
         <Link to="/login">
-          <FontAwesomeIcon icon={faHeart} />
+          <FontAwesomeIcon icon={faHeart} className="o-text" />
         </Link>
       )}
     </Fragment>

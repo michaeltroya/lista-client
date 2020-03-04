@@ -12,6 +12,7 @@ import dayjs from 'dayjs';
 //comps
 import ListItems from './ListItems';
 import ListComments from './ListComments';
+import LikeButton from '../../secondary/LikeButton/LikeButton';
 
 const ListPage = props => {
   const listIdPath = props.location.pathname.split('/')[3];
@@ -25,6 +26,7 @@ const ListPage = props => {
   if (error) {
     return <h1>{error.graphQLErrors[0].message}</h1>;
   }
+  console.log(data);
 
   return (
     <Fragment>
@@ -37,10 +39,10 @@ const ListPage = props => {
             <Col xs={12} md={7}>
               <section className="list-info">
                 <h2>{`${data.getList.title.phrase} ${data.getList.title.count} ${data.getList.title.description}`}</h2>
-                <p>{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
-                <h3>
-                  <Link to={`/${data.getList.username}`}>{`@${data.getList.username}`}</Link>
-                </h3>
+
+                <Link to={`/${data.getList.username}`}>
+                  <h3 className="o-text">{`@${data.getList.username}`}</h3>
+                </Link>
                 <div className="list-tags">
                   {data.getList.tags.map((tag, index) => (
                     <Link to={`/tag/${tag}`} key={index} className="list-tag">
@@ -50,7 +52,17 @@ const ListPage = props => {
                 </div>
               </section>
               <ListItems items={data.getList.items} />
+
+              <div className="list-actions">
+                <LikeButton
+                  likeCount={data.getList.likeCount}
+                  listId={data.getList.id}
+                  likes={data.getList.likes}
+                />
+              </div>
+              <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
             </Col>
+
             <Col xs={12} md={5}>
               <ListComments />
             </Col>
