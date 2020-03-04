@@ -17,6 +17,13 @@ section {
   padding: 2rem 0;
 }
 
+.collapse {
+  display: none;
+}
+.show {
+  display: initial !important;
+}
+
 //COLORS
 $main-color: #ea660c;
 $white-color: #fff;
@@ -32,6 +39,7 @@ $grey-color: #f3f3f3;
 @import '../../node_modules/bootstrap/scss/bootstrap-grid';
 @import '../../node_modules/bootstrap/scss/mixins/breakpoints';
 @import '../../node_modules/bootstrap/scss/spinners';
+@import '../../node_modules/bootstrap/scss/card';
 
 //COMPONENTS
 @import '../components/layout/Nav/nav';

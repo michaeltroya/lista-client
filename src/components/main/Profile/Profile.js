@@ -47,10 +47,10 @@ const Profile = props => {
               <Fragment>
                 <h1>@{data.getUserLists[0].username}</h1>
                 <p className="g-text">Joined{dayjs(data.getUserLists.createdAt).format(' MMM YYYY')}</p>
+                <FollowButton currentProfile={usernamePath} />
                 <h4>
                   {data.getUserLists.length} {data.getUserLists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
-                <FollowButton currentProfile={usernamePath} />
               </Fragment>
             )}
           </Container>

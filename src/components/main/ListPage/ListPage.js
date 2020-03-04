@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //bs imports
-import { Container, Spinner, Col, Row } from 'react-bootstrap';
+import { Container, Spinner, Col, Row, Accordion, Card } from 'react-bootstrap';
 import Nav from '../../layout/Nav/Nav';
 //queries
 import { FETCH_LIST_QUERY } from '../../../graphql/query';
@@ -47,11 +47,27 @@ const ListPage = props => {
                   ))}
                 </div>
               </section>
+
               <div className="list-content">
                 {data.getList.items.map(item => (
-                  <div className="list-item" key={item.order}>
-                    <h4>{item.name}</h4>
-                  </div>
+                  <Accordion className="list-item">
+                    <div className="list-item-header">
+                      <div className="list-item-info">
+                        <div className="item-order">
+                          <h3>{item.order}</h3>
+                        </div>
+                        <div className="item-name">
+                          <h4>{item.name}</h4>
+                        </div>
+                      </div>
+
+                      <Accordion.Toggle eventKey="0">open</Accordion.Toggle>
+                    </div>
+
+                    <Accordion.Collapse eventKey="0">
+                      <h2>{item.description}</h2>
+                    </Accordion.Collapse>
+                  </Accordion>
                 ))}
               </div>
             </Col>

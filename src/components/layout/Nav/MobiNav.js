@@ -10,27 +10,26 @@ import { useSelector } from 'react-redux';
 
 const MobiNav = () => {
   const username = useSelector(state => state.user.credentials.username);
-  const authenticated = useSelector(state => state.user.credentials.authenticated);
+  const authenticated = useSelector(state => state.user.authenticated);
 
   if (!authenticated) {
     return null;
-  }
-
-  return (
-    <div className="mobi-nav">
-      <Container>
-        <Link className="mobi-link" to="/home">
-          <FontAwesomeIcon icon={faHome} size="lg" />
-        </Link>
-        <Link className="mobi-link" to="/">
-          <FontAwesomeIcon icon={faPlus} size="lg" />
-        </Link>
-        <Link className="mobi-link" to={`/${username}`}>
-          <FontAwesomeIcon icon={faUser} size="lg" />
-        </Link>
-      </Container>
-    </div>
-  );
+  } else
+    return (
+      <div className="mobi-nav">
+        <Container>
+          <Link className="mobi-link" to="/home">
+            <FontAwesomeIcon icon={faHome} size="lg" />
+          </Link>
+          <Link className="mobi-link" to="/">
+            <FontAwesomeIcon icon={faPlus} size="lg" />
+          </Link>
+          <Link className="mobi-link" to={`/${username}`}>
+            <FontAwesomeIcon icon={faUser} size="lg" />
+          </Link>
+        </Container>
+      </div>
+    );
 };
 
 export default MobiNav;
