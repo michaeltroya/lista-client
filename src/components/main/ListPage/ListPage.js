@@ -3,11 +3,15 @@ import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //bs imports
-import { Container, Spinner, Col, Row, Accordion, Card } from 'react-bootstrap';
+import { Container, Spinner, Col, Row } from 'react-bootstrap';
 import Nav from '../../layout/Nav/Nav';
 //queries
 import { FETCH_LIST_QUERY } from '../../../graphql/query';
 import dayjs from 'dayjs';
+
+//comps
+import ListItems from './ListItems';
+import ListComments from './ListComments';
 
 const ListPage = props => {
   const listIdPath = props.location.pathname.split('/')[3];
@@ -17,8 +21,6 @@ const ListPage = props => {
       listId: listIdPath
     }
   });
-
-  console.log(data);
 
   if (error) {
     return <h1>{error.graphQLErrors[0].message}</h1>;
@@ -42,37 +44,15 @@ const ListPage = props => {
                 <div className="list-tags">
                   {data.getList.tags.map((tag, index) => (
                     <Link to={`/tag/${tag}`} key={index} className="list-tag">
-                      {tag}
+                      #{tag}
                     </Link>
                   ))}
                 </div>
               </section>
-
-              <div className="list-content">
-                {data.getList.items.map(item => (
-                  <Accordion className="list-item">
-                    <div className="list-item-header">
-                      <div className="list-item-info">
-                        <div className="item-order">
-                          <h3>{item.order}</h3>
-                        </div>
-                        <div className="item-name">
-                          <h4>{item.name}</h4>
-                        </div>
-                      </div>
-
-                      <Accordion.Toggle eventKey="0">open</Accordion.Toggle>
-                    </div>
-
-                    <Accordion.Collapse eventKey="0">
-                      <h2>{item.description}</h2>
-                    </Accordion.Collapse>
-                  </Accordion>
-                ))}
-              </div>
+              <ListItems items={data.getList.items} />
             </Col>
             <Col xs={12} md={5}>
-              <div className="list-comments"></div>
+              <ListComments />
             </Col>
           </Row>
         </Container>

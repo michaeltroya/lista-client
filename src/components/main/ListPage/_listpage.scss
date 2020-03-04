@@ -15,7 +15,6 @@
     margin-right: 0.5rem;
     font-size: 1rem;
     color: #fff;
-    text-transform: capitalize;
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: #4a4a4a;
@@ -25,7 +24,6 @@
 
 .list-item {
   border-radius: 5px;
-  background-color: $grey-color;
   margin-bottom: 1rem;
 }
 
@@ -50,11 +48,6 @@
 .item-order {
   border-radius: 5px 0 0 5px;
   padding: 0.4rem 0.8rem;
-  background-color: $main-color;
-  h3 {
-    margin: 0;
-    color: #fff;
-  }
 }
 
 .item-name {
