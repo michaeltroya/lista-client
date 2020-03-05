@@ -33,7 +33,6 @@ const List = ({
       <div className="list-card-header">
         <h3>{`${phrase} ${count} ${description}`}</h3>
         <Link to={`/${username}`} className="o-text">{`@${username}`}</Link>
-        <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
         <div className="list-card-tags">
           {tags.map((tag, index) => (
             <Link to={`/tag/${tag}`} key={index} className="card-tag">
@@ -41,6 +40,7 @@ const List = ({
             </Link>
           ))}
         </div>
+        <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
       </div>
       <div className="list-card-footer">
         <div className="list-card-actions">

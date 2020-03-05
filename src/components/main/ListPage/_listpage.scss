@@ -83,10 +83,42 @@
   display: flex;
   align-items: center;
   font-size: 1.3rem;
+  justify-content: space-between;
 
   p {
     margin: 0;
     margin-right: 0.5rem;
     font-weight: 900;
+  }
+}
+
+.comment-count,
+.like-count {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-comments {
+  width: 100%;
+}
+
+.comment {
+  border-bottom: 1px solid #cacaca;
+  margin-bottom: 1rem;
+  .comment-date {
+    padding: 0.5rem 0;
+    font-size: 0.8rem;
+  }
+}
+
+.comment-details {
+  display: inline-block;
+  h3 {
+    margin: 0 0.5rem 0 0;
+  }
+  p {
+    margin: 0;
   }
 }

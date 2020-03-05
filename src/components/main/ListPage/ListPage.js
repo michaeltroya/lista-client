@@ -4,17 +4,23 @@ import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner, Col, Row } from 'react-bootstrap';
-import Nav from '../../layout/Nav/Nav';
 //queries
 import { FETCH_LIST_QUERY } from '../../../graphql/query';
+//Redux Imports
+import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-
+//FA imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faComments } from '@fortawesome/free-regular-svg-icons';
+import Nav from '../../layout/Nav/Nav';
 //comps
 import ListItems from './ListItems';
 import ListComments from './ListComments';
 import LikeButton from '../../secondary/LikeButton/LikeButton';
 
 const ListPage = props => {
+  const authenticated = useSelector(state => state.user.authenticated);
+
   const listIdPath = props.location.pathname.split('/')[3];
 
   const { loading, error, data } = useQuery(FETCH_LIST_QUERY, {
@@ -52,19 +58,31 @@ const ListPage = props => {
                 </div>
               </section>
               <ListItems items={data.getList.items} />
-
-              <div className="list-actions">
-                <LikeButton
-                  likeCount={data.getList.likeCount}
-                  listId={data.getList.id}
-                  likes={data.getList.likes}
-                />
-              </div>
               <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
+              <div className="list-actions">
+                <div className="like-count">
+                  <LikeButton
+                    likeCount={data.getList.likeCount}
+                    listId={data.getList.id}
+                    likes={data.getList.likes}
+                  />
+                </div>
+
+                <div className="comment-count">
+                  <p>{data.getList.commentCount}</p>
+                  {authenticated ? (
+                    <FontAwesomeIcon icon={faComments} className="b-text" />
+                  ) : (
+                    <Link to="/login">
+                      <FontAwesomeIcon icon={faComments} className="b-text" />
+                    </Link>
+                  )}
+                </div>
+              </div>
             </Col>
 
             <Col xs={12} md={5}>
-              <ListComments />
+              <ListComments comments={data.getList.comments} />
             </Col>
           </Row>
         </Container>
