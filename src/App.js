@@ -12,6 +12,7 @@ import Profile from './components/main/Profile/Profile';
 import Tags from './components/main/Tags/Tags';
 import AuthRoute from './util/AuthRoute';
 import MobiNav from './components/layout/Nav/MobiNav';
+import CreateList from './components/main/CreateList/CreateList';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/signup" component={Signup} />
         <AuthRoute exact path="/home" component={Timeline} />
+        <AuthRoute exact path="/compose/list" component={CreateList} />
         <Route exact path="/:userId/list/:listId" component={ListPage} />
         <Route exact path="/:userId" component={Profile} />
         <Route exact path="/tag/:tag" component={Tags} />

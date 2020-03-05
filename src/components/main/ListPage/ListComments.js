@@ -35,24 +35,27 @@ const ListComments = ({ comments, listId }) => {
 
   return (
     <Fragment>
-      <section className="list-comments">
-        {comments.map(comment => (
-          <div className="comment" key={comment.id}>
-            <div className="comment-details">
-              <Link to={`/${comment.username}`}>
-                <h3 className="o-text">@{comment.username}</h3>
-              </Link>
-              <p>{comment.body}</p>
+      {comments.length > 0 ? (
+        <section className="list-comments">
+          {comments.map(comment => (
+            <div className="comment" key={comment.id}>
+              <div className="comment-details">
+                <Link to={`/${comment.username}`}>
+                  <h3 className="o-text">@{comment.username}</h3>
+                </Link>
+                <p>{comment.body}</p>
+              </div>
+              <p className="g-text comment-date">{dayjs(comment.createdAt).fromNow()}</p>
+              {currentUsername === comment.username ? (
+                <DeleteButton commentId={comment.id} listId={listId} />
+              ) : null}
             </div>
-            <p className="g-text comment-date">{dayjs(comment.createdAt).fromNow()}</p>
-            {currentUsername === comment.username ? (
-              <DeleteButton commentId={comment.id} listId={listId} />
-            ) : null}
-          </div>
-        ))}
-      </section>
-      <div className="create-comment">
-        {authenticated ? (
+          ))}
+        </section>
+      ) : null}
+
+      {authenticated ? (
+        <div className="create-comment">
           <form onSubmit={handleCreateComment} className="comment-form">
             <input
               type="text"
@@ -63,8 +66,8 @@ const ListComments = ({ comments, listId }) => {
             />
             <input type="submit" value="Post" className="btn" />
           </form>
-        ) : null}
-      </div>
+        </div>
+      ) : null}
     </Fragment>
   );
 };

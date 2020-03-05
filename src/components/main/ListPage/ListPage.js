@@ -30,9 +30,18 @@ const ListPage = props => {
   });
 
   if (error) {
-    return <h1>{error.graphQLErrors[0].message}</h1>;
+    return (
+      <Fragment>
+        <Nav type="list" history={props.history} />
+        <section className="profile-details">
+          <Container>
+            <h4>Opps!</h4>
+            <h1>{error.graphQLErrors[0].message}</h1>
+          </Container>
+        </section>
+      </Fragment>
+    );
   }
-  console.log(data);
 
   return (
     <Fragment>
