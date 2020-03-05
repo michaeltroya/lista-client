@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 
 //Dayjs imports
@@ -6,31 +6,66 @@ import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
 //Redux Imports
 import { useSelector } from 'react-redux';
-
+//gql
+import { useMutation } from '@apollo/react-hooks';
+import { CREATE_COMMENT } from '../../../graphql/mutations';
+//comps
 import DeleteButton from '../../secondary/DeleteButton/DeleteButton';
 
 const ListComments = ({ comments, listId }) => {
+  const [body, setBody] = useState('');
+  const authenticated = useSelector(state => state.user.authenticated);
   const currentUsername = useSelector(state => state.user.credentials.username);
   dayjs.extend(relativeTime);
 
+  const [createComment] = useMutation(CREATE_COMMENT, {
+    update() {
+      setBody('');
+    },
+    variables: {
+      listId,
+      body
+    }
+  });
+
+  const handleCreateComment = e => {
+    e.preventDefault();
+    createComment();
+  };
+
   return (
-    <section className="list-comments">
-      {comments.map(comment => (
-        <div className="comment" key={comment.id}>
-          <div className="comment-details">
-            <Link to={`/${comment.username}`}>
-              <h3 className="o-text">@{comment.username}</h3>
-            </Link>
-            <p>{comment.body}</p>
+    <Fragment>
+      <section className="list-comments">
+        {comments.map(comment => (
+          <div className="comment" key={comment.id}>
+            <div className="comment-details">
+              <Link to={`/${comment.username}`}>
+                <h3 className="o-text">@{comment.username}</h3>
+              </Link>
+              <p>{comment.body}</p>
+            </div>
+            <p className="g-text comment-date">{dayjs(comment.createdAt).fromNow()}</p>
+            {currentUsername === comment.username ? (
+              <DeleteButton commentId={comment.id} listId={listId} />
+            ) : null}
           </div>
-          <p className="g-text comment-date">{dayjs(comment.createdAt).fromNow()}</p>
-          {currentUsername === comment.username ? (
-            <DeleteButton commentId={comment.id} listId={listId} />
-          ) : null}
-        </div>
-      ))}
-      <div className="enter-comment"></div>
-    </section>
+        ))}
+      </section>
+      <div className="create-comment">
+        {authenticated ? (
+          <form onSubmit={handleCreateComment} className="comment-form">
+            <input
+              type="text"
+              onChange={e => setBody(e.target.value)}
+              name="comment"
+              value={body}
+              placeholder="Add a comment..."
+            />
+            <input type="submit" value="Post" className="btn" />
+          </form>
+        ) : null}
+      </div>
+    </Fragment>
   );
 };
 

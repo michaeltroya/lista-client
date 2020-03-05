@@ -64,14 +64,67 @@ export const LIKE_UNLIKE = gql`
 `;
 
 //COMMENT AND DELETE COMMENT
+
+export const CREATE_COMMENT = gql`
+  mutation createComment($listId: ID!, $body: String!) {
+    createComment(listId: $listId, body: $body) {
+      id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
+      commentCount
+      likes {
+        username
+      }
+      likeCount
+      createdAt
+    }
+  }
+`;
+
 export const DELETE_COMMENT = gql`
   mutation deleteComment($listId: ID!, $commentId: ID!) {
     deleteComment(listId: $listId, commentId: $commentId) {
       id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
       comments {
         id
         body
+        username
+        createdAt
       }
+      commentCount
+      likes {
+        username
+      }
+      likeCount
+      createdAt
     }
   }
 `;
