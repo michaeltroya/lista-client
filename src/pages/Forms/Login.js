@@ -2,15 +2,14 @@ import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
-//bs imports
-import { Container, Spinner } from 'react-bootstrap';
-//comps
-import StaticNav from '../../components/layout/Nav/StaticNav';
-//queries
 import { LOGIN_USER } from '../../graphql/mutations';
 //Redux Imports
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/userActions';
+//bs imports
+import { Container, Spinner } from 'react-bootstrap';
+//comps
+import StaticNav from '../../components/layout/Nav/StaticNav';
 
 const Login = props => {
   const dispatch = useDispatch();

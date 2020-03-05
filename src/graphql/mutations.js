@@ -48,6 +48,40 @@ export const FOLLOW_USER = gql`
   }
 `;
 
+//CREATE AND DELETE LISTS
+
+export const CREATE_LIST = gql`
+  mutation createList($title: TitleInput!, $tags: [String]!, $items: [ItemsInput]!) {
+    createList(title: $title, tags: $tags, items: $items) {
+      id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
+      commentCount
+      likes {
+        username
+      }
+      likeCount
+      createdAt
+    }
+  }
+`;
+
 // LIKE AND UNLIKE MUTATION
 
 export const LIKE_UNLIKE = gql`
