@@ -39,12 +39,11 @@ const ListComments = ({ comments, listId }) => {
         <section className="list-comments">
           {comments.map(comment => (
             <div className="comment" key={comment.id}>
-              <div className="comment-details">
-                <Link to={`/${comment.username}`}>
-                  <h3 className="o-text">@{comment.username}</h3>
-                </Link>
-                <p>{comment.body}</p>
-              </div>
+              <p>
+                <Link to={`/${comment.username}`} className="o-text">{`@${comment.username}   `}</Link>
+                {comment.body}
+              </p>
+
               <p className="g-text comment-date">{dayjs(comment.createdAt).fromNow()}</p>
               {currentUsername === comment.username ? (
                 <DeleteButton commentId={comment.id} listId={listId} />
