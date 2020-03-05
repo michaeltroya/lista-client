@@ -78,6 +78,7 @@
   border-radius: 0 0 5px 5px;
 }
 
+// ACTIONS ()
 .list-actions {
   padding: 1rem 0;
   display: flex;
@@ -92,6 +93,7 @@
   }
 }
 
+//COMMENTS
 .comment-count,
 .like-count {
   cursor: pointer;
@@ -105,11 +107,17 @@
 }
 
 .comment {
+  position: relative;
   border-bottom: 1px solid #cacaca;
   margin-bottom: 1rem;
   .comment-date {
     padding: 0.5rem 0;
     font-size: 0.8rem;
+  }
+  svg {
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 }
 

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faComments } from '@fortawesome/free-regular-svg-icons';
-import dayjs from 'dayjs';
 //Redux Imports
 import { useSelector } from 'react-redux';
+import dayjs from 'dayjs';
 import LikeButton from '../LikeButton/LikeButton';
 
 const List = ({

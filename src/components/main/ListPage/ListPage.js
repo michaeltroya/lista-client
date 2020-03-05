@@ -82,7 +82,7 @@ const ListPage = props => {
             </Col>
 
             <Col xs={12} md={5}>
-              <ListComments comments={data.getList.comments} />
+              <ListComments comments={data.getList.comments} listId={data.getList.id} />
             </Col>
           </Row>
         </Container>

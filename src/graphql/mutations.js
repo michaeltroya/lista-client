@@ -62,3 +62,16 @@ export const LIKE_UNLIKE = gql`
     }
   }
 `;
+
+//COMMENT AND DELETE COMMENT
+export const DELETE_COMMENT = gql`
+  mutation deleteComment($listId: ID!, $commentId: ID!) {
+    deleteComment(listId: $listId, commentId: $commentId) {
+      id
+      comments {
+        id
+        body
+      }
+    }
+  }
+`;
