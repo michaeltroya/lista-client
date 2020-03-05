@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
-
 //Dayjs imports
 import dayjs from 'dayjs';
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -14,6 +13,7 @@ import DeleteButton from '../../secondary/DeleteButton/DeleteButton';
 
 const ListComments = ({ comments, listId }) => {
   const [body, setBody] = useState('');
+  const [errors, setErrors] = useState({});
   const authenticated = useSelector(state => state.user.authenticated);
   const currentUsername = useSelector(state => state.user.credentials.username);
   dayjs.extend(relativeTime);
@@ -21,6 +21,9 @@ const ListComments = ({ comments, listId }) => {
   const [createComment] = useMutation(CREATE_COMMENT, {
     update() {
       setBody('');
+    },
+    onError(err) {
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: {
       listId,
@@ -51,6 +54,13 @@ const ListComments = ({ comments, listId }) => {
             </div>
           ))}
         </section>
+      ) : null}
+      {Object.keys(errors).length > 0 ? (
+        <div className="form-errors">
+          {Object.values(errors).map(err => (
+            <h4 key={err}>{err}</h4>
+          ))}
+        </div>
       ) : null}
 
       {authenticated ? (
