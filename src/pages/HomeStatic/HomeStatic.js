@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 //comps
 import ListCard from '../../components/secondary/ListCard/ListCard';
-import Nav from '../../components/layout/Nav/Nav';
+import StaticNav from '../../components/layout/Nav/StaticNav';
 //queries
 import { FETCH_ALL_LISTS_QUERY } from '../../graphql/query';
 
@@ -14,7 +14,7 @@ const HomeStatic = () => {
   const { loading, data } = useQuery(FETCH_ALL_LISTS_QUERY);
   return (
     <Fragment>
-      <Nav type="home" />
+      <StaticNav type="home" />
       <section className="home-hero">
         <Container>
           <Row>

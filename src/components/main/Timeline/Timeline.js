@@ -18,7 +18,7 @@ const Home = () => {
 
   return (
     <Fragment>
-      <Nav />
+      <Nav type="timeline" />
       <section className="home-timeline">
         <Container>
           {loading ? (

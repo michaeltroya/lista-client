@@ -8,20 +8,18 @@ import Logo from '../../../images/main-logo.png';
 //bs import
 import { Container } from 'react-bootstrap';
 //Redux Imports
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { logout } from '../../../redux/userActions';
 const Nav = ({ type, history }) => {
   const dispatch = useDispatch();
-
-  const authenticated = useSelector(state => state.user.authenticated);
 
   const handleLogout = () => {
     dispatch(logout());
   };
 
-  if (type === 'home' && authenticated === false) {
-    return (
-      <nav className="nav">
+  return (
+    <nav className={type === 'timeline' ? 'nav' : 'nav nav-left'}>
+      {type === 'timeline' ? (
         <Container>
           <div className="nav-brand">
             <Link to="/">
@@ -29,71 +27,18 @@ const Nav = ({ type, history }) => {
             </Link>
           </div>
           <div className="nav-links">
-            <Link to="/login" className="btn btn-clear">
-              Log in
-            </Link>
+            <button className="btn btn-clear" onClick={handleLogout}>
+              <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+            </button>
           </div>
         </Container>
-      </nav>
-    );
-  } else if (type === 'forms' && authenticated === false) {
-    return (
-      <nav className="nav nav-centered">
-        <Container>
-          <div className="nav-brand">
-            <Link to="/">
-              <img src={Logo} alt="logo" className="nav-logo" />
-            </Link>
-          </div>
-        </Container>
-      </nav>
-    );
-  } else if (type === 'tags') {
-    return (
-      <nav className="nav nav-left">
+      ) : (
         <Container>
           <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
-          <h2>Tags</h2>
+          <h2>{type}</h2>
         </Container>
-      </nav>
-    );
-  } else if (type === 'profile') {
-    return (
-      <nav className="nav nav-left">
-        <Container>
-          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
-          <h2>Profile</h2>
-        </Container>
-      </nav>
-    );
-  } else if (type === 'list') {
-    return (
-      <nav className="nav nav-left">
-        <Container>
-          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
-          <h2>List</h2>
-        </Container>
-      </nav>
-    );
-  } else {
-    return (
-      <Fragment>
-        <nav className="nav">
-          <Container>
-            <div className="nav-brand">
-              <Link to="/">
-                <img src={Logo} alt="logo" className="nav-logo" />
-              </Link>
-            </div>
-            <div className="nav-links">
-              <button className="btn btn-clear" onClick={handleLogout}>
-                <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
-              </button>
-            </div>
-          </Container>
-        </nav>
-      </Fragment>
-    );
-  }
+      )}
+    </nav>
+  );
 };
 export default Nav;

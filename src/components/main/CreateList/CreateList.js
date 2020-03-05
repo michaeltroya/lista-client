@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Nav from '../../layout/Nav/Nav';
 
-const CreateList = () => {
-  return <div>hi</div>;
+const CreateList = props => {
+  return (
+    <Fragment>
+      <Nav type="compose" history={props.history} />
+    </Fragment>
+  );
 };
 
 export default CreateList;

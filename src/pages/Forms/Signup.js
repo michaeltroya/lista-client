@@ -5,7 +5,7 @@ import { useMutation } from '@apollo/react-hooks';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
 //comps
-import Nav from '../../components/layout/Nav/Nav';
+import StaticNav from '../../components/layout/Nav/StaticNav';
 //queries
 import { SIGNUP_USER } from '../../graphql/mutations';
 //Redux Imports
@@ -48,7 +48,7 @@ const Signup = props => {
 
   return (
     <Fragment>
-      <Nav type="forms" />
+      <StaticNav type="forms" />
       <section className="signup">
         {Object.keys(errors).length > 0 ? (
           <div className="form-errors">
