@@ -1,13 +1,18 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 //gql
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_LIST } from '../../../graphql/mutations';
-
-import Nav from '../../layout/Nav/Nav';
 import { Container } from 'react-bootstrap';
+import Nav from '../../layout/Nav/Nav';
+import CreateListItems from './CreateListItems';
 
 const CreateList = props => {
-  const [itemCount, setItemCount] = useState(3);
+  const [title, setTitle] = useState({
+    phrase: 'Top',
+    count: 3,
+    description: ''
+  });
+
   const [items, setItems] = useState([]);
 
   const [createList, { loading }] = useMutation(CREATE_LIST, {
@@ -24,9 +29,8 @@ const CreateList = props => {
 
   const handleTitleSubmit = e => {
     e.preventDefault();
-
     const list = [];
-    for (let i = 0; i < itemCount; i++) {
+    for (let i = 0; i < title.count; i++) {
       const item = {
         order: i + 1,
         name: '',
@@ -35,60 +39,46 @@ const CreateList = props => {
 
       list.push(item);
     }
-
     setItems([...list]);
   };
 
-  const handleItemsSubmit = e => {
-    e.preventDefault();
-
-    console.log(items);
+  const handleReset = () => {
+    setTitle({
+      phrase: 'Top',
+      count: 3,
+      description: ''
+    });
+    setItems([]);
   };
 
   return (
     <Fragment>
       <Nav type="compose" history={props.history} />
-      <div className="create-list-title">
+      <section className="create-list-title">
         <Container>
           <form onSubmit={handleTitleSubmit}>
-            <h3>Title</h3>
-            <input
-              type="number"
-              placeholder="Amount"
-              value={itemCount}
-              onChange={e => setItemCount(e.target.value)}
-              min="3"
-              max="100"
-            />
-            <input type="text" placeholder="Description" />
-            <input type="submit" className="btn" />
+            <div className="title-count">
+              <h2>Top</h2>
+              <input
+                type="number"
+                placeholder="Amount"
+                value={title.count}
+                onChange={e => setTitle({ ...title, count: e.target.value })}
+                min="3"
+                max="100"
+                className="form-input number-input"
+              />
+            </div>
+            <input type="text" placeholder="Description" className="form-input" />
+
+            <div className="buttons">
+              <input type="submit" className="btn" value="Start" />
+              <input type="button" className="btn btn-dimmed" value="Reset" onClick={handleReset} />
+            </div>
           </form>
         </Container>
-      </div>
-      {items.length === 0 ? null : (
-        <div className="create-list-title">
-          <Container>
-            <form onSubmit={handleItemsSubmit}>
-              {items.map((item, i) => (
-                <input
-                  type="text"
-                  placeholder={`Item ${item.order}`}
-                  value={items[i].name}
-                  key={item.order}
-                  onChange={e =>
-                    setItems(
-                      items.map(element =>
-                        element.order == item.order ? { ...element, name: e.target.value } : element
-                      )
-                    )
-                  }
-                />
-              ))}
-              <input type="submit" className="btn" />
-            </form>
-          </Container>
-        </div>
-      )}
+      </section>
+      {items.length === 0 ? null : <CreateListItems items={items} setItems={setItems} />}
     </Fragment>
   );
 };

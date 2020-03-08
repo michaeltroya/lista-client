@@ -68,6 +68,7 @@ const Signup = props => {
               value={signupData.username}
               onChange={handleChange}
               autoComplete="off"
+              className="form-input"
             />
             <input
               type="text"
@@ -76,6 +77,7 @@ const Signup = props => {
               value={signupData.email}
               onChange={handleChange}
               autoComplete="off"
+              className="form-input"
             />
             <input
               type="password"
@@ -84,6 +86,7 @@ const Signup = props => {
               value={signupData.password}
               onChange={handleChange}
               autoComplete="off"
+              className="form-input"
             />
             <input
               type="password"
@@ -92,6 +95,7 @@ const Signup = props => {
               value={signupData.confirmPassword}
               onChange={handleChange}
               autoComplete="off"
+              className="form-input"
             />
 
             {loading ? (

@@ -1,0 +1,41 @@
+.create-list-title {
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+}
+
+.title-count {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.number-input {
+  margin: 0 0 0 1rem;
+  border: none;
+  border-bottom: 5px $main-color solid;
+  padding: 0;
+  text-align: center;
+  font-size: 1.2rem;
+  &:focus {
+    outline: none;
+  }
+}
+
+.create-list-items {
+  margin-bottom: 4rem;
+  background-color: $grey-color;
+}
+
+.list-name-description {
+  border-bottom: 1px #cecece solid;
+  margin-bottom: 1.5rem;
+}

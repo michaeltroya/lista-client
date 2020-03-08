@@ -63,6 +63,7 @@ const Login = props => {
               value={loginData.username}
               onChange={handleChange}
               autoComplete="off"
+              className="form-input"
             />
 
             <input
@@ -72,6 +73,7 @@ const Login = props => {
               value={loginData.password}
               onChange={handleChange}
               autoComplete="off"
+              className="form-input"
             />
 
             {loading ? (
