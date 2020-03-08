@@ -71,31 +71,41 @@ export const FETCH_ALL_LISTS_QUERY = gql`
 export const FETCH_USER_LISTS_QUERY = gql`
   query UserLists($username: String!) {
     getUserLists(username: $username) {
-      id
-      username
-      title {
-        phrase
-        count
-        description
-      }
-      tags
-      items {
-        name
-        description
-        order
-      }
-      comments {
+      user {
         id
-        body
+        email
         username
+        followers
+        following
         createdAt
       }
-      commentCount
-      likes {
+      lists {
+        id
         username
+        title {
+          phrase
+          count
+          description
+        }
+        tags
+        items {
+          name
+          description
+          order
+        }
+        comments {
+          id
+          body
+          username
+          createdAt
+        }
+        commentCount
+        likes {
+          username
+        }
+        likeCount
+        createdAt
       }
-      likeCount
-      createdAt
     }
   }
 `;

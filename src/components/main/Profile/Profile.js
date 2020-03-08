@@ -19,8 +19,6 @@ const Profile = props => {
     }
   });
 
-  console.log(data);
-
   if (error) {
     return (
       <Fragment>
@@ -45,11 +43,11 @@ const Profile = props => {
               <Spinner animation="border" className="orange-spinner" />
             ) : (
               <Fragment>
-                <h1>@{data.getUserLists[0].username}</h1>
-                <p className="g-text">Joined{dayjs(data.getUserLists.createdAt).format(' MMM YYYY')}</p>
+                <h1>@{data.getUserLists.user.username}</h1>
+                <p className="g-text">Joined{dayjs(data.getUserLists.user.createdAt).format(' MMM YYYY')}</p>
                 <FollowButton currentProfile={usernamePath} />
                 <h4>
-                  {data.getUserLists.length} {data.getUserLists.length === 1 ? 'LIST' : 'LISTS'}
+                  {data.getUserLists.lists.length} {data.getUserLists.lists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
               </Fragment>
             )}
@@ -61,7 +59,7 @@ const Profile = props => {
               {loading ? (
                 <Spinner animation="border" className="orange-spinner" />
               ) : (
-                data.getUserLists.map(list => (
+                data.getUserLists.lists.map(list => (
                   <Col xs={12} md={3} key={list.id}>
                     <ListCard list={list} />
                   </Col>
