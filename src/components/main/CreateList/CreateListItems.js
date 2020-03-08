@@ -1,26 +1,22 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-const CreateListItems = ({ items, setItems }) => {
-  const handleItemsSubmit = e => {
-    e.preventDefault();
-    console.log(items);
-  };
+const CreateListItems = ({ items, setItems, handleItemsSubmit }) => {
   return (
     <section className="create-list-items">
       <Container>
         <form onSubmit={handleItemsSubmit}>
           {items.map((item, i) => (
-            <div className="list-name-description" key={item.order}>
+            <div className="list-name-description" key={i}>
               <input
                 type="text"
                 className="form-input"
-                placeholder={`Item ${item.order}`}
+                placeholder={`Item ${i + 1}`}
                 value={items[i].name}
                 onChange={e =>
                   setItems(
-                    items.map(element =>
-                      element.order == item.order ? { ...element, name: e.target.value } : element
+                    items.map((element, index) =>
+                      index === i ? { ...element, name: e.target.value } : element
                     )
                   )
                 }
@@ -32,8 +28,8 @@ const CreateListItems = ({ items, setItems }) => {
                 value={items[i].description}
                 onChange={e =>
                   setItems(
-                    items.map(element =>
-                      element.order == item.order ? { ...element, description: e.target.value } : element
+                    items.map((element, index) =>
+                      index === i ? { ...element, description: e.target.value } : element
                     )
                   )
                 }

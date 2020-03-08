@@ -16,14 +16,23 @@ const CreateList = props => {
   const [items, setItems] = useState([]);
 
   const [createList, { loading }] = useMutation(CREATE_LIST, {
+    update(
+      _,
+      {
+        data: {
+          createList: { username }
+        }
+      }
+    ) {
+      props.history.push(`/${username}`);
+    },
+    onError(err) {
+      console.log(err.graphQLErrors);
+    },
     variables: {
-      title: {
-        phrase: 'Top',
-        count: 56,
-        description: 'Best Cars'
-      },
-      tags: [],
-      items: []
+      title,
+      tags: ['test'],
+      items
     }
   });
 
@@ -32,7 +41,6 @@ const CreateList = props => {
     const list = [];
     for (let i = 0; i < title.count; i++) {
       const item = {
-        order: i + 1,
         name: '',
         description: ''
       };
@@ -49,6 +57,11 @@ const CreateList = props => {
       description: ''
     });
     setItems([]);
+  };
+
+  const handleItemsSubmit = e => {
+    e.preventDefault();
+    createList();
   };
 
   return (
@@ -69,8 +82,13 @@ const CreateList = props => {
                 className="form-input number-input"
               />
             </div>
-            <input type="text" placeholder="Description" className="form-input" />
-
+            <input
+              type="text"
+              placeholder="Description"
+              className="form-input"
+              value={title.description}
+              onChange={e => setTitle({ ...title, description: e.target.value })}
+            />
             <div className="buttons">
               <input type="submit" className="btn" value="Start" />
               <input type="button" className="btn btn-dimmed" value="Reset" onClick={handleReset} />
@@ -78,7 +96,9 @@ const CreateList = props => {
           </form>
         </Container>
       </section>
-      {items.length === 0 ? null : <CreateListItems items={items} setItems={setItems} />}
+      {items.length === 0 ? null : (
+        <CreateListItems items={items} setItems={setItems} handleItemsSubmit={handleItemsSubmit} />
+      )}
     </Fragment>
   );
 };
