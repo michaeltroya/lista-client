@@ -25,7 +25,7 @@ const CreateList = props => {
   const handleTitleSubmit = e => {
     e.preventDefault();
 
-    console.log(itemCount);
+    const list = [];
     for (let i = 0; i < itemCount; i++) {
       const item = {
         order: i + 1,
@@ -33,14 +33,16 @@ const CreateList = props => {
         description: ''
       };
 
-      setItems([...items, item]);
+      list.push(item);
     }
 
-    console.log(items);
+    setItems([...list]);
   };
 
   const handleItemsSubmit = e => {
     e.preventDefault();
+
+    console.log(items);
   };
 
   return (
@@ -63,6 +65,30 @@ const CreateList = props => {
           </form>
         </Container>
       </div>
+      {items.length === 0 ? null : (
+        <div className="create-list-title">
+          <Container>
+            <form onSubmit={handleItemsSubmit}>
+              {items.map((item, i) => (
+                <input
+                  type="text"
+                  placeholder={`Item ${item.order}`}
+                  value={items[i].name}
+                  key={item.order}
+                  onChange={e =>
+                    setItems(
+                      items.map(element =>
+                        element.order == item.order ? { ...element, name: e.target.value } : element
+                      )
+                    )
+                  }
+                />
+              ))}
+              <input type="submit" className="btn" />
+            </form>
+          </Container>
+        </div>
+      )}
     </Fragment>
   );
 };
