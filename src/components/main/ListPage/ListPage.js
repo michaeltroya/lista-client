@@ -51,7 +51,7 @@ const ListPage = props => {
       ) : (
         <Container>
           <Row>
-            <Col xs={12} md={7}>
+            <Col xs={12}>
               <section className="list-info">
                 <h2>{`${data.getList.title.phrase} ${data.getList.title.count} ${data.getList.title.description}`}</h2>
 
@@ -90,7 +90,7 @@ const ListPage = props => {
               </div>
             </Col>
 
-            <Col xs={12} md={5}>
+            <Col xs={12}>
               <ListComments comments={data.getList.comments} listId={data.getList.id} />
             </Col>
           </Row>

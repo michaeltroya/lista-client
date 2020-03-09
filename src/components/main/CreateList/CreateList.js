@@ -15,7 +15,7 @@ const CreateList = props => {
 
   const [items, setItems] = useState([]);
 
-  const [createList, { loading }] = useMutation(CREATE_LIST, {
+  const [createList] = useMutation(CREATE_LIST, {
     update(
       _,
       {
