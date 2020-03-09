@@ -17,7 +17,7 @@ const DeleteButton = ({ listId, commentId, username }) => {
   const [deleteListOrComment] = useMutation(mutation, {
     update(client) {
       setModalShow(false);
-      if (commentId) {
+      if (!commentId) {
         const data = client.readQuery({
           query: FETCH_USER_LISTS_QUERY,
           variables: {

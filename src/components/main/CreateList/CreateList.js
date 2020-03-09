@@ -2,6 +2,7 @@ import React, { Fragment, useState } from 'react';
 //gql
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_LIST } from '../../../graphql/mutations';
+import { FETCH_USER_LISTS_QUERY } from '../../../graphql/query';
 import { Container } from 'react-bootstrap';
 //comps
 import Nav from '../../layout/Nav/Nav';
@@ -20,15 +21,19 @@ const CreateList = props => {
   const [tags, setTags] = useState([]);
 
   const [createList] = useMutation(CREATE_LIST, {
-    update(
-      _,
-      {
-        data: {
-          createList: { username, id }
+    update(client, { data: { createList: list } }) {
+      const data = client.readQuery({
+        query: FETCH_USER_LISTS_QUERY,
+        variables: {
+          username: list.username
         }
-      }
-    ) {
-      props.history.push(`/${username}/list/${id}`);
+      });
+      data.getUserLists.lists.push(list);
+      client.writeQuery({
+        query: FETCH_USER_LISTS_QUERY,
+        data
+      });
+      props.history.push(`/${list.username}`);
     },
     onError(err) {
       console.log(err.graphQLErrors);
