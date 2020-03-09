@@ -82,6 +82,12 @@ export const CREATE_LIST = gql`
   }
 `;
 
+export const DELETE_LIST = gql`
+  mutation DeleteList($listId: ID!) {
+    deleteList(listId: $listId)
+  }
+`;
+
 // LIKE AND UNLIKE MUTATION
 
 export const LIKE_UNLIKE = gql`

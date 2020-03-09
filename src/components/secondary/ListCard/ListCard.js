@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { faComments } from '@fortawesome/free-regular-svg-icons';
 //Redux Imports
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
 import LikeButton from '../LikeButton/LikeButton';
+import DeleteButton from '../DeleteButton/DeleteButton';
 
 const List = ({
   list: {
@@ -23,10 +23,6 @@ const List = ({
 }) => {
   const currentUsername = useSelector(state => state.user.credentials.username);
   const authenticated = useSelector(state => state.user.authenticated);
-
-  const handleDelete = () => {
-    console.log('delete');
-  };
 
   return (
     <div className="list-card">
@@ -58,7 +54,7 @@ const List = ({
             <LikeButton likeCount={likeCount} likes={likes} listId={id} />
           </div>
           {authenticated && currentUsername === username ? (
-            <FontAwesomeIcon icon={faTrash} onClick={handleDelete} />
+            <DeleteButton listId={id} username={currentUsername} />
           ) : null}
         </div>
       </div>

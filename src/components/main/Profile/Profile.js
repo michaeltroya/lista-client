@@ -19,6 +19,8 @@ const Profile = props => {
     }
   });
 
+  console.log(data);
+
   if (error) {
     return (
       <Fragment>
