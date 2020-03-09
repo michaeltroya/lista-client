@@ -24,7 +24,7 @@ const CreateList = props => {
         }
       }
     ) {
-      props.history.push(`/${username}`);
+      props.history.push(`/`);
     },
     onError(err) {
       console.log(err.graphQLErrors);
