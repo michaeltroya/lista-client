@@ -1,18 +1,22 @@
 import React, { Fragment } from 'react';
+import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //queries
 import { FETCH_USER_LISTS_QUERY } from '../../../graphql/query';
 //Redux Imports
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../../redux/userActions';
 //bs imports
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import dayjs from 'dayjs';
+//FA imports
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 //comps
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
 import FollowButton from '../../secondary/FollowButton/FollowButton';
-import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 
 const Profile = props => {
   const authUser = useSelector(state => state.user.credentials.username);
@@ -22,8 +26,7 @@ const Profile = props => {
       username: usernamePath
     }
   });
-
-  console.log(authUser);
+  const dispatch = useDispatch();
 
   if (error) {
     return (
@@ -50,11 +53,19 @@ const Profile = props => {
             ) : (
               <Fragment>
                 <h1>@{data.getUserLists.user.username}</h1>
+
                 <p className="g-text">Joined{dayjs(data.getUserLists.user.createdAt).format(' MMM YYYY')}</p>
                 <FollowButton currentProfile={usernamePath} />
                 <h4>
                   {data.getUserLists.lists.length} {data.getUserLists.lists.length > 0 ? 'LIST' : 'LISTS'}
                 </h4>
+                {authUser && authUser === usernamePath ? (
+                  <div className="logout" onClick={() => dispatch(logout())}>
+                    <OverlayTrigger placement="bottom" overlay={<Tooltip>Logout</Tooltip>}>
+                      <FontAwesomeIcon icon={faSignOutAlt} size="1x" />
+                    </OverlayTrigger>
+                  </div>
+                ) : null}
               </Fragment>
             )}
           </Container>
