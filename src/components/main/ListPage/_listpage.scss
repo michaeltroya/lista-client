@@ -10,7 +10,7 @@
 
 .list-tags {
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   margin-bottom: 0.8rem;
   .list-tag {
     margin-top: 0.5rem;

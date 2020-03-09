@@ -67,6 +67,7 @@ const ListComments = ({ comments, listId }) => {
         <div className="create-comment">
           <form onSubmit={handleCreateComment} className="comment-form">
             <input
+              className="form-input"
               type="text"
               onChange={e => setBody(e.target.value)}
               name="comment"
