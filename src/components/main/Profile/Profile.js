@@ -57,7 +57,7 @@ const Profile = props => {
                 <p className="g-text">Joined{dayjs(data.getUserLists.user.createdAt).format(' MMM YYYY')}</p>
                 <FollowButton currentProfile={usernamePath} />
                 <h4>
-                  {data.getUserLists.lists.length} {data.getUserLists.lists.length > 0 ? 'LIST' : 'LISTS'}
+                  {data.getUserLists.lists.length} {data.getUserLists.lists.length === 1 ? 'LIST' : 'LISTS'}
                 </h4>
                 {authUser && authUser === usernamePath ? (
                   <div className="logout" onClick={() => dispatch(logout())}>

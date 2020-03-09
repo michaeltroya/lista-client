@@ -1,15 +1,19 @@
 import React, { Fragment, useState } from 'react';
 //gql
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { CREATE_LIST } from '../../../graphql/mutations';
 import { FETCH_USER_LISTS_QUERY } from '../../../graphql/query';
 import { Container } from 'react-bootstrap';
+//Redux Imports
+import { useSelector } from 'react-redux';
 //comps
 import Nav from '../../layout/Nav/Nav';
 import CreateListItems from './CreateListItems';
 import CreateListTags from './CreateListTags';
 
 const CreateList = props => {
+  const username = useSelector(state => state.user.credentials.username);
+  const {} = useQuery(FETCH_USER_LISTS_QUERY, { variables: { username } });
   const [title, setTitle] = useState({
     phrase: 'Top',
     count: 3,
@@ -20,23 +24,25 @@ const CreateList = props => {
   const [tags, setTags] = useState([]);
   const [submittedTitle, setSubmittedTitle] = useState(false);
 
+  const [errors, setErrors] = useState({});
+
   const [createList] = useMutation(CREATE_LIST, {
     update(client, { data: { createList: list } }) {
       const data = client.readQuery({
         query: FETCH_USER_LISTS_QUERY,
         variables: {
-          username: list.username
+          username
         }
       });
-      data.getUserLists.lists.push(list);
+      data.getUserLists.lists = [list, ...data.getUserLists.lists];
       client.writeQuery({
         query: FETCH_USER_LISTS_QUERY,
         data
       });
-      props.history.push(`/${list.username}`);
+      props.history.push(`/${username}`);
     },
     onError(err) {
-      console.log(err.graphQLErrors);
+      setErrors(err.graphQLErrors[0].extensions.exception.errors);
     },
     variables: {
       title,
@@ -78,6 +84,15 @@ const CreateList = props => {
   return (
     <Fragment>
       <Nav type="compose" history={props.history} />
+      {Object.keys(errors).length > 0 ? (
+        <div className="form-errors">
+          <Container>
+            {Object.values(errors).map(err => (
+              <h4 key={err}>{err}</h4>
+            ))}
+          </Container>
+        </div>
+      ) : null}
       <section className="create-list-title">
         <Container>
           {submittedTitle ? (
