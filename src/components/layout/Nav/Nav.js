@@ -35,7 +35,7 @@ const Nav = ({ type, history }) => {
       ) : (
         <Container>
           <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
-          <h2>{type}</h2>
+          {type === 'compose' ? <h2>Create List</h2> : <h2>{type}</h2>}
         </Container>
       )}
     </nav>

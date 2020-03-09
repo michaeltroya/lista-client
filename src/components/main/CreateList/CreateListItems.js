@@ -39,13 +39,16 @@ const CreateListItems = ({ items, setItems, handleItemsSubmit }) => {
                       )
                     }
                   />
-                  <div className="btn btn-clear" onClick={() => setIsOpen(isOpen.filter(item => item !== i))}>
-                    Hide Description
+                  <div
+                    className="btn btn-clear o-text"
+                    onClick={() => setIsOpen(isOpen.filter(item => item !== i))}
+                  >
+                    - Hide Description
                   </div>
                 </Fragment>
               ) : (
-                <div className="btn btn-clear" onClick={() => setIsOpen([...isOpen, i])}>
-                  Add Description
+                <div className="btn btn-clear o-text" onClick={() => setIsOpen([...isOpen, i])}>
+                  + Add Description
                 </div>
               )}
             </div>

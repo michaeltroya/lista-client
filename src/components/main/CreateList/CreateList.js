@@ -93,7 +93,7 @@ const CreateList = props => {
             </div>
             <input
               type="text"
-              placeholder="Description"
+              placeholder="List description"
               className="form-input"
               value={title.description}
               onChange={e => setTitle({ ...title, description: e.target.value })}

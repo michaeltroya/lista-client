@@ -21,7 +21,7 @@ const MobiNav = () => {
           <Link className="mobi-link" to="/home">
             <FontAwesomeIcon icon={faHome} size="lg" />
           </Link>
-          <Link className="mobi-link" to="/compose/list">
+          <Link className="mobi-link" to="/create/list">
             <FontAwesomeIcon icon={faPlus} size="lg" />
           </Link>
           <Link className="mobi-link" to={`/${username}`}>

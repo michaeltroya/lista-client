@@ -22,7 +22,7 @@ const App = () => {
         <AuthRoute exact path="/login" component={Login} />
         <AuthRoute exact path="/signup" component={Signup} />
         <AuthRoute exact path="/home" component={Timeline} />
-        <AuthRoute exact path="/compose/list" component={CreateList} />
+        <AuthRoute exact path="/create/list" component={CreateList} />
         <Route exact path="/:userId/list/:listId" component={ListPage} />
         <Route exact path="/:userId" component={Profile} />
         <Route exact path="/tag/:tag" component={Tags} />

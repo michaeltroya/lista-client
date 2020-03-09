@@ -1,3 +1,9 @@
+//COLORS
+$main-color: #ea660c;
+$white-color: #fff;
+$dark-color: #0e0e0e;
+$grey-color: #f3f3f3;
+
 #root,
 body,
 html {
@@ -5,6 +11,7 @@ html {
   position: relative;
   padding: 0;
   margin: 0;
+  background-color: $grey-color;
 }
 
 button {
@@ -23,12 +30,6 @@ section {
 .show {
   display: initial !important;
 }
-
-//COLORS
-$main-color: #ea660c;
-$white-color: #fff;
-$dark-color: #0e0e0e;
-$grey-color: #f3f3f3;
 
 //FILES
 @import './elements';
