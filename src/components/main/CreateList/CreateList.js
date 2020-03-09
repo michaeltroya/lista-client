@@ -3,8 +3,10 @@ import React, { Fragment, useState } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_LIST } from '../../../graphql/mutations';
 import { Container } from 'react-bootstrap';
+//comps
 import Nav from '../../layout/Nav/Nav';
 import CreateListItems from './CreateListItems';
+import CreateListTags from './CreateListTags';
 
 const CreateList = props => {
   const [title, setTitle] = useState({
@@ -15,23 +17,25 @@ const CreateList = props => {
 
   const [items, setItems] = useState([]);
 
+  const [tags, setTags] = useState([]);
+
   const [createList] = useMutation(CREATE_LIST, {
     update(
       _,
       {
         data: {
-          createList: { username }
+          createList: { username, id }
         }
       }
     ) {
-      props.history.push(`/`);
+      props.history.push(`/${username}/list/${id}`);
     },
     onError(err) {
       console.log(err.graphQLErrors);
     },
     variables: {
       title,
-      tags: ['test'],
+      tags,
       items
     }
   });
@@ -96,8 +100,12 @@ const CreateList = props => {
           </form>
         </Container>
       </section>
+
       {items.length === 0 ? null : (
-        <CreateListItems items={items} setItems={setItems} handleItemsSubmit={handleItemsSubmit} />
+        <Fragment>
+          <CreateListTags tags={tags} setTags={setTags} />
+          <CreateListItems items={items} setItems={setItems} handleItemsSubmit={handleItemsSubmit} />
+        </Fragment>
       )}
     </Fragment>
   );
