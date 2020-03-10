@@ -16,14 +16,14 @@ const Nav = ({ type, history }) => {
           <h2 className="timeline-heading">Home</h2>
           <div className="nav-brand">
             <Link to="/">
-              <img src={Logo} alt="logo" className="nav-logo" />
+              <img src={Logo} alt="logo" className="nav-icon" />
             </Link>
           </div>
         </Container>
       ) : (
         <Container>
           <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
-          {type === 'compose' ? <h2>Create List</h2> : <h2>{type}</h2>}
+          {type === 'compose' ? <h2>Create List</h2> : type === '404' ? <h2>Go back</h2> : <h2>{type}</h2>}
         </Container>
       )}
     </nav>

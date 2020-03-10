@@ -37,3 +37,28 @@
     margin-right: 20px;
   }
 }
+
+//404 PAGE
+.fourOhFour {
+  background-color: white;
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  h1 {
+    font-size: 2.4rem;
+  }
+  h3 {
+    margin-top: 0.5rem;
+    color: $main-color;
+  }
+  p {
+    margin: 0;
+  }
+  .logout {
+    cursor: pointer !important;
+  }
+}

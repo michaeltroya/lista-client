@@ -21,6 +21,7 @@ const ListComments = ({ comments, listId }) => {
   const [createComment] = useMutation(CREATE_COMMENT, {
     update() {
       setBody('');
+      setErrors({});
     },
     onError(err) {
       setErrors(err.graphQLErrors[0].extensions.exception.errors);
