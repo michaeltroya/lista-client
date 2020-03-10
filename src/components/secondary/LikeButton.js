@@ -2,7 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
-import { LIKE_UNLIKE } from '../../../graphql/mutations';
+import { LIKE_UNLIKE } from '../../graphql/mutations';
 //Redux Imports
 import { useSelector } from 'react-redux';
 //FA imports

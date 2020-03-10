@@ -6,8 +6,8 @@ import { faComments } from '@fortawesome/free-regular-svg-icons';
 //Redux Imports
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
-import LikeButton from '../LikeButton/LikeButton';
-import DeleteButton from '../DeleteButton/DeleteButton';
+import LikeButton from '../LikeButton';
+import DeleteButton from '../DeleteButton';
 
 const List = ({
   list: {
@@ -29,13 +29,16 @@ const List = ({
       <div className="list-card-header">
         <h3>{`${phrase} ${count} ${description}`}</h3>
         <Link to={`/${username}`} className="o-text">{`@${username}`}</Link>
-        <div className="list-card-tags">
-          {tags.map((tag, index) => (
-            <Link to={`/tag/${tag}`} key={index} className="card-tag">
-              #{tag}
-            </Link>
-          ))}
-        </div>
+        {tags.length === 0 ? null : (
+          <div className="list-card-tags">
+            {tags.map((tag, index) => (
+              <Link to={`/tag/${tag}`} key={index} className="card-tag">
+                #{tag}
+              </Link>
+            ))}
+          </div>
+        )}
+
         <p>{dayjs(createdAt).format('h:mm A · MMM DD, YYYY')}</p>
       </div>
       <div className="list-card-footer">

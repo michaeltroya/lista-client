@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useMutation } from '@apollo/react-hooks';
-import { FOLLOW_USER } from '../../../graphql/mutations';
+import { FOLLOW_USER } from '../../graphql/mutations';
 //Redux Imports
 import { useSelector, useDispatch } from 'react-redux';
-import { SET_FOLLOWERS } from '../../../redux/types';
+import { SET_FOLLOWERS } from '../../redux/types';
 
 const FollowButton = ({ currentProfile }) => {
   const dispatch = useDispatch();

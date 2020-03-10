@@ -16,7 +16,7 @@ import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 //comps
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
-import FollowButton from '../../secondary/FollowButton/FollowButton';
+import FollowButton from '../../secondary/FollowButton';
 
 const Profile = props => {
   const authUser = useSelector(state => state.user.credentials.username);

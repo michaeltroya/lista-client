@@ -13,7 +13,7 @@ import CreateListTags from './CreateListTags';
 
 const CreateList = props => {
   const username = useSelector(state => state.user.credentials.username);
-  const {} = useQuery(FETCH_USER_LISTS_QUERY, { variables: { username } });
+  const { _ } = useQuery(FETCH_USER_LISTS_QUERY, { variables: { username } });
   const [title, setTitle] = useState({
     phrase: 'Top',
     count: 3,

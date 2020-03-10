@@ -1,6 +1,5 @@
 //COLORS
 $main-color: #ea660c;
-$white-color: #fff;
 $dark-color: #0e0e0e;
 $grey-color: #f3f3f3;
 
@@ -29,6 +28,10 @@ section {
 }
 .show {
   display: initial !important;
+}
+
+.white-bg {
+  background-color: #fff;
 }
 
 //FILES

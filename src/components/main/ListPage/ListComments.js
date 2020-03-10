@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import { useMutation } from '@apollo/react-hooks';
 import { CREATE_COMMENT } from '../../../graphql/mutations';
 //comps
-import DeleteButton from '../../secondary/DeleteButton/DeleteButton';
+import DeleteButton from '../../secondary/DeleteButton';
 
 const ListComments = ({ comments, listId }) => {
   const [body, setBody] = useState('');
