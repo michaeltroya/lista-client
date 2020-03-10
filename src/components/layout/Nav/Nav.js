@@ -2,34 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 //img imports
-import Logo from '../../../images/main-logo.png';
+import Logo from '../../../images/icon.png';
 //bs import
 import { Container } from 'react-bootstrap';
-//Redux Imports
-import { useDispatch } from 'react-redux';
-import { logout } from '../../../redux/userActions';
+
 const Nav = ({ type, history }) => {
-  const dispatch = useDispatch();
-
-  const handleLogout = () => {
-    dispatch(logout());
-  };
-
   return (
     <nav className={type === 'timeline' ? 'nav' : 'nav nav-left'}>
       {type === 'timeline' ? (
         <Container>
+          <h2 className="timeline-heading">Home</h2>
           <div className="nav-brand">
             <Link to="/">
               <img src={Logo} alt="logo" className="nav-logo" />
             </Link>
-          </div>
-          <div className="nav-links">
-            <button className="btn btn-clear" onClick={handleLogout}>
-              <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
-            </button>
           </div>
         </Container>
       ) : (
