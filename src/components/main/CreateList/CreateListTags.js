@@ -4,14 +4,13 @@ const CreateListTags = ({ tags, setTags, type }) => {
   const removeTags = indexToRemove => {
     setTags([...tags.filter((_, index) => index !== indexToRemove)]);
   };
+
   const addTags = event => {
     if (event.target.value !== '') {
       setTags([...tags, event.target.value]);
       event.target.value = '';
     }
   };
-
-  console.log(tags);
 
   return (
     <section className="create-list-tags">

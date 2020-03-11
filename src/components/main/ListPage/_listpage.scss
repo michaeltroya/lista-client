@@ -4,6 +4,9 @@
 
 .list-info {
   background-color: #fff;
+  .btn {
+    margin-left: 0;
+  }
   h2 {
     font-size: 2rem;
   }
@@ -16,6 +19,7 @@
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 0.8rem;
+
   .list-tag {
     margin-top: 0.5rem;
     cursor: pointer;
@@ -28,6 +32,21 @@
     transition: all 0.3s ease-in-out;
     &:hover {
       background-color: #4a4a4a;
+    }
+  }
+}
+
+.list-add-tags {
+  background-color: #fff;
+  padding: 1rem 0;
+  .create-list-tags {
+    padding: 0;
+    background-color: #fff;
+    .tags-input {
+      margin-bottom: 1rem;
+    }
+    .container {
+      padding: 0;
     }
   }
 }

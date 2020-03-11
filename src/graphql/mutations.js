@@ -168,3 +168,37 @@ export const DELETE_COMMENT = gql`
     }
   }
 `;
+
+//ADD OR UPDATE TAGS
+
+export const UPDATE_TAGS = gql`
+  mutation updateTags($listId: ID!, $tags: [String]!) {
+    updateTags(listId: $listId, tags: $tags) {
+      id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
+      commentCount
+      likes {
+        username
+      }
+      likeCount
+      createdAt
+    }
+  }
+`;
