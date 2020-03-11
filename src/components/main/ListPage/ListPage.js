@@ -56,7 +56,7 @@ const ListPage = props => {
           <div className="list-page">
             <Container fluid>
               <ListInfo data={data} />
-              <ListItems items={data.getList.items} />
+              <ListItems items={data.getList.items} username={data.getList.username} />
               <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
               <div className="list-actions">
                 <div className="like-count">

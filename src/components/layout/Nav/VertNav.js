@@ -25,7 +25,7 @@ const VertNav = () => {
         <Fragment>
           <h2>New to Lista?</h2>
           <Link to="/signup">
-            <div className="btn">Signup</div>
+            <div className="btn">Sign up</div>
           </Link>
         </Fragment>
       )}

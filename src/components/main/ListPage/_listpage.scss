@@ -53,7 +53,7 @@
 
 .list-item {
   border-radius: 5px;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .list-item-header {
@@ -99,6 +99,15 @@
   background-color: $main-color;
   color: #fff;
   border-radius: 0 0 5px 5px;
+}
+
+.edit-description {
+  cursor: pointer;
+  text-align: right;
+  margin-bottom: 1rem;
+  p {
+    margin: 0;
+  }
 }
 
 // ACTIONS ()

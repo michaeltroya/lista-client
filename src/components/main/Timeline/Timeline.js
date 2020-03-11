@@ -28,7 +28,7 @@ const Home = () => {
             {trendLoad ? (
               <Spinner animation="border" className="orange-spinner" />
             ) : (
-              trendData.getLists.map(list => <ListCard list={list} />)
+              trendData.getLists.map(list => <ListCard list={list} key={list.id} />)
             )}
           </div>
         </section>
