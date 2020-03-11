@@ -10,7 +10,7 @@ import { Container } from 'react-bootstrap';
 
 const Nav = ({ type, history }) => {
   return (
-    <nav className={type === 'timeline' ? 'nav' : 'nav nav-left'}>
+    <nav className={type === 'timeline' ? 'nav app-nav' : 'nav app-nav nav-left'}>
       {type === 'timeline' ? (
         <Container>
           <h2 className="timeline-heading">Home</h2>

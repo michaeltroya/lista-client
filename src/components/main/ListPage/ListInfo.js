@@ -37,11 +37,12 @@ const ListInfo = ({ data }) => {
           openTags ? (
             <div className="list-add-tags">
               <CreateListTags tags={tags} setTags={setTags} type="listPage" />
-              <div className="btn btn-dimmed" onClick={() => setOpenTags(false)}>
-                Cancel
-              </div>
+
               <div className="btn " onClick={() => updateTags()}>
                 Save
+              </div>
+              <div className="btn btn-clear" onClick={() => setOpenTags(false)}>
+                Cancel
               </div>
             </div>
           ) : (
@@ -52,11 +53,12 @@ const ListInfo = ({ data }) => {
         ) : openTags ? (
           <div className="list-add-tags">
             <CreateListTags tags={tags} setTags={setTags} type="listPage" />
-            <div className="btn btn-dimmed" onClick={() => setOpenTags(false)}>
-              Cancel
-            </div>
+
             <div className="btn " onClick={() => updateTags()}>
               Save
+            </div>
+            <div className="btn btn-clear" onClick={() => setOpenTags(false)}>
+              Cancel
             </div>
           </div>
         ) : (

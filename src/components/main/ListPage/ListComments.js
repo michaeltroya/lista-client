@@ -65,19 +65,17 @@ const ListComments = ({ comments, listId }) => {
       ) : null}
 
       {authenticated ? (
-        <div className="create-comment">
-          <form onSubmit={handleCreateComment} className="comment-form">
-            <input
-              className="form-input"
-              type="text"
-              onChange={e => setBody(e.target.value)}
-              name="comment"
-              value={body}
-              placeholder="Add a comment..."
-            />
-            <input type="submit" value="Post" className="btn" />
-          </form>
-        </div>
+        <form onSubmit={handleCreateComment} className="comment-form">
+          <textarea
+            className="form-input"
+            type="text"
+            onChange={e => setBody(e.target.value)}
+            name="comment"
+            value={body}
+            placeholder="Add a comment..."
+          />
+          <input type="submit" value="Post" className="btn" />
+        </form>
       ) : null}
     </Fragment>
   );

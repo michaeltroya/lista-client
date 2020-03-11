@@ -137,11 +137,17 @@
     padding: 0.5rem 0;
     font-size: 0.8rem;
   }
-  svg {
+
+  .btn {
     position: absolute;
-    top: 0;
+    bottom: 0;
     right: 0;
   }
+
+  p {
+    margin: 0;
+  }
+
   a {
     font-weight: 900;
     font-size: 1.2rem;
@@ -156,11 +162,16 @@
 
 .comment-form {
   background-color: white;
-  padding-bottom: 5rem;
   display: flex;
   flex-direction: column;
+  padding-bottom: 2rem;
   .btn {
     margin-right: 0;
     margin-left: 0;
   }
+}
+
+.delete-list {
+  background-color: $grey-color;
+  padding-bottom: 5rem;
 }

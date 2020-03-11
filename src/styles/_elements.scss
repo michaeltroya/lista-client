@@ -44,6 +44,21 @@
   }
 }
 
+.delete-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f55;
+  margin: 0;
+  h4 {
+    margin: 0 0 0 0.5rem;
+    color: #f55;
+  }
+  &:hover {
+    color: #f55;
+  }
+}
+
 .orange-spinner {
   border-color: $main-color !important;
   border-right-color: transparent !important;

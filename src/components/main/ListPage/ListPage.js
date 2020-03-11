@@ -75,12 +75,16 @@ const ListPage = props => {
                   </Link>
                 )}
               </div>
-              {authenticated && data.getList.username === username ? (
-                <DeleteButton listId={data.getList.id} username={username} />
-              ) : null}
             </div>
             <ListComments comments={data.getList.comments} listId={data.getList.id} />
           </Container>
+          <section className="delete-list">
+            <Container>
+              {authenticated && data.getList.username === username ? (
+                <DeleteButton listId={data.getList.id} username={username} showText />
+              ) : null}
+            </Container>
+          </section>
         </div>
       )}
     </Fragment>
