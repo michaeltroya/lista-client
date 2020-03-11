@@ -150,7 +150,17 @@
 
 //COMMENT FORM
 
+.comment-error {
+  margin-bottom: 1rem;
+}
+
 .comment-form {
   background-color: white;
   padding-bottom: 5rem;
+  display: flex;
+  flex-direction: column;
+  .btn {
+    margin-right: 0;
+    margin-left: 0;
+  }
 }

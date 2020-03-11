@@ -12,7 +12,7 @@ import { Container, Row, Col, Spinner, OverlayTrigger, Tooltip } from 'react-boo
 import dayjs from 'dayjs';
 //FA imports
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faSignOutAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 //comps
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
@@ -77,12 +77,12 @@ const Profile = props => {
                 <Spinner animation="border" className="orange-spinner" />
               ) : authUser === usernamePath ? (
                 data.getUserLists.lists.length === 0 ? (
-                  <h1>
-                    No lists yet... <br />
+                  <div className="no-list">
+                    <h1>No lists yet</h1>
                     <Link to="/create/list" className="o-text">
-                      Create one
+                      <FontAwesomeIcon icon={faPlusCircle} size="2x" />
                     </Link>
-                  </h1>
+                  </div>
                 ) : (
                   data.getUserLists.lists.map(list => (
                     <Col xs={12} md={3} key={list.id}>

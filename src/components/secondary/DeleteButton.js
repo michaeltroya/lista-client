@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 //gql
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useQuery } from '@apollo/react-hooks';
 import { DELETE_COMMENT, DELETE_LIST } from '../../graphql/mutations';
 import { FETCH_USER_LISTS_QUERY } from '../../graphql/query';
 import ConfirmModal from './ConfirmModal';
@@ -13,6 +13,7 @@ const DeleteButton = ({ listId, commentId, username }) => {
   const [modalShow, setModalShow] = React.useState(false);
   const history = useHistory();
   const mutation = commentId ? DELETE_COMMENT : DELETE_LIST;
+  useQuery(FETCH_USER_LISTS_QUERY, { variables: { username } });
 
   const [deleteListOrComment] = useMutation(mutation, {
     update(client) {
@@ -39,7 +40,7 @@ const DeleteButton = ({ listId, commentId, username }) => {
   });
 
   return (
-    <Fragment>
+    <div className="btn btn-clear">
       <FontAwesomeIcon
         icon={faTrash}
         onClick={() => (commentId ? deleteListOrComment() : setModalShow(true))}
@@ -49,7 +50,7 @@ const DeleteButton = ({ listId, commentId, username }) => {
         onHide={() => setModalShow(false)}
         deleteListOrComment={deleteListOrComment}
       />
-    </Fragment>
+    </div>
   );
 };
 

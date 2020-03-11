@@ -17,9 +17,11 @@ import Nav from '../../layout/Nav/Nav';
 import ListItems from './ListItems';
 import ListComments from './ListComments';
 import LikeButton from '../../secondary/LikeButton';
+import DeleteButton from '../../secondary/DeleteButton';
 import ListInfo from './ListInfo';
 
 const ListPage = props => {
+  const username = useSelector(state => state.user.credentials.username);
   const authenticated = useSelector(state => state.user.authenticated);
   const listIdPath = props.location.pathname.split('/')[3];
 
@@ -73,8 +75,10 @@ const ListPage = props => {
                   </Link>
                 )}
               </div>
+              {authenticated && data.getList.username === username ? (
+                <DeleteButton listId={data.getList.id} username={username} />
+              ) : null}
             </div>
-
             <ListComments comments={data.getList.comments} listId={data.getList.id} />
           </Container>
         </div>

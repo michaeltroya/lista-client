@@ -69,7 +69,7 @@ const ListInfo = ({ data }) => {
               ))}
             </div>
             <div className="btn btn-clear o-text" onClick={() => setOpenTags(true)}>
-              + Edit Tags
+              + Edit tags
             </div>
           </Fragment>
         )

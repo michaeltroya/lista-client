@@ -57,7 +57,7 @@ const ListComments = ({ comments, listId }) => {
         </section>
       ) : null}
       {Object.keys(errors).length > 0 ? (
-        <div className="form-errors">
+        <div className="form-errors comment-error">
           {Object.values(errors).map(err => (
             <h4 key={err}>{err}</h4>
           ))}
