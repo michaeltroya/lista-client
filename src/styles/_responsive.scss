@@ -1,0 +1,21 @@
+@include media-breakpoint-up(sm) {
+}
+@include media-breakpoint-up(md) {
+  .mobi-nav {
+    display: none;
+  }
+  .nav {
+    background-color: red;
+  }
+}
+@include media-breakpoint-up(lg) {
+  .nav {
+    background-color: red;
+  }
+}
+
+@include media-breakpoint-up(xl) {
+  .nav {
+    background-color: red;
+  }
+}

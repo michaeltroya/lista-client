@@ -73,26 +73,19 @@ const Profile = props => {
         <section className="profile-lists">
           <Container>
             <Row>
+              {authUser && authUser === usernamePath ? (
+                <Col xs={12} md={4}>
+                  <Link to="/create/list" className="add-list-card">
+                    <FontAwesomeIcon icon={faPlusCircle} size="3x" />
+                    <h1>Add List</h1>
+                  </Link>
+                </Col>
+              ) : null}
               {loading ? (
                 <Spinner animation="border" className="orange-spinner" />
-              ) : authUser === usernamePath ? (
-                data.getUserLists.lists.length === 0 ? (
-                  <div className="no-list">
-                    <h1>No lists yet</h1>
-                    <Link to="/create/list" className="o-text">
-                      <FontAwesomeIcon icon={faPlusCircle} size="2x" />
-                    </Link>
-                  </div>
-                ) : (
-                  data.getUserLists.lists.map(list => (
-                    <Col xs={12} md={3} key={list.id}>
-                      <ListCard list={list} />
-                    </Col>
-                  ))
-                )
               ) : (
                 data.getUserLists.lists.map(list => (
-                  <Col xs={12} md={3} key={list.id}>
+                  <Col xs={12} md={4} key={list.id}>
                     <ListCard list={list} />
                   </Col>
                 ))
