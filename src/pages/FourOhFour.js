@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
-import Nav from '../../components/layout/Nav/Nav';
-import StaticNav from '../../components/layout/Nav/StaticNav';
+import Nav from '../components/layout/Nav/Nav';
+import StaticNav from '../components/layout/Nav/StaticNav';
 //Redux Imports
 import { useSelector } from 'react-redux';
 

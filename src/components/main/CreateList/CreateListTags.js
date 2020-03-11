@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-const CreateListTags = ({ tags, setTags }) => {
+const CreateListTags = ({ tags, setTags, type }) => {
   const removeTags = indexToRemove => {
     setTags([...tags.filter((_, index) => index !== indexToRemove)]);
   };
@@ -10,6 +10,8 @@ const CreateListTags = ({ tags, setTags }) => {
       event.target.value = '';
     }
   };
+
+  console.log(tags);
 
   return (
     <section className="create-list-tags">

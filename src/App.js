@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomeStatic from './pages/HomeStatic/HomeStatic';
 import Login from './pages/Forms/Login';
 import Signup from './pages/Forms/Signup';
-import FourOhFour from './pages/FourOhFour/FourOhFour';
+import FourOhFour from './pages/FourOhFour';
 //comps
 import Timeline from './components/main/Timeline/Timeline';
 import ListPage from './components/main/ListPage/ListPage';

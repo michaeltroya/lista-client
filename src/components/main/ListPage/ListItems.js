@@ -36,11 +36,7 @@ const ListItems = ({ items }) => {
             )}
           </div>
           <Accordion.Collapse eventKey="0">
-            {item.description === '' ? (
-              <p className="item-description">No Description</p>
-            ) : (
-              <p className="item-description">{item.description}</p>
-            )}
+            <p className="item-description">{item.description}</p>
           </Accordion.Collapse>
         </Accordion>
       ))}

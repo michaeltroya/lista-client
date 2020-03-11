@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
@@ -17,10 +17,10 @@ import Nav from '../../layout/Nav/Nav';
 import ListItems from './ListItems';
 import ListComments from './ListComments';
 import LikeButton from '../../secondary/LikeButton';
+import ListInfo from './ListInfo';
 
 const ListPage = props => {
   const authenticated = useSelector(state => state.user.authenticated);
-
   const listIdPath = props.location.pathname.split('/')[3];
 
   const { loading, error, data } = useQuery(FETCH_LIST_QUERY, {
@@ -51,22 +51,7 @@ const ListPage = props => {
       ) : (
         <div className="list-page">
           <Container>
-            <section className="list-info">
-              <h2>{`${data.getList.title.phrase} ${data.getList.title.count} ${data.getList.title.description}`}</h2>
-
-              <Link to={`/${data.getList.username}`}>
-                <h3 className="o-text">{`@${data.getList.username}`}</h3>
-              </Link>
-              {data.getList.tags.length === 0 ? null : (
-                <div className="list-tags">
-                  {data.getList.tags.map((tag, index) => (
-                    <Link to={`/tag/${tag}`} key={index} className="list-tag">
-                      #{tag}
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </section>
+            <ListInfo data={data} />
             <ListItems items={data.getList.items} />
             <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
             <div className="list-actions">
