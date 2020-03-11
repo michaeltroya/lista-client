@@ -49,69 +49,71 @@ const Signup = props => {
   return (
     <Fragment>
       <StaticNav type="forms" />
-      <section className="signup">
-        {Object.keys(errors).length > 0 ? (
-          <div className="form-errors">
-            <Container>
-              {Object.values(errors).map(err => (
-                <h4 key={err}>{err}</h4>
-              ))}
-            </Container>
-          </div>
-        ) : null}
-        <Container className="form-container">
-          <form className="form" onSubmit={handleSubmit} noValidate>
-            <input
-              type="text"
-              placeholder="Username"
-              name="username"
-              value={signupData.username}
-              onChange={handleChange}
-              autoComplete="off"
-              className="form-input"
-            />
-            <input
-              type="text"
-              placeholder="Email Address"
-              name="email"
-              value={signupData.email}
-              onChange={handleChange}
-              autoComplete="off"
-              className="form-input"
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={signupData.password}
-              onChange={handleChange}
-              autoComplete="off"
-              className="form-input"
-            />
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="confirmPassword"
-              value={signupData.confirmPassword}
-              onChange={handleChange}
-              autoComplete="off"
-              className="form-input"
-            />
+      <div className="forms">
+        <section className="signup">
+          {Object.keys(errors).length > 0 ? (
+            <div className="form-errors">
+              <Container>
+                {Object.values(errors).map(err => (
+                  <h4 key={err}>{err}</h4>
+                ))}
+              </Container>
+            </div>
+          ) : null}
+          <Container className="form-container">
+            <form className="form" onSubmit={handleSubmit} noValidate>
+              <input
+                type="text"
+                placeholder="Username"
+                name="username"
+                value={signupData.username}
+                onChange={handleChange}
+                autoComplete="off"
+                className="form-input"
+              />
+              <input
+                type="text"
+                placeholder="Email Address"
+                name="email"
+                value={signupData.email}
+                onChange={handleChange}
+                autoComplete="off"
+                className="form-input"
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={signupData.password}
+                onChange={handleChange}
+                autoComplete="off"
+                className="form-input"
+              />
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmPassword"
+                value={signupData.confirmPassword}
+                onChange={handleChange}
+                autoComplete="off"
+                className="form-input"
+              />
 
-            {loading ? (
-              <Spinner animation="border" className="orange-spinner" />
-            ) : (
-              <input type="submit" className="btn btn-full-width" />
-            )}
-          </form>
-          <h4 className="g-text">
-            Already have an account?{' '}
-            <Link to="/login" className="o-text">
-              Log in
-            </Link>
-          </h4>
-        </Container>
-      </section>
+              {loading ? (
+                <Spinner animation="border" className="orange-spinner" />
+              ) : (
+                <input type="submit" className="btn btn-full-width" />
+              )}
+            </form>
+            <h4 className="g-text">
+              Already have an account?{' '}
+              <Link to="/login" className="o-text">
+                Log in
+              </Link>
+            </h4>
+          </Container>
+        </section>
+      </div>
     </Fragment>
   );
 };

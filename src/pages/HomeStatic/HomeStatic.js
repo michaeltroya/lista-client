@@ -15,42 +15,44 @@ const HomeStatic = () => {
   return (
     <Fragment>
       <StaticNav type="home" />
-      <section className="home-hero">
-        <Container>
-          <Row>
-            <Col xs={12}>
-              <div className="home-hero-container">
-                <h1 className="o-text">Welcome to Lista</h1>
-                <h3>The best platform to share your all-time lists</h3>
-                <h4 className="g-text">
-                  From your favourite movies to your favourite NBA players, Lista allows you to create
-                  lists...
-                </h4>
-                <div className="home-buttons">
-                  <Link to="/signup" className="btn">
-                    Sign up
-                  </Link>
-                  <Link to="/login" className="btn">
-                    Log in
-                  </Link>
+      <div className="home-static">
+        <section className="home-hero">
+          <Container>
+            <Row>
+              <Col xs={12}>
+                <div className="home-hero-container">
+                  <h1 className="o-text">Welcome to Lista</h1>
+                  <h3>The best platform to share your all-time lists</h3>
+                  <h4 className="g-text">
+                    From your favourite movies to your favourite NBA players, Lista allows you to create
+                    lists...
+                  </h4>
+                  <div className="home-buttons">
+                    <Link to="/signup" className="btn">
+                      Sign up
+                    </Link>
+                    <Link to="/login" className="btn">
+                      Log in
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-      <section className="home-lists">
-        <Container>
-          <h2>Explore lists</h2>
-          <div className="lists-container">
-            {loading ? (
-              <Spinner animation="border" className="orange-spinner" />
-            ) : (
-              data.getLists.map(list => <ListCard list={list} key={list.id} />)
-            )}
-          </div>
-        </Container>
-      </section>
+              </Col>
+            </Row>
+          </Container>
+        </section>
+        <section className="home-lists">
+          <Container>
+            <h2>Explore lists</h2>
+            <div className="lists-container">
+              {loading ? (
+                <Spinner animation="border" className="orange-spinner" />
+              ) : (
+                data.getLists.map(list => <ListCard list={list} key={list.id} />)
+              )}
+            </div>
+          </Container>
+        </section>
+      </div>
     </Fragment>
   );
 };

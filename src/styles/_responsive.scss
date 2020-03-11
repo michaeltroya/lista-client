@@ -16,6 +16,14 @@
     border-left: 1px solid #0000001f;
     background-color: #fff;
     padding: 5rem 0 0 2rem;
+    flex-direction: column;
+    .vert-nav-items {
+      display: flex;
+      flex-direction: column;
+    }
+    .btn {
+      margin-left: 0;
+    }
   }
 
   .desktop-col {
