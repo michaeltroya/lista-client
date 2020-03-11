@@ -2,10 +2,11 @@ import React, { Fragment } from 'react';
 //gql
 import { useQuery } from '@apollo/react-hooks';
 //bs imports
-import { Container, Spinner } from 'react-bootstrap';
+import { Spinner } from 'react-bootstrap';
 //comps
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
+import Layout from '../../layout/Layout';
 //queries
 import { FETCH_TAG_LISTS_QUERY } from '../../../graphql/query';
 
@@ -21,20 +22,18 @@ const Tags = props => {
   return (
     <Fragment>
       <Nav type="tags" history={props.history} />
-      <section className="tag-name">
-        <Container>
+      <Layout>
+        <section className="tag-name">
           <h1>#{tagPath}</h1>
-        </Container>
-      </section>
-      <section className="tag-results">
-        <Container>
+        </section>
+        <section className="tag-results">
           {loading ? (
             <Spinner animation="border" className="orange-spinner" />
           ) : (
             data.getTagLists.map(list => <ListCard list={list} key={list.id} />)
           )}
-        </Container>
-      </section>
+        </section>
+      </Layout>
     </Fragment>
   );
 };

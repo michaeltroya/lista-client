@@ -5,6 +5,7 @@ import { useQuery } from '@apollo/react-hooks';
 import { useSelector } from 'react-redux';
 //comps
 import Nav from '../../layout/Nav/Nav';
+import Layout from '../../layout/Layout';
 //comps
 import ListCard from '../../secondary/ListCard/ListCard';
 //queries
@@ -20,10 +21,9 @@ const Home = () => {
   return (
     <Fragment>
       <Nav type="timeline" />
-      <section className="trending-timeline">
-        <Container>
+      <Layout>
+        <section className="trending-timeline">
           <h1>Trending Lists</h1>
-
           <div className="lists-container">
             {trendLoad ? (
               <Spinner animation="border" className="orange-spinner" />
@@ -31,24 +31,24 @@ const Home = () => {
               trendData.getLists.map(list => <ListCard list={list} />)
             )}
           </div>
-        </Container>
-      </section>
-      <section className="friends-timeline">
-        <Container>
-          <h1>My friends Lists</h1>
-          <Row>
-            {loading ? (
-              <Spinner animation="border" className="orange-spinner" />
-            ) : (
-              data.getTimeline.map(list => (
-                <Col xs={12} md={4} key={list.id}>
-                  <ListCard list={list} />
-                </Col>
-              ))
-            )}
-          </Row>
-        </Container>
-      </section>
+        </section>
+        <section className="friends-timeline">
+          <Container fluid>
+            <h1>My friends Lists</h1>
+            <Row>
+              {loading ? (
+                <Spinner animation="border" className="orange-spinner" />
+              ) : (
+                data.getTimeline.map(list => (
+                  <Col xs={12} md={4} key={list.id}>
+                    <ListCard list={list} />
+                  </Col>
+                ))
+              )}
+            </Row>
+          </Container>
+        </section>
+      </Layout>
     </Fragment>
   );
 };

@@ -4,18 +4,33 @@
   .mobi-nav {
     display: none;
   }
-  .nav {
-    background-color: red;
+
+  .delete-list {
+    padding-bottom: 2rem;
+  }
+  .vert-nav {
+    display: flex;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    border-left: 1px solid #0000001f;
+    background-color: #fff;
+    padding: 5rem 0 0 2rem;
+  }
+
+  .desktop-col {
+    display: initial;
+  }
+
+  .create-list-items {
+    margin-bottom: 0;
+  }
+  .main {
+    margin-top: 75px;
   }
 }
 @include media-breakpoint-up(lg) {
-  .nav {
-    background-color: red;
-  }
 }
 
 @include media-breakpoint-up(xl) {
-  .nav {
-    background-color: red;
-  }
 }

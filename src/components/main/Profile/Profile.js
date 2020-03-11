@@ -17,6 +17,7 @@ import { faSignOutAlt, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import ListCard from '../../secondary/ListCard/ListCard';
 import Nav from '../../layout/Nav/Nav';
 import FollowButton from '../../secondary/FollowButton';
+import Layout from '../../layout/Layout';
 
 const Profile = props => {
   const authUser = useSelector(state => state.user.credentials.username);
@@ -32,12 +33,12 @@ const Profile = props => {
     return (
       <Fragment>
         <Nav type="profile" history={props.history} />
-        <section className="profile-details">
-          <Container>
+        <Layout>
+          <section className="profile-details">
             <h4>Opps!</h4>
             <h1>{error.graphQLErrors[0].message}</h1>
-          </Container>
-        </section>
+          </section>
+        </Layout>
       </Fragment>
     );
   }
@@ -45,55 +46,59 @@ const Profile = props => {
   return (
     <Fragment>
       <Nav type="profile" history={props.history} />
-      <div className="profile">
-        <section className="profile-details">
-          <Container>
-            {loading ? (
-              <Spinner animation="border" className="orange-spinner" />
-            ) : (
-              <Fragment>
-                <h1>@{data.getUserLists.user.username}</h1>
-
-                <p className="g-text">Joined{dayjs(data.getUserLists.user.createdAt).format(' MMM YYYY')}</p>
-                <FollowButton currentProfile={usernamePath} />
-                <h4>
-                  {data.getUserLists.lists.length} {data.getUserLists.lists.length === 1 ? 'LIST' : 'LISTS'}
-                </h4>
-                {authUser && authUser === usernamePath ? (
-                  <div className="logout" onClick={() => dispatch(logout())}>
-                    <OverlayTrigger placement="bottom" overlay={<Tooltip>Logout</Tooltip>}>
-                      <FontAwesomeIcon icon={faSignOutAlt} size="1x" />
-                    </OverlayTrigger>
-                  </div>
-                ) : null}
-              </Fragment>
-            )}
-          </Container>
-        </section>
-        <section className="profile-lists">
-          <Container>
-            <Row>
-              {authUser && authUser === usernamePath ? (
-                <Col xs={12} md={4}>
-                  <Link to="/create/list" className="add-list-card">
-                    <FontAwesomeIcon icon={faPlusCircle} size="3x" />
-                    <h1>Add List</h1>
-                  </Link>
-                </Col>
-              ) : null}
+      <Layout>
+        <div className="profile">
+          <section className="profile-details">
+            <Container fluid>
               {loading ? (
                 <Spinner animation="border" className="orange-spinner" />
               ) : (
-                data.getUserLists.lists.map(list => (
-                  <Col xs={12} md={4} key={list.id}>
-                    <ListCard list={list} />
-                  </Col>
-                ))
+                <Fragment>
+                  <h1>@{data.getUserLists.user.username}</h1>
+
+                  <p className="g-text">
+                    Joined{dayjs(data.getUserLists.user.createdAt).format(' MMM YYYY')}
+                  </p>
+                  <FollowButton currentProfile={usernamePath} />
+                  <h4>
+                    {data.getUserLists.lists.length} {data.getUserLists.lists.length === 1 ? 'LIST' : 'LISTS'}
+                  </h4>
+                  {authUser && authUser === usernamePath ? (
+                    <div className="logout" onClick={() => dispatch(logout())}>
+                      <OverlayTrigger placement="bottom" overlay={<Tooltip>Logout</Tooltip>}>
+                        <FontAwesomeIcon icon={faSignOutAlt} size="1x" />
+                      </OverlayTrigger>
+                    </div>
+                  ) : null}
+                </Fragment>
               )}
-            </Row>
-          </Container>
-        </section>
-      </div>
+            </Container>
+          </section>
+          <section className="profile-lists">
+            <Container fluid>
+              <Row>
+                {authUser && authUser === usernamePath ? (
+                  <Col xs={12} md={4}>
+                    <Link to="/create/list" className="add-list-card">
+                      <FontAwesomeIcon icon={faPlusCircle} size="3x" />
+                      <h1>Add List</h1>
+                    </Link>
+                  </Col>
+                ) : null}
+                {loading ? (
+                  <Spinner animation="border" className="orange-spinner" />
+                ) : (
+                  data.getUserLists.lists.map(list => (
+                    <Col xs={12} md={4} key={list.id}>
+                      <ListCard list={list} />
+                    </Col>
+                  ))
+                )}
+              </Row>
+            </Container>
+          </section>
+        </div>
+      </Layout>
     </Fragment>
   );
 };

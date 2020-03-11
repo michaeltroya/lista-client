@@ -78,4 +78,11 @@
   .list-card {
     margin-right: 2rem;
   }
+  &::-webkit-scrollbar {
+    height: 0.7rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $main-color;
+  }
 }

@@ -10,7 +10,11 @@ html {
   position: relative;
   padding: 0;
   margin: 0;
-  background-color: $grey-color;
+  background-color: #fff;
+}
+
+.main {
+  margin-top: 55px;
 }
 
 button {
@@ -32,6 +36,10 @@ section {
 
 .white-bg {
   background-color: #fff;
+}
+
+.desktop-col {
+  display: none;
 }
 
 //FILES

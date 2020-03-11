@@ -84,57 +84,59 @@ const CreateList = props => {
   return (
     <Fragment>
       <Nav type="compose" history={props.history} />
-      {Object.keys(errors).length > 0 ? (
-        <div className="form-errors">
+      <div className="create-list">
+        {Object.keys(errors).length > 0 ? (
+          <div className="form-errors">
+            <Container>
+              {Object.values(errors).map(err => (
+                <h4 key={err}>{err}</h4>
+              ))}
+            </Container>
+          </div>
+        ) : null}
+        <section className="create-list-title">
           <Container>
-            {Object.values(errors).map(err => (
-              <h4 key={err}>{err}</h4>
-            ))}
-          </Container>
-        </div>
-      ) : null}
-      <section className="create-list-title">
-        <Container>
-          {submittedTitle ? (
-            <div className="submitted-title">
-              <h1>{`${title.phrase} ${title.count} ${title.description}`}</h1>
-              <input type="button" className="btn btn-dimmed" value="Reset" onClick={handleReset} />
-            </div>
-          ) : (
-            <form onSubmit={handleTitleSubmit}>
-              <div className="title-count">
-                <h2>Top</h2>
+            {submittedTitle ? (
+              <div className="submitted-title">
+                <h1>{`${title.phrase} ${title.count} ${title.description}`}</h1>
+                <input type="button" className="btn btn-dimmed" value="Reset" onClick={handleReset} />
+              </div>
+            ) : (
+              <form onSubmit={handleTitleSubmit}>
+                <div className="title-count">
+                  <h2>Top</h2>
+                  <input
+                    type="number"
+                    placeholder="Amount"
+                    value={title.count}
+                    onChange={e => setTitle({ ...title, count: e.target.value })}
+                    min="3"
+                    max="100"
+                    className="form-input number-input"
+                  />
+                </div>
                 <input
-                  type="number"
-                  placeholder="Amount"
-                  value={title.count}
-                  onChange={e => setTitle({ ...title, count: e.target.value })}
-                  min="3"
-                  max="100"
-                  className="form-input number-input"
+                  type="text"
+                  placeholder="List description"
+                  className="form-input"
+                  value={title.description}
+                  onChange={e => setTitle({ ...title, description: e.target.value })}
                 />
-              </div>
-              <input
-                type="text"
-                placeholder="List description"
-                className="form-input"
-                value={title.description}
-                onChange={e => setTitle({ ...title, description: e.target.value })}
-              />
-              <div className="buttons">
-                {title.description === '' ? null : <input type="submit" className="btn" value="Start" />}
-              </div>
-            </form>
-          )}
-        </Container>
-      </section>
+                <div className="buttons">
+                  {title.description === '' ? null : <input type="submit" className="btn" value="Start" />}
+                </div>
+              </form>
+            )}
+          </Container>
+        </section>
 
-      {items.length === 0 ? null : (
-        <Fragment>
-          <CreateListTags tags={tags} setTags={setTags} />
-          <CreateListItems items={items} setItems={setItems} handleItemsSubmit={handleItemsSubmit} />
-        </Fragment>
-      )}
+        {items.length === 0 ? null : (
+          <Fragment>
+            <CreateListTags tags={tags} setTags={setTags} />
+            <CreateListItems items={items} setItems={setItems} handleItemsSubmit={handleItemsSubmit} />
+          </Fragment>
+        )}
+      </div>
     </Fragment>
   );
 };

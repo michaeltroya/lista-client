@@ -3,12 +3,13 @@
 }
 .profile-details {
   background-color: white;
-  .container {
+  .container-fluid {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+
   h1 {
     font-size: 2.4rem;
   }
@@ -26,6 +27,7 @@
 
 .profile-lists {
   margin-bottom: 5rem;
+  background-color: white;
   h1 {
     text-align: center;
     margin: 0 auto;

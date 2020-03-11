@@ -22,7 +22,12 @@ const Nav = ({ type, history }) => {
         </Container>
       ) : (
         <Container>
-          <FontAwesomeIcon icon={faArrowLeft} size="lg" onClick={() => history.goBack()} />
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            size="lg"
+            onClick={() => history.goBack()}
+            className="go-back"
+          />
           {type === 'compose' ? <h2>Create List</h2> : type === '404' ? <h2>Go back</h2> : <h2>{type}</h2>}
         </Container>
       )}

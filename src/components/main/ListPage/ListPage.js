@@ -19,6 +19,7 @@ import ListComments from './ListComments';
 import LikeButton from '../../secondary/LikeButton';
 import DeleteButton from '../../secondary/DeleteButton';
 import ListInfo from './ListInfo';
+import Layout from '../../layout/Layout';
 
 const ListPage = props => {
   const username = useSelector(state => state.user.credentials.username);
@@ -35,12 +36,12 @@ const ListPage = props => {
     return (
       <Fragment>
         <Nav type="list" history={props.history} />
-        <section className="profile-details">
-          <Container>
+        <Layout>
+          <section className="profile-details">
             <h4>Opps!</h4>
             <h1>{error.graphQLErrors[0].message}</h1>
-          </Container>
-        </section>
+          </section>
+        </Layout>
       </Fragment>
     );
   }
@@ -48,45 +49,47 @@ const ListPage = props => {
   return (
     <Fragment>
       <Nav type="list" history={props.history} />
-      {loading ? (
-        <Spinner animation="border" className="orange-spinner" />
-      ) : (
-        <div className="list-page">
-          <Container>
-            <ListInfo data={data} />
-            <ListItems items={data.getList.items} />
-            <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
-            <div className="list-actions">
-              <div className="like-count">
-                <LikeButton
-                  likeCount={data.getList.likeCount}
-                  listId={data.getList.id}
-                  likes={data.getList.likes}
-                />
-              </div>
+      <Layout>
+        {loading ? (
+          <Spinner animation="border" className="orange-spinner" />
+        ) : (
+          <div className="list-page">
+            <Container fluid>
+              <ListInfo data={data} />
+              <ListItems items={data.getList.items} />
+              <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
+              <div className="list-actions">
+                <div className="like-count">
+                  <LikeButton
+                    likeCount={data.getList.likeCount}
+                    listId={data.getList.id}
+                    likes={data.getList.likes}
+                  />
+                </div>
 
-              <div className="comment-count">
-                <p>{data.getList.commentCount}</p>
-                {authenticated ? (
-                  <FontAwesomeIcon icon={faComments} className="b-text" />
-                ) : (
-                  <Link to="/login">
+                <div className="comment-count">
+                  <p>{data.getList.commentCount}</p>
+                  {authenticated ? (
                     <FontAwesomeIcon icon={faComments} className="b-text" />
-                  </Link>
-                )}
+                  ) : (
+                    <Link to="/login">
+                      <FontAwesomeIcon icon={faComments} className="b-text" />
+                    </Link>
+                  )}
+                </div>
               </div>
-            </div>
-            <ListComments comments={data.getList.comments} listId={data.getList.id} />
-          </Container>
-          <section className="delete-list">
-            <Container>
-              {authenticated && data.getList.username === username ? (
-                <DeleteButton listId={data.getList.id} username={username} showText />
-              ) : null}
+              <ListComments comments={data.getList.comments} listId={data.getList.id} />
             </Container>
-          </section>
-        </div>
-      )}
+            {authenticated && data.getList.username === username ? (
+              <section className="delete-list">
+                <Container fluid>
+                  <DeleteButton listId={data.getList.id} username={username} showText />
+                </Container>
+              </section>
+            ) : null}
+          </div>
+        )}
+      </Layout>
     </Fragment>
   );
 };
