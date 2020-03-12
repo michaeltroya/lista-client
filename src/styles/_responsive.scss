@@ -8,26 +8,20 @@
   .delete-list {
     padding-bottom: 2rem;
   }
-  .vert-nav {
-    display: flex;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    border-left: 1px solid #0000001f;
-    background-color: #fff;
-    padding: 5rem 0 0 2rem;
-    flex-direction: column;
-    .vert-nav-items {
-      display: flex;
-      flex-direction: column;
-    }
-    .btn {
-      margin-left: 0;
-    }
-  }
 
   .desktop-col {
-    display: initial;
+    height: 100vh;
+    display: flex;
+    border-left: 1px solid #0000001f;
+    .vert-nav-items {
+      position: fixed;
+      padding-top: 75px;
+      display: flex;
+      flex-direction: column;
+      .btn {
+        margin-left: 0;
+      }
+    }
   }
 
   .create-list-items {
@@ -36,8 +30,14 @@
   .main {
     margin-top: 75px;
   }
+  section {
+    padding: 2.5rem 0;
+  }
 }
 @include media-breakpoint-up(lg) {
+  section {
+    padding: 4rem 0;
+  }
 }
 
 @include media-breakpoint-up(xl) {

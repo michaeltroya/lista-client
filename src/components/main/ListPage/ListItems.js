@@ -47,10 +47,15 @@ const ListItems = ({ items, username }) => {
           </Accordion>
           {isEditing.includes(i) ? (
             <form>
-              <textarea className="form-input" type="text" value={item.description} />
+              <textarea
+                className="form-input"
+                type="text"
+                placeholder="Add description..."
+                value={item.description}
+              />
               <input type="submit" className="btn" />
               <div
-                className="btn btn-dimmed"
+                className="btn btn-clear"
                 onClick={() => {
                   isEditing.includes(i)
                     ? setIsEditing(isEditing.filter(item => item !== i))

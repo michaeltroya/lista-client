@@ -6,13 +6,11 @@ const Layout = ({ children }) => {
   return (
     <Container>
       <Row>
-        <Col xs={12} md={11}>
+        <Col xs={12} md={10}>
           <div className="main">{children}</div>
         </Col>
-        <Col xs={0} md={1} className="desktop-col">
-          <section className="vert-nav">
-            <VertNav />
-          </section>
+        <Col xs={0} md={2} className="desktop-col">
+          <VertNav />
         </Col>
       </Row>
     </Container>

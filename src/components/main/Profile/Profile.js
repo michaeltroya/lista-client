@@ -78,7 +78,7 @@ const Profile = props => {
             <Container fluid>
               <Row>
                 {authUser && authUser === usernamePath ? (
-                  <Col xs={12} md={4}>
+                  <Col xs={12} md={6} lg={4}>
                     <Link to="/create/list" className="add-list-card">
                       <FontAwesomeIcon icon={faPlusCircle} size="3x" />
                       <h1>Add List</h1>
@@ -89,7 +89,7 @@ const Profile = props => {
                   <Spinner animation="border" className="orange-spinner" />
                 ) : (
                   data.getUserLists.lists.map(list => (
-                    <Col xs={12} md={4} key={list.id}>
+                    <Col xs={12} md={6} lg={4} key={list.id}>
                       <ListCard list={list} />
                     </Col>
                   ))
