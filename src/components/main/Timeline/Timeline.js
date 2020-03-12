@@ -25,11 +25,13 @@ const Home = () => {
         <section className="trending-timeline">
           <h1>Trending Lists</h1>
           <div className="lists-container">
-            {trendLoad ? (
-              <Spinner animation="border" className="orange-spinner" />
-            ) : (
-              trendData.getLists.map(list => <ListCard list={list} key={list.id} />)
-            )}
+            <div className="lists-container-inner">
+              {trendLoad ? (
+                <Spinner animation="border" className="orange-spinner" />
+              ) : (
+                trendData.getLists.map(list => <ListCard list={list} key={list.id} />)
+              )}
+            </div>
           </div>
         </section>
         <section className="friends-timeline">

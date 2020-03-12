@@ -10,7 +10,7 @@
   }
 
   .desktop-col {
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     border-left: 1px solid #0000001f;
     .vert-nav-items {
@@ -22,6 +22,10 @@
         margin-left: 0;
       }
     }
+  }
+
+  .trending-timeline {
+    padding: 0 2rem;
   }
 
   .create-list-items {

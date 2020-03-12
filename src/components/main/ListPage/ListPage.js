@@ -2,10 +2,9 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 //gql
 import { useQuery } from '@apollo/react-hooks';
+import { FETCH_LIST_QUERY } from '../../../graphql/query';
 //bs imports
 import { Container, Spinner } from 'react-bootstrap';
-//queries
-import { FETCH_LIST_QUERY } from '../../../graphql/query';
 //Redux Imports
 import { useSelector } from 'react-redux';
 import dayjs from 'dayjs';
@@ -56,7 +55,11 @@ const ListPage = props => {
           <div className="list-page">
             <Container fluid>
               <ListInfo data={data} />
-              <ListItems items={data.getList.items} username={data.getList.username} />
+              <ListItems
+                items={data.getList.items}
+                username={data.getList.username}
+                listId={data.getList.id}
+              />
               <p className="g-text">{dayjs(data.getList.createdAt).format('h:mm A · MMM DD, YYYY')}</p>
               <div className="list-actions">
                 <div className="like-count">

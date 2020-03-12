@@ -75,14 +75,20 @@
     min-width: 240px;
     max-width: 240px;
   }
-  .list-card {
-    margin-right: 2rem;
-  }
+
   &::-webkit-scrollbar {
     height: 0.7rem;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: $main-color;
+    background-color: rgba(32, 32, 32, 0.507);
+  }
+}
+
+.lists-container-inner {
+  align-items: flex-start;
+  display: flex;
+  .list-card {
+    margin-right: 2rem;
   }
 }

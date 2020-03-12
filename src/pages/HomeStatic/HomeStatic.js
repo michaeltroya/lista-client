@@ -44,11 +44,13 @@ const HomeStatic = () => {
           <Container>
             <h2>Explore lists</h2>
             <div className="lists-container">
-              {loading ? (
-                <Spinner animation="border" className="orange-spinner" />
-              ) : (
-                data.getLists.map(list => <ListCard list={list} key={list.id} />)
-              )}
+              <div className="lists-container-inner">
+                {loading ? (
+                  <Spinner animation="border" className="orange-spinner" />
+                ) : (
+                  data.getLists.map(list => <ListCard list={list} key={list.id} />)
+                )}
+              </div>
             </div>
           </Container>
         </section>

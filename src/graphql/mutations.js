@@ -202,3 +202,37 @@ export const UPDATE_TAGS = gql`
     }
   }
 `;
+
+//ADD OR UPDATE DESCRIPTION
+
+export const UPDATE_ITEM = gql`
+  mutation updateItems($listId: ID!, $items: [ItemsInput]!) {
+    updateItems(listId: $listId, items: $items) {
+      id
+      username
+      title {
+        phrase
+        count
+        description
+      }
+      tags
+      items {
+        name
+        description
+        order
+      }
+      comments {
+        id
+        body
+        username
+        createdAt
+      }
+      commentCount
+      likes {
+        username
+      }
+      likeCount
+      createdAt
+    }
+  }
+`;

@@ -111,6 +111,17 @@
   }
 }
 
+.description-input {
+  min-width: 100%;
+}
+
+.desc-btns {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 // ACTIONS ()
 .list-actions {
   padding: 1rem 0;
