@@ -19,7 +19,7 @@ import App from './App';
 const cache = new InMemoryCache();
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:5000/'
+  uri: 'https://lista-gql-api.herokuapp.com/'
 });
 
 const authLink = setContext((_, { headers }) => {
