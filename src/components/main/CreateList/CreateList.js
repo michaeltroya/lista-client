@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 //gql
-import { useMutation, useQuery } from '@apollo/react-hooks';
+import { useMutation } from '@apollo/react-hooks';
 import { CREATE_LIST } from '../../../graphql/mutations';
 import { FETCH_USER_LISTS_QUERY } from '../../../graphql/query';
 import { Container } from 'react-bootstrap';
@@ -13,7 +13,7 @@ import CreateListTags from './CreateListTags';
 
 const CreateList = props => {
   const username = useSelector(state => state.user.credentials.username);
-  useQuery(FETCH_USER_LISTS_QUERY, { variables: { username } });
+
   const [title, setTitle] = useState({
     phrase: 'Top',
     count: 3,
@@ -59,7 +59,6 @@ const CreateList = props => {
         name: '',
         description: ''
       };
-
       list.push(item);
     }
     setItems([...list]);
@@ -74,6 +73,7 @@ const CreateList = props => {
     });
     setItems([]);
     setSubmittedTitle(false);
+    setTags([]);
   };
 
   const handleItemsSubmit = e => {
@@ -109,7 +109,7 @@ const CreateList = props => {
                     type="number"
                     placeholder="Amount"
                     value={title.count}
-                    onChange={e => setTitle({ ...title, count: e.target.value })}
+                    onChange={e => setTitle({ ...title, count: parseInt(e.target.value) })}
                     min="3"
                     max="100"
                     className="form-input number-input"
