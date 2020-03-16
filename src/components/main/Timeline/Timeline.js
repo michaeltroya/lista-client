@@ -42,7 +42,7 @@ const Home = () => {
                 <Spinner animation="border" className="orange-spinner" />
               ) : (
                 data.getTimeline.map(list => (
-                  <Col xs={12} md={4} key={list.id}>
+                  <Col sm={12} md={6} lg={4} key={list.id}>
                     <ListCard list={list} />
                   </Col>
                 ))

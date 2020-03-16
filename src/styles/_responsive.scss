@@ -24,10 +24,6 @@
     }
   }
 
-  .trending-timeline {
-    padding: 0 2rem;
-  }
-
   .create-list-items {
     margin-bottom: 0;
   }
@@ -39,10 +35,19 @@
   }
 }
 @include media-breakpoint-up(lg) {
+  .form-errors {
+    padding: 3rem 0;
+  }
+  .create-list-tags {
+    padding: 3rem 0;
+  }
   section {
     padding: 4rem 0;
   }
 }
 
 @include media-breakpoint-up(xl) {
+  section {
+    padding: 5rem 0;
+  }
 }

@@ -18,7 +18,7 @@ const VertNav = () => {
           </Link>
 
           <Link to="/create/list">
-            <div className="btn">+ Create list</div>
+            <div className="btn">New list</div>
           </Link>
         </Fragment>
       ) : (
