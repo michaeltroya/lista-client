@@ -24,8 +24,8 @@ const HomeStatic = () => {
                   <h1 className="o-text">Welcome to Lista</h1>
                   <h3>The best platform to share your all-time lists</h3>
                   <h4 className="g-text">
-                    From your favourite movies to your favourite NBA players, Lista allows you to create
-                    lists...
+                    From your favourite movies to your favourite food, Lista allows you to create and compare
+                    your top lists with everyone
                   </h4>
                   <div className="home-buttons">
                     <Link to="/signup" className="btn">
